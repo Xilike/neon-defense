@@ -1760,7 +1760,7 @@ function drawTurrets() {
     const parts = turrParts(t.kind);
     if (parts) {
       // two-part turret: static base + rotating gun (proper turret look)
-      const m = parts.meta, hue = TURRET_DEF[t.kind].hue;
+      const m = parts.meta;
       const k = 74 * s / 160; // parts authored at 160px
       // base: upright, pivot lands exactly on (p.x, p.y)
       ctx.drawImage(parts.base, p.x - m.pbx * k, p.y - m.pby * k, m.bw * k, m.bh * k);
@@ -1772,11 +1772,6 @@ function drawTurrets() {
       const gr = m.gunR * k;
       ctx.drawImage(parts.gun, -gr - rec, -gr, gr * 2, gr * 2);
       ctx.restore();
-      // collar masks the base/gun joint
-      ctx.fillStyle = '#0d1428';
-      ctx.beginPath(); ctx.arc(p.x, p.y, 11 * s, 0, TAU); ctx.fill();
-      ctx.strokeStyle = 'hsla(' + hue + ',80%,60%,.7)'; ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.arc(p.x, p.y, 11 * s, 0, TAU); ctx.stroke();
     } else if (spr) {
       // fallback: upright sprite, no aim rotation
       const sz = 74 * s, sh = sz * spr.naturalHeight / spr.naturalWidth;
@@ -1812,13 +1807,6 @@ function drawTurrets() {
       ctx.fillStyle = 'hsl(' + hue + ',80%,65%)';
       ctx.beginPath(); ctx.arc(p.x - 3 * s, p.y - 3 * s, 6 * s, 0, TAU); ctx.fill();
     }
-    // status: cooldown arc
-    const hue = TURRET_DEF[t.kind].hue;
-    const st = turretStats(t.kind);
-    const cdMax = t.kind === 'ELECTRIC' ? 1 / st.rate : st.cool;
-    const frac = clamp(1 - t.cool / cdMax, 0, 1);
-    ctx.strokeStyle = 'hsla(' + hue + ',90%,65%,.8)'; ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.arc(p.x, p.y, 36 * s, -Math.PI / 2, -Math.PI / 2 + frac * TAU); ctx.stroke();
   }
 }
 
