@@ -383,7 +383,7 @@ const GALAXIES = [
     theme: { bg: ['#04060f', '#070c20', '#0a1028'], nebHues: [210, 275, 320, 190, 255], grid: 'rgba(80,140,255,.07)', accent: '#35e0ff' },
     enemy: {
       shape: 'orb', sizeMul: 1.0, spdMul: 1.0, hpMul: 1.0, density: 1.0, laneSwapMul: 1.0,
-      types: { NORMAL: 1.0, RUNNER: 0.55, TANK: 0.35, SPLITTER: 0.3 },
+      types: { NORMAL: 1.0, RUNNER: 0.55, TANK: 0.75, SPLITTER: 0.3 },
       colors: ['cyan', 'blue', 'teal'],
     },
     boss: { name: 'AURORA GUARDIAN' },
@@ -395,7 +395,7 @@ const GALAXIES = [
     theme: { bg: ['#0f0705', '#200d08', '#2b1206'], nebHues: [25, 10, 40, 0, 30], grid: 'rgba(255,140,80,.07)', accent: '#ff8c42' },
     enemy: {
       shape: 'hex', sizeMul: 1.0, spdMul: 1.12, hpMul: 1.35, density: 1.05, laneSwapMul: 1.3,
-      types: { NORMAL: 0.9, RUNNER: 0.6, TANK: 0.4, SPLITTER: 0.75 },
+      types: { NORMAL: 0.9, RUNNER: 0.6, TANK: 0.8, SPLITTER: 0.75 },
       colors: ['orange', 'red', 'gold'],
     },
     boss: { name: 'EMBER WARDEN' },
@@ -407,7 +407,7 @@ const GALAXIES = [
     theme: { bg: ['#04100c', '#07201a', '#0a2b22'], nebHues: [150, 165, 190, 140, 175], grid: 'rgba(80,255,170,.07)', accent: '#4dffa6' },
     enemy: {
       shape: 'cube', sizeMul: 1.0, spdMul: 1.08, hpMul: 1.8, density: 1.1, laneSwapMul: 2.2,
-      types: { NORMAL: 0.85, RUNNER: 0.65, TANK: 0.45, SPLITTER: 0.5, SUPPORTER: 0.4 },
+      types: { NORMAL: 0.85, RUNNER: 0.65, TANK: 0.85, SPLITTER: 0.5, SUPPORTER: 0.4 },
       colors: ['mint', 'teal', 'cyan'],
     },
     boss: { name: 'JADE COLOSSUS' },
@@ -419,7 +419,7 @@ const GALAXIES = [
     theme: { bg: ['#0b0616', '#150b28', '#1d1038'], nebHues: [265, 280, 292, 250, 300], grid: 'rgba(170,120,255,.08)', accent: '#b07dff' },
     enemy: {
       shape: 'ring', sizeMul: 1.05, spdMul: 1.05, hpMul: 2.4, density: 1.15, laneSwapMul: 1.2,
-      types: { NORMAL: 0.8, RUNNER: 0.6, TANK: 0.5, SPLITTER: 0.45, SHIELDED: 0.6 },
+      types: { NORMAL: 0.8, RUNNER: 0.6, TANK: 0.9, SPLITTER: 0.45, SHIELDED: 0.6 },
       colors: ['violet', 'purple', 'lavender'],
     },
     boss: { name: 'INDIGO MATRIARCH' },
@@ -431,7 +431,7 @@ const GALAXIES = [
     theme: { bg: ['#08080c', '#101016', '#16161e'], nebHues: [225, 235, 25, 220, 240], grid: 'rgba(200,200,220,.06)', accent: '#ff9a3c' },
     enemy: {
       shape: 'mech', sizeMul: 1.1, spdMul: 1.1, hpMul: 3.2, density: 1.2, laneSwapMul: 1.0,
-      types: { NORMAL: 0.7, RUNNER: 0.6, TANK: 0.7, SPLITTER: 0.5, SHIELDED: 0.5, SUPPORTER: 0.35 },
+      types: { NORMAL: 0.7, RUNNER: 0.6, TANK: 1.1, SPLITTER: 0.5, SHIELDED: 0.5, SUPPORTER: 0.35 },
       colors: ['silver', 'iron', 'orange'],
     },
     boss: { name: 'ECLIPSE OVERLORD' },
@@ -861,7 +861,15 @@ const Director = {
     let wsum = 0; for (const t of types) wsum += G.enemy.types[t];
     let r = Math.random() * wsum, type = types[0];
     for (const t of types) { r -= G.enemy.types[t]; if (r <= 0) { type = t; break; } }
-    spawnEnemy(type, pick(G.enemy.colors));
+    const e = spawnEnemy(type, pick(G.enemy.colors));
+    // side-entry orbs: some slow orbs glide in from the left/right screen edges
+    if (e && (type === 'NORMAL' || type === 'TANK') && Math.random() < 0.35) {
+      const left = Math.random() < 0.5;
+      e.enterDir = left ? 1 : -1;
+      e.lane = left ? -4.6 : (LANES - 1) + 4.6;
+      e.laneFrom = e.laneTo = e.lane;
+      e.t = rand(0.3, 0.5);
+    }
   },
 };
 /* ============ spawn intensity tiers (master spec §13) ============
@@ -1177,6 +1185,7 @@ function spawnEnemy(type, color, lane, t0) {
     // phase-2 mechanics state
     e.boss = (type === 'BOSS') ? G.boss.name : null;
     e.comp = null; e.compKind = null; // pool reuse: never leak composite state
+    e.enterDir = 0; // side-entry glide state (0 = normal)
     e.shield = 0; e.maxShield = 0; e.shieldOn = false; e.shieldT = 0;
     if (type === 'SHIELDED') {
       e.maxShield = e.shield = Math.round(e.maxhp * 0.5);
@@ -1201,6 +1210,7 @@ function enemyById(id) {
 
 /* lane-switch AI: understandable rules, animated, never teleport */
 function updateLaneAI(e, dt) {
+  if (e.enterDir) return; // still gliding in from the side
   if (e.laneT < 1) { // mid-transition: animate
     e.laneT = Math.min(1, e.laneT + dt / 0.8);
     const k = e.laneT * e.laneT * (3 - 2 * e.laneT); // smoothstep
@@ -1345,7 +1355,12 @@ function updateEnemies(dt) {
     if (S.time < e.slowUntil) sp *= (1 - TURRET_DEF.ELECTRIC.slowPct);
     e.t += sp * dt;
     e.lane += Math.sin(e.wob) * 0.02 * dt; // subtle drift, stays in lane
-    e.lane = clamp(e.lane, 0, LANES - 1);
+    if (e.enterDir) { // side-entry orb: glide in from off-grid until it reaches the lanes
+      e.lane += e.enterDir * 0.55 * dt;
+      if (e.lane >= 0 && e.lane <= LANES - 1) e.enterDir = 0;
+    } else {
+      e.lane = clamp(e.lane, 0, LANES - 1);
+    }
     if (e.t >= 1) breachBase(e);
   }
 }
