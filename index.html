@@ -354,6 +354,7 @@ const ENEMY_DEF = {
   RUNNER:   { hp: 60,  speed: 0.080, r: 12, reward: 7,  breach: 10, w: 0.8 },
   TANK:     { hp: 300, speed: 0.031, r: 20, reward: 15, breach: 20, w: 1.2 },
   BRUTE:    { hp: 1200, speed: 0.022, r: 38, reward: 60, breach: 40, w: 0 }, // giant monster orb
+  AEGIS:    { hp: 180, speed: 0.030, r: 22, reward: 10, breach: 0, w: 0 }, // friendly supply orb: kill it to shield the line
   SPLITTER: { hp: 130, speed: 0.045, r: 16, reward: 8,  breach: 12, w: 1.0 },
   MINI:     { hp: 40,  speed: 0.070, r: 8,  reward: 2,  breach: 5,  w: 0.6 },
   SUPPORTER:{ hp: 150, speed: 0.040, r: 15, reward: 12, breach: 14, w: 0.5 },  // jade: heals nearby allies
@@ -771,6 +772,15 @@ function drawDefenseLine() {
   ctx.fillStyle = hexA(ac, 0.75);
   ctx.font = '600 10px Tahoma, Arial'; ctx.textAlign = 'center';
   ctx.fillText('— DEFENSE LINE —', W * 0.5, y - 8);
+  if (S.time < (S.lineShieldUntil || 0)) { // active line shield: glowing barrier + countdown
+    const left = Math.ceil(S.lineShieldUntil - S.time);
+    const gp = 0.45 + 0.3 * Math.sin(S.time * 6);
+    ctx.strokeStyle = 'hsla(160,100%,65%,' + gp + ')'; ctx.lineWidth = 7;
+    ctx.beginPath(); ctx.moveTo(W * 0.06, y); ctx.lineTo(W * 0.94, y); ctx.stroke();
+    ctx.fillStyle = 'hsla(160,100%,78%,.95)';
+    ctx.font = '700 12px Tahoma, Arial'; ctx.textAlign = 'center';
+    ctx.fillText('🛡 LINE SHIELD ' + left + 's', W * 0.5, y - 24);
+  }
 }
 
 /* 2.5D shaded sphere (shared look) */
@@ -869,8 +879,8 @@ function drawEnemyBody(e, p, r) {
    affected ONLY by spawn-tier purchases and galaxy density (never by turret
    speed, projectiles, or UI timers). */
 const Director = {
-  t: 1.2, diff: 0, eventT: 40, bossT: 100, bruteT: 32, cap: 120,
-  reset() { this.t = 1.2; this.diff = 0; this.eventT = 40; this.bossT = 100; this.bruteT = 32; },
+  t: 1.2, diff: 0, eventT: 40, bossT: 100, bruteT: 32, aegisT: 75, cap: 120,
+  reset() { this.t = 1.2; this.diff = 0; this.eventT = 40; this.bossT = 100; this.bruteT = 32; this.aegisT = 75; },
   interval() {
     const tier = SPAWN_TIERS[S.spawnTier] || 1; // active tier (S), not just owned (SAVE)
     const base = 1.5 / (G.enemy.density || 1) / tier;
@@ -894,6 +904,13 @@ const Director = {
     if (this.bossT <= 0) { this.bossT = rand(85, 120); if (enemies.alive < this.cap - 1) spawnBossEvent(); }
     this.bruteT -= dt;
     if (this.bruteT <= 0) { this.bruteT = rand(40, 60); if (enemies.alive < this.cap - 2) spawnBrute(); }
+    this.aegisT -= dt;
+    if (this.aegisT <= 0) { // supply orb: rare, one at a time
+      this.aegisT = rand(100, 140);
+      let aegisAlive = false;
+      for (let i = 0; i < enemies.n; i++) { const o = enemies.arr[i]; if (o.on && !o.dead && o.type === 'AEGIS') { aegisAlive = true; break; } }
+      if (!aegisAlive && enemies.alive < this.cap - 2) spawnAegis();
+    }
     // slow base repair: a mistake is never the end of the world
     if (S.phase === 'combat' && S.baseHP > 0 && S.baseHP < S.baseMax) {
       this.regenT = (this.regenT || 0) + dt;
@@ -1206,6 +1223,17 @@ function spawnCompositeEvent() {
     SFX.unlock();
   }
 }
+function spawnAegis() {
+  // friendly golden supply orb: destroying it shields the defense line
+  const e = spawnEnemy('AEGIS', 'gold', randi(1, LANES - 2), -0.05);
+  if (e) {
+    toast('🛡 SUPPLY ORB! Destroy it to shield the line!');
+    const p = w2s(e.lane, 0.14);
+    floatText(p.x, p.y, '🛡 SUPPLY ORB', '#ffd54a', true);
+    SFX.unlock();
+  }
+  return e;
+}
 function spawnBrute() {
   // giant monster orb: appears periodically in EVERY galaxy, very tough
   const e = spawnEnemy('BRUTE', pick(G.enemy.colors), randi(1, LANES - 2), -0.05);
@@ -1357,6 +1385,15 @@ function killEnemy(e, srcHue) {
       if (c) { c.hp = c.maxhp = Math.round(ENEMY_DEF.MINI.hp * Director.hpMult() * G.enemy.hpMul); }
     }
   }
+  if (e.type === 'AEGIS') {
+    // supply orb destroyed: 30s line shield + instant repair
+    S.lineShieldUntil = S.time + 30;
+    const healed = Math.min(10, S.baseMax - S.baseHP);
+    S.baseHP += healed; updateBaseHUD();
+    toast('🛡 LINE SHIELDED 30s!' + (healed > 0 ? ' +' + healed + ' HP repaired' : ''));
+    burst(p.x, p.y, 45, 30, 420);
+    SFX.unlock();
+  }
   if (e.type === 'BRUTE') {
     // the giant goes down HARD: screen shake + orbs burst out of the wreck
     S.shake = Math.max(S.shake, 0.55);
@@ -1379,6 +1416,21 @@ function killEnemy(e, srcHue) {
 function breachBase(e) {
   if (!e.on || e.dead) return;
   e.dead = true; // removed exactly once, no reward
+  if (e.type === 'AEGIS') { // friendly orb slipped through: no harm done
+    const p0 = w2s(e.lane, 1);
+    floatText(p0.x, p0.y - 22, '🛡 supply orb slipped away…', '#ffd54a');
+    if (S.priority && S.priority.id === e.id) S.priority = null;
+    pKill(enemies, e);
+    return;
+  }
+  if (S.time < (S.lineShieldUntil || 0)) { // line shield blocks the breach entirely
+    const p0 = w2s(e.lane, 1);
+    floatText(p0.x, p0.y - 22, '🛡 BLOCKED!', '#7dfcd4', true);
+    burst(p0.x, p0.y, 160, 10, 220);
+    if (S.priority && S.priority.id === e.id) S.priority = null;
+    pKill(enemies, e);
+    return;
+  }
   S.baseHP = Math.max(0, S.baseHP - e.breach);
   S.shake = 0.35;
   SFX.breach();
@@ -1489,6 +1541,14 @@ function drawEnemies() {
       const pr = r * (0.42 + 0.07 * Math.sin(S.time * 4));
       ctx.fillStyle = 'hsla(' + ((e.hue + 180) % 360) + ',95%,68%,.9)';
       ctx.beginPath(); ctx.arc(p.x, p.y, pr, 0, TAU); ctx.fill();
+    } else if (e.type === 'AEGIS') {
+      ctx.strokeStyle = 'hsla(45,100%,62%,.95)'; ctx.lineWidth = Math.max(2, 3 * p.s);
+      ctx.setLineDash([10, 6]);
+      ctx.beginPath(); ctx.arc(p.x, p.y, r * 1.45, S.time * 1.8, S.time * 1.8 + TAU); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.font = Math.round(r * 1.05) + 'px serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('🛡', p.x, p.y + 1);
+      ctx.textBaseline = 'alphabetic';
     } else if (e.type === 'RUNNER') {
       ctx.strokeStyle = 'hsla(' + e.hue + ',95%,65%,.6)'; ctx.lineWidth = 2 * p.s;
       ctx.beginPath(); ctx.moveTo(p.x - r * 0.5, p.y - r * 1.8); ctx.lineTo(p.x - r * 0.5, p.y - r * 0.9); ctx.stroke();
@@ -2342,6 +2402,7 @@ function newRun() {
   S.kills = 0; S.stats.dmgDealt = 0; // coins persist: unified economy
   S.baseMax = BAL.baseHP + SAVE.up.base * 25;
   S.baseHP = S.baseMax;
+  S.lineShieldUntil = 0;
   updateGoldHUD(); updateBaseHUD();
 }
 function retryCombat() {
@@ -2505,7 +2566,7 @@ window.__ND = {
   addCoins, spendCoins, checkGalaxyUnlocks, buyWeapon, buyCraft, buyCraftUpg, craftStats,
   buySpawnTier, setSpawnTier,
   AdProvider, BillingProvider, enterGalaxy, confirmEnterGalaxy,
-  spawnComposite, damageComposite, drawComposite, spawnCompositeEvent, spawnBossEvent, spawnBrute, escSteps, powerSteps, threatLevel, Director,
+  spawnComposite, damageComposite, drawComposite, spawnCompositeEvent, spawnBossEvent, spawnBrute, spawnAegis, escSteps, powerSteps, threatLevel, Director,
   turretMuzzle, turretPos, turretIcon, toggleWeaponPanel, _openWeapon: () => openWeapon,
   turrets, projY,
   enemies, projs, parts, floats, beams, turrets,
