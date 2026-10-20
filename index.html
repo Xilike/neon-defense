@@ -595,7 +595,7 @@ function resize() {
   H = (bw && bw.clientHeight) || window.innerHeight;
   cv.width = Math.floor(W * DPR); cv.height = Math.floor(H * DPR);
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-  HOR = H * 0.16; GY = H * 0.80;
+  HOR = H * 0.16; GY = H * 0.94; // defense line sits right above the panel
   layoutTurrets();
 }
 window.addEventListener('resize', resize);
@@ -1479,7 +1479,7 @@ function layoutTurrets() {
   turrets.length = 0;
   // turret row depth: keep turret bases fully on-screen on any aspect ratio
   let tt = 1.06;
-  while (tt > 0.92 && projY(tt) + 32 * projScale(tt) > H - 4) tt -= 0.01;
+  while (tt > 0.92 && projY(tt) + 12 * projScale(tt) > H - 2) tt -= 0.01;
   const defs = [
     { kind: 'ELECTRIC', locked: false },
     { kind: 'LASER', locked: !SAVE.weapons.LASER },
@@ -1501,6 +1501,7 @@ function turretPos(t) {
 }
 
 /* targeting: threat first, then color affinity, then distance */
+const FIELD_RANGE_K = 1.22; // (0.94-0.16)/(0.80-0.16): range gate compensation for the taller field
 function pickTarget(t) {
   if (t.locked) return null;
   const st = turretStats(t.kind);
@@ -1511,7 +1512,7 @@ function pickTarget(t) {
     if (pe) {
       const pp = w2s(pe.lane, pe.t);
       const dist = Math.hypot(pp.x - tp.x, pp.y - tp.y);
-      if (dist <= st.range * tp.s + 40) { t.targetId = pe.id; return pe; }
+      if (dist <= st.range * FIELD_RANGE_K * tp.s + 40) { t.targetId = pe.id; return pe; }
     } else S.priority = null;
   }
   let best = null, bestScore = -1e9;
@@ -1521,7 +1522,7 @@ function pickTarget(t) {
     if (!e.on || e.dead) continue;
     const pp = w2s(e.lane, e.t);
     const dist = Math.hypot(pp.x - tp.x, pp.y - tp.y);
-    if (dist > st.range * tp.s + 40) continue;
+    if (dist > st.range * FIELD_RANGE_K * tp.s + 40) continue;
     let score = e.t * 200; // immediate threat to defense line
     if (e.hue === wantHue) score += 40; // color affinity
     if (e.type === 'RUNNER' && e.t > 0.7) score += 25;
@@ -1781,7 +1782,7 @@ function drawTurrets() {
     const s = p.s;
     // shadow
     ctx.fillStyle = 'rgba(0,0,0,.45)';
-    ctx.beginPath(); ctx.ellipse(p.x, p.y + 20 * s, 34 * s, 10 * s, 0, 0, TAU); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(p.x, p.y + 5 * s, 30 * s, 8 * s, 0, 0, TAU); ctx.fill();
     if (t.locked) {
       // locked slot: ghost dome + lock
       ctx.save();
@@ -2393,6 +2394,7 @@ window.__ND = {
   AdProvider, BillingProvider, enterGalaxy, confirmEnterGalaxy,
   spawnComposite, damageComposite, drawComposite, spawnCompositeEvent, spawnBossEvent, Director,
   turretMuzzle, turretPos, turretIcon, toggleWeaponPanel, _openWeapon: () => openWeapon,
+  turrets, projY,
   enemies, projs, parts, floats, beams, turrets,
   spawnEnemy, killEnemy, damageEnemy, breachBase, enemyById,
   buyUpgrade, upgCost, turretStats,
