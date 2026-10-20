@@ -503,6 +503,26 @@ const AdProvider = { configured: false };
 const BillingProvider = { configured: false };
 
 // Earn coins ONLY from legitimate enemy destruction. Total never decreases.
+/* ============ threat escalation: the orbs fight back as you grow ============
+   Every NEW WEAPON owned and every 1000 TOTAL coins earned (lifetime — coins
+   still count after being spent) raises the THREAT LEVEL: more orbs spawn,
+   and they get faster, tougher and hit the base harder. */
+function escSteps() {
+  const w = Object.values(SAVE.weapons).filter(Boolean).length - 1; // beyond starter ELECTRIC
+  const c = Math.floor(SAVE.econ.total / 1000); // lifetime total, spent or not
+  return Math.max(0, w) + c;
+}
+function checkThreat() {
+  const st = escSteps();
+  if (S.threatLv === undefined || S.threatLv === null) { S.threatLv = st; return false; }
+  if (st > S.threatLv) {
+    S.threatLv = st;
+    toast('⚠ THREAT LEVEL ' + st + ' — the orbs grow stronger!');
+    SFX.unlock();
+    return true;
+  }
+  return false;
+}
 function addCoins(n) {
   n = Math.floor(n);
   if (!(n > 0)) return;
@@ -510,6 +530,7 @@ function addCoins(n) {
   SAVE.econ.total += n;
   persist(); updateGoldHUD();
   checkGalaxyUnlocks();
+  checkThreat();
 }
 // Spend available coins. Returns false (deducts nothing) when insufficient.
 function spendCoins(n) {
@@ -546,7 +567,9 @@ function buyWeapon(kind) {
   persist();
   layoutTurrets();
   renderPanel(); updateGoldHUD();
-  toast(TURRET_DEF[kind].icon + ' ' + kind + ' deployed!');
+  const rose = checkThreat();
+  toast(rose ? '⚠ ' + kind + ' deployed — THREAT LEVEL ' + S.threatLv + '! The orbs fight back!'
+             : TURRET_DEF[kind].icon + ' ' + kind + ' deployed!');
   SFX.unlock();
   return { ok: true };
 }
@@ -841,10 +864,10 @@ const Director = {
   interval() {
     const tier = SPAWN_TIERS[S.spawnTier] || 1; // active tier (S), not just owned (SAVE)
     const base = 1.5 / (G.enemy.density || 1) / tier;
-    return Math.max(0.25, base * Math.pow(0.99, Math.min(this.diff, 60)));
+    return Math.max(0.2, base * Math.pow(0.99, Math.min(this.diff, 60)) * Math.pow(0.93, escSteps()));
   },
-  hpMult() { return 1 + this.diff * 0.035; },   // +3.5% enemy HP per minute
-  spdMult() { return 1 + Math.min(this.diff, 60) * 0.004; },
+  hpMult() { return (1 + this.diff * 0.035) * (1 + 0.10 * escSteps()); }, // time growth + threat escalation
+  spdMult() { return (1 + Math.min(this.diff, 60) * 0.004) * (1 + 0.04 * escSteps()); },
   update(dt) {
     this.diff += dt / 60;
     this.t -= dt;
@@ -1191,7 +1214,7 @@ function spawnEnemy(type, color, lane, t0) {
     e.maxhp = e.hp = Math.round(hpm);
     e.speed = d.speed * Director.spdMult() * gm.spdMul * rand(0.9, 1.1);
     e.r = d.r * (gm.sizeMul || 1) * (type === 'BOSS' ? 1.15 : 1);
-    e.reward = d.reward; e.breach = d.breach; e.wob = rand(0, TAU);
+    e.reward = d.reward; e.breach = Math.round(d.breach * (1 + 0.05 * escSteps())); e.wob = rand(0, TAU);
     e.slowUntil = 0; e.hitFlash = 0; e.dead = false; e.rewarded = false;
     e.switchT = rand(2.5, 6); // countdown to consider lane switch
     e.cueT = 0; e.cueDir = 0; // anticipation cue
@@ -2191,6 +2214,7 @@ function fillStats() {
     '💀 Lifetime kills: <b>' + fmt(SAVE.stats.kills) + '</b><br>' +
     '💥 Lifetime damage: <b>' + fmt(SAVE.stats.dmg) + '</b><br>' +
     '🌌 Galaxy: <b>' + G.name + '</b><br>' +
+    '⚠ Threat level: <b>' + escSteps() + '</b> (orbs scale with your weapons + total coins)<br>' +
     '🔫 Weapons: <b>' + wnames + '</b><br>' +
     '⬆️ Upgrades bought: <b>' + ups + '</b>';
 }
@@ -2457,7 +2481,7 @@ window.__ND = {
   addCoins, spendCoins, checkGalaxyUnlocks, buyWeapon, buyCraft, buyCraftUpg, craftStats,
   buySpawnTier, setSpawnTier,
   AdProvider, BillingProvider, enterGalaxy, confirmEnterGalaxy,
-  spawnComposite, damageComposite, drawComposite, spawnCompositeEvent, spawnBossEvent, spawnBrute, Director,
+  spawnComposite, damageComposite, drawComposite, spawnCompositeEvent, spawnBossEvent, spawnBrute, escSteps, Director,
   turretMuzzle, turretPos, turretIcon, toggleWeaponPanel, _openWeapon: () => openWeapon,
   turrets, projY,
   enemies, projs, parts, floats, beams, turrets,
