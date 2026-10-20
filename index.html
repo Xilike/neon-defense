@@ -512,8 +512,18 @@ function escSteps() {
   const c = Math.floor(SAVE.econ.total / 1000); // lifetime total, spent or not
   return Math.max(0, w) + c;
 }
+/* Power steps: the orbs ALSO scale with the player's own build — every weapon
+   upgrade level and spacecraft upgrade level makes them stronger and more
+   numerous, so getting stronger never makes the orbs feel weaker over time. */
+function powerSteps() {
+  let lv = 0;
+  for (const k in SAVE.up) { if (k !== 'base') lv += SAVE.up[k] || 0; } // weapon upgrade levels
+  for (const k in SAVE.craft.up) lv += SAVE.craft.up[k] || 0;           // spacecraft upgrade levels
+  return lv + (SAVE.craft.owned ? 2 : 0); // unlocking the shuttle itself counts double
+}
+function threatLevel() { return escSteps() + powerSteps(); }
 function checkThreat() {
-  const st = escSteps();
+  const st = threatLevel();
   if (S.threatLv === undefined || S.threatLv === null) { S.threatLv = st; return false; }
   if (st > S.threatLv) {
     S.threatLv = st;
@@ -864,10 +874,10 @@ const Director = {
   interval() {
     const tier = SPAWN_TIERS[S.spawnTier] || 1; // active tier (S), not just owned (SAVE)
     const base = 1.5 / (G.enemy.density || 1) / tier;
-    return Math.max(0.2, base * Math.pow(0.99, Math.min(this.diff, 60)) * Math.pow(0.93, escSteps()));
+    return Math.max(0.2, base * Math.pow(0.99, Math.min(this.diff, 240)) * Math.pow(0.93, escSteps()) * Math.pow(0.985, powerSteps()));
   },
-  hpMult() { return (1 + this.diff * 0.035) * (1 + 0.10 * escSteps()); }, // time growth + threat escalation
-  spdMult() { return (1 + Math.min(this.diff, 60) * 0.004) * (1 + 0.04 * escSteps()); },
+  hpMult() { return (1 + this.diff * 0.035) * (1 + 0.10 * escSteps()) * (1 + 0.03 * powerSteps()); }, // time + coins/weapons + upgrade power
+  spdMult() { return (1 + Math.min(this.diff, 240) * 0.004) * (1 + 0.04 * escSteps()) * (1 + 0.008 * powerSteps()); },
   update(dt) {
     this.diff += dt / 60;
     this.t -= dt;
@@ -939,7 +949,8 @@ function buyCraft() {
   SAVE.craft.owned = true; persist();
   craft.lane = 2; craft.t = 0.55; craft.cool = 0;
   renderPanel(); updateGoldHUD();
-  toast('🛸 Spacecraft deployed!');
+  const rose = checkThreat(); // a new spacecraft escalates the orbs too
+  toast(rose ? '🛸 Spacecraft deployed — THREAT LEVEL ' + S.threatLv + '! The orbs fight back!' : '🛸 Spacecraft deployed!');
   SFX.unlock();
   return { ok: true };
 }
@@ -951,6 +962,7 @@ function buyCraftUpg(key) {
   if (!spendCoins(cost)) return false; // nothing deducted when short
   SAVE.craft.up[key]++;
   persist(); renderPanel(); updateGoldHUD();
+  checkThreat(); // spacecraft upgrades escalate the orbs
   return true;
 }
 function craftUpgDesc(key, cs) {
@@ -1214,7 +1226,7 @@ function spawnEnemy(type, color, lane, t0) {
     e.maxhp = e.hp = Math.round(hpm);
     e.speed = d.speed * Director.spdMult() * gm.spdMul * rand(0.9, 1.1);
     e.r = d.r * (gm.sizeMul || 1) * (type === 'BOSS' ? 1.15 : 1);
-    e.reward = d.reward; e.breach = Math.round(d.breach * (1 + 0.05 * escSteps())); e.wob = rand(0, TAU);
+    e.reward = d.reward; e.breach = Math.round(d.breach * (1 + 0.05 * escSteps()) * (1 + 0.015 * powerSteps())); e.wob = rand(0, TAU);
     e.slowUntil = 0; e.hitFlash = 0; e.dead = false; e.rewarded = false;
     e.switchT = rand(2.5, 6); // countdown to consider lane switch
     e.cueT = 0; e.cueDir = 0; // anticipation cue
@@ -1961,6 +1973,7 @@ function buyUpgrade(key) {
   SAVE.up[key]++;
   if (key === 'base') { S.baseMax += 25; S.baseHP = Math.min(S.baseMax, S.baseHP + 25); updateBaseHUD(); }
   persist();
+  checkThreat(); // upgrading a weapon makes the orbs answer back
   SFX.click();
   renderPanel(); updateGoldHUD();
   return true;
@@ -2214,7 +2227,7 @@ function fillStats() {
     '💀 Lifetime kills: <b>' + fmt(SAVE.stats.kills) + '</b><br>' +
     '💥 Lifetime damage: <b>' + fmt(SAVE.stats.dmg) + '</b><br>' +
     '🌌 Galaxy: <b>' + G.name + '</b><br>' +
-    '⚠ Threat level: <b>' + escSteps() + '</b> (orbs scale with your weapons + total coins)<br>' +
+    '⚠ Threat level: <b>' + threatLevel() + '</b> (orbs scale with your weapons, upgrades, spacecraft + total coins)<br>' +
     '🔫 Weapons: <b>' + wnames + '</b><br>' +
     '⬆️ Upgrades bought: <b>' + ups + '</b>';
 }
@@ -2481,7 +2494,7 @@ window.__ND = {
   addCoins, spendCoins, checkGalaxyUnlocks, buyWeapon, buyCraft, buyCraftUpg, craftStats,
   buySpawnTier, setSpawnTier,
   AdProvider, BillingProvider, enterGalaxy, confirmEnterGalaxy,
-  spawnComposite, damageComposite, drawComposite, spawnCompositeEvent, spawnBossEvent, spawnBrute, escSteps, Director,
+  spawnComposite, damageComposite, drawComposite, spawnCompositeEvent, spawnBossEvent, spawnBrute, escSteps, powerSteps, threatLevel, Director,
   turretMuzzle, turretPos, turretIcon, toggleWeaponPanel, _openWeapon: () => openWeapon,
   turrets, projY,
   enemies, projs, parts, floats, beams, turrets,
