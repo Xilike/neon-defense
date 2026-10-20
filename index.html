@@ -123,7 +123,10 @@
   .ucard.next{border:1px solid var(--cyan);border-top:3px solid var(--cyan);cursor:pointer;
     background:rgba(53,224,255,.07);box-shadow:0 0 16px rgba(53,224,255,.25)}
   .ucard.next .buyBtn.go{border-color:var(--cyan);color:var(--cyan);background:rgba(53,224,255,.12)}
-  .wcard{flex:0 0 128px}
+  .wcard{flex:0 0 128px;cursor:pointer}
+  .wcard .wchev{position:absolute;top:6px;left:8px;font-size:11px;color:var(--mut)}
+  .wcard.open{box-shadow:0 0 0 1px rgba(255,255,255,.25),0 0 14px rgba(255,255,255,.08)}
+  .wcard .whint{font-size:8px;color:var(--mut);letter-spacing:.5px;margin-top:4px}
   .wcard .unx{min-height:52px}
   .wimg{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 3px 6px rgba(0,0,0,.5))}
   /* galaxy tab (Phase 2) — calm cards, subtle borders */
@@ -1888,6 +1891,7 @@ function showOverlay(id) { document.getElementById(id).classList.add('open'); }
 function hideOverlay(id) { document.getElementById(id).classList.remove('open'); }
 
 let curTab = 'defense';
+let openWeapon = null; // DEFENSE accordion: weapon whose upgrade cards are expanded
 function switchTab(name) {
   curTab = name;
   document.querySelectorAll('#tabbar button').forEach(x => x.classList.toggle('on', x.dataset.tab === name));
@@ -1911,23 +1915,16 @@ function gxShapeIcon(shape) {
 function gxShapeName(shape) {
   return { orb: 'energy orbs', hex: 'faceted hexes', cube: 'crystal cubes', ring: 'energy rings', mech: 'mech plates' }[shape] || shape;
 }
+function toggleWeaponPanel(kind) {
+  openWeapon = (openWeapon === kind) ? null : kind;
+  renderPanel();
+}
 function renderPanel() {
   const p = document.getElementById('panel');
   if (curTab === 'defense') {
-    // weapon cards first (all four visible; buy in any order), then upgrade cards
-    let h = '<div class="ucardRow">';
-    for (const kind of ['ELECTRIC', 'LASER', 'ROCKET', 'VOID']) {
-      const d = TURRET_DEF[kind], owned = SAVE.weapons[kind], price = ECON.weapons[kind];
-      const spr = turretIcon(kind);
-      h += '<div class="ucard wcard">' + (spr ? '<img class="wimg" src="' + spr + '" alt="' + kind + '">' : '<div class="uico" style="font-size:26px">' + d.icon + '</div>') +
-        '<div class="unm">' + kind + '</div>' +
-        '<div class="unx">' + d.blurb + '</div>' +
-        (owned ? '<button class="buyBtn" disabled>OWNED ✓</button>'
-               : '<button class="buyBtn go" data-weapon="' + kind + '"' + (SAVE.econ.avail >= price ? '' : ' disabled') + '>' + fmt(price) + ' 🪙 BUY</button>') +
-        '</div>';
-    }
-    // upgrade cards for owned weapons (+ base) in the same flat row
-    const defs = [
+    // accordion: each weapon card CONTAINS its upgrade cards — tap to expand/collapse
+    const wcol = { ELECTRIC: 'var(--cyan)', LASER: 'var(--red)', ROCKET: '#ff9a3c', VOID: 'var(--purple)' };
+    const upgDefs = [
       { key: 'eDmg', icon: '💥', tag: 'cyan' },
       { key: 'eRate', icon: '🔥', tag: 'cyan' },
       { key: 'eRange', icon: '📡', tag: 'cyan' },
@@ -1940,20 +1937,44 @@ function renderPanel() {
       { key: 'vDmg', icon: '🌀', tag: 'purple' },
       { key: 'vRate', icon: '⏱️', tag: 'purple' },
       { key: 'vPull', icon: '🧲', tag: 'purple' },
-      { key: 'base', icon: '❤️', tag: 'green' },
     ];
-    for (const d of defs) {
-      const u = UPGS.find(x => x.key === d.key);
-      const avail = !u.turret || SAVE.weapons[u.turret];
-      h += upgCardHTML(u, d.icon, d.tag, avail);
+    let h = '<div class="ucardRow">';
+    for (const kind of ['ELECTRIC', 'LASER', 'ROCKET', 'VOID']) {
+      const d = TURRET_DEF[kind], owned = SAVE.weapons[kind], price = ECON.weapons[kind];
+      const spr = turretIcon(kind), open = openWeapon === kind;
+      h += '<div class="ucard wcard' + (open ? ' open' : '') + '" data-wtoggle="' + kind + '" style="border-top:3px solid ' + wcol[kind] + '">' +
+        '<span class="wchev">' + (open ? '▾' : '▸') + '</span>' +
+        (spr ? '<img class="wimg" src="' + spr + '" alt="' + kind + '">' : '<div class="uico" style="font-size:26px">' + d.icon + '</div>') +
+        '<div class="unm">' + kind + '</div>' +
+        '<div class="unx">' + d.blurb + '</div>' +
+        (owned ? '<button class="buyBtn" disabled>OWNED ✓</button>'
+               : '<button class="buyBtn go" data-weapon="' + kind + '"' + (SAVE.econ.avail >= price ? '' : ' disabled') + '>' + fmt(price) + ' 🪙 BUY</button>') +
+        '<div class="whint">' + (open ? 'TAP TO CLOSE' : 'TAP: UPGRADES') + '</div>' +
+        '</div>';
+      if (open) {
+        for (const dd of upgDefs) {
+          const u = UPGS.find(x => x.key === dd.key);
+          if (!u || u.turret !== kind) continue;
+          h += upgCardHTML(u, dd.icon, dd.tag, owned);
+        }
+      }
     }
+    // base upgrade is global — always visible at the end
+    const bu = UPGS.find(x => x.key === 'base');
+    if (bu) h += upgCardHTML(bu, '❤️', 'green', true);
     h += '</div>';
     p.innerHTML = h;
     p.querySelectorAll('[data-buy]').forEach(b => b.onclick = () => { SFX.click(); buyUpgrade(b.dataset.buy); });
-    p.querySelectorAll('[data-weapon]').forEach(b => b.onclick = () => {
+    p.querySelectorAll('[data-weapon]').forEach(b => b.onclick = (ev) => {
+      ev.stopPropagation();
       SFX.click();
       const r = buyWeapon(b.dataset.weapon);
       if (!r.ok) toast('🔒 ' + (r.reason || 'locked'));
+      else openWeapon = b.dataset.weapon; // buying a weapon opens its upgrades
+    });
+    p.querySelectorAll('[data-wtoggle]').forEach(c => c.onclick = () => {
+      SFX.click();
+      toggleWeaponPanel(c.dataset.wtoggle);
     });
   } else if (curTab === 'galaxy') {
     // GALAXY tab: coin-threshold progression (master spec §8, §18).
@@ -2354,7 +2375,7 @@ window.__ND = {
   buySpawnTier, setSpawnTier,
   AdProvider, BillingProvider, enterGalaxy, confirmEnterGalaxy,
   spawnComposite, damageComposite, drawComposite, spawnCompositeEvent, spawnBossEvent, Director,
-  turretMuzzle, turretPos, turretIcon,
+  turretMuzzle, turretPos, turretIcon, toggleWeaponPanel, _openWeapon: () => openWeapon,
   enemies, projs, parts, floats, beams, turrets,
   spawnEnemy, killEnemy, damageEnemy, breachBase, enemyById,
   buyUpgrade, upgCost, turretStats,
