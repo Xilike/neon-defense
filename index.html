@@ -874,10 +874,13 @@ const Director = {
   interval() {
     const tier = SPAWN_TIERS[S.spawnTier] || 1; // active tier (S), not just owned (SAVE)
     const base = 1.5 / (G.enemy.density || 1) / tier;
-    return Math.max(0.2, base * Math.pow(0.99, Math.min(this.diff, 240)) * Math.pow(0.93, escSteps()) * Math.pow(0.985, powerSteps()));
+    const tf = Math.max(0.45, Math.pow(0.993, threatLevel()) * Math.pow(0.995, Math.min(this.diff, 120)));
+    return Math.max(0.2, base * tf);
   },
-  hpMult() { return (1 + this.diff * 0.035) * (1 + 0.10 * escSteps()) * (1 + 0.03 * powerSteps()); }, // time + coins/weapons + upgrade power
-  spdMult() { return (1 + Math.min(this.diff, 240) * 0.004) * (1 + 0.04 * escSteps()) * (1 + 0.008 * powerSteps()); },
+  // REBALANCED (harder flavor, per بدر): one threat score with diminishing
+  // returns + hard caps — progression always matters, numbers never explode.
+  hpMult() { return (1 + 1.6 * (1 - Math.exp(-threatLevel() / 40))) * Math.min(1 + this.diff * 0.015, 1.45); },
+  spdMult() { return Math.min(1.5, (1 + 0.45 * (1 - Math.exp(-threatLevel() / 50))) * (1 + Math.min(this.diff, 60) * 0.002)); },
   update(dt) {
     this.diff += dt / 60;
     this.t -= dt;
@@ -891,6 +894,11 @@ const Director = {
     if (this.bossT <= 0) { this.bossT = rand(85, 120); if (enemies.alive < this.cap - 1) spawnBossEvent(); }
     this.bruteT -= dt;
     if (this.bruteT <= 0) { this.bruteT = rand(40, 60); if (enemies.alive < this.cap - 2) spawnBrute(); }
+    // slow base repair: a mistake is never the end of the world
+    if (S.phase === 'combat' && S.baseHP > 0 && S.baseHP < S.baseMax) {
+      this.regenT = (this.regenT || 0) + dt;
+      if (this.regenT >= 4) { this.regenT = 0; S.baseHP = Math.min(S.baseMax, S.baseHP + 1); updateBaseHUD(); }
+    }
   },
   spawnOne() {
     const types = Object.keys(G.enemy.types);
@@ -1221,12 +1229,15 @@ function spawnEnemy(type, color, lane, t0) {
     e.lane = (lane === undefined) ? randi(0, LANES - 1) : lane;
     e.laneFrom = e.lane; e.laneTo = e.lane; e.laneT = 1; // 1 = settled
     e.t = (t0 === undefined) ? rand(-0.06, 0) : t0;
-    let hpm = d.hp * Director.hpMult() * gm.hpMul * rand(0.92, 1.08);
+    let hm = Director.hpMult();
+    if (type === 'BRUTE') hm = 1 + (hm - 1) / 2; // the giant takes only half the HP escalation
+    let hpm = d.hp * hm * gm.hpMul * rand(0.92, 1.08);
     if (type === 'BOSS') hpm *= (1 + Director.diff * 0.03); // bosses scale with combat time
     e.maxhp = e.hp = Math.round(hpm);
     e.speed = d.speed * Director.spdMult() * gm.spdMul * rand(0.9, 1.1);
     e.r = d.r * (gm.sizeMul || 1) * (type === 'BOSS' ? 1.15 : 1);
-    e.reward = d.reward; e.breach = Math.round(d.breach * (1 + 0.05 * escSteps()) * (1 + 0.015 * powerSteps())); e.wob = rand(0, TAU);
+    e.reward = Math.round(d.reward * (1 + 0.5 * (1 - Math.exp(-threatLevel() / 60)))); // rewards grow a little with threat
+    e.breach = Math.round(d.breach * Math.min(2.0, 1 + (1 - Math.exp(-threatLevel() / 55)))); e.wob = rand(0, TAU);
     e.slowUntil = 0; e.hitFlash = 0; e.dead = false; e.rewarded = false;
     e.switchT = rand(2.5, 6); // countdown to consider lane switch
     e.cueT = 0; e.cueDir = 0; // anticipation cue
