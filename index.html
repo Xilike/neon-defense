@@ -1926,8 +1926,13 @@ function toggleWeaponPanel(kind) {
   openWeapon = (openWeapon === kind) ? null : kind;
   renderPanel();
 }
+let panelScrollTab = null; // tab the saved panel scroll belongs to
 function renderPanel() {
   const p = document.getElementById('panel');
+  // remember scroll: rebuilding the cards must not throw the view back to card #1
+  const prevRow = p.querySelector('.ucardRow');
+  const prevSL = (prevRow && panelScrollTab === curTab) ? prevRow.scrollLeft : 0;
+  const prevST = (panelScrollTab === curTab) ? (p.scrollTop || 0) : 0;
   if (curTab === 'defense') {
     // accordion: each weapon card CONTAINS its upgrade cards — tap to expand/collapse
     const wcol = { ELECTRIC: 'var(--cyan)', LASER: 'var(--red)', ROCKET: '#ff9a3c', VOID: 'var(--purple)' };
@@ -2091,6 +2096,10 @@ function renderPanel() {
     }[curTab];
     p.innerHTML = '<div class="soonBox"><div class="big">' + info[0] + '</div><h3>' + info[1] + '</h3><p>' + info[2] + '</p></div>';
   }
+  panelScrollTab = curTab;
+  const newRow = p.querySelector('.ucardRow');
+  if (newRow && prevSL) newRow.scrollLeft = prevSL;
+  if (prevST) p.scrollTop = prevST;
 }
 document.querySelectorAll('#tabbar button').forEach(b => b.onclick = () => { SFX.click(); switchTab(b.dataset.tab); });
 
