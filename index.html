@@ -353,6 +353,7 @@ const ENEMY_DEF = {
   NORMAL:   { hp: 80,  speed: 0.045, r: 14, reward: 5,  breach: 8,  w: 1.0 },
   RUNNER:   { hp: 60,  speed: 0.080, r: 12, reward: 7,  breach: 10, w: 0.8 },
   TANK:     { hp: 300, speed: 0.031, r: 20, reward: 15, breach: 20, w: 1.2 },
+  BRUTE:    { hp: 1200, speed: 0.022, r: 38, reward: 60, breach: 40, w: 0 }, // giant monster orb
   SPLITTER: { hp: 130, speed: 0.045, r: 16, reward: 8,  breach: 12, w: 1.0 },
   MINI:     { hp: 40,  speed: 0.070, r: 8,  reward: 2,  breach: 5,  w: 0.6 },
   SUPPORTER:{ hp: 150, speed: 0.040, r: 15, reward: 12, breach: 14, w: 0.5 },  // jade: heals nearby allies
@@ -835,8 +836,8 @@ function drawEnemyBody(e, p, r) {
    affected ONLY by spawn-tier purchases and galaxy density (never by turret
    speed, projectiles, or UI timers). */
 const Director = {
-  t: 1.2, diff: 0, eventT: 40, bossT: 100, cap: 120,
-  reset() { this.t = 1.2; this.diff = 0; this.eventT = 40; this.bossT = 100; },
+  t: 1.2, diff: 0, eventT: 40, bossT: 100, bruteT: 32, cap: 120,
+  reset() { this.t = 1.2; this.diff = 0; this.eventT = 40; this.bossT = 100; this.bruteT = 32; },
   interval() {
     const tier = SPAWN_TIERS[S.spawnTier] || 1; // active tier (S), not just owned (SAVE)
     const base = 1.5 / (G.enemy.density || 1) / tier;
@@ -855,6 +856,8 @@ const Director = {
     if (this.eventT <= 0) { this.eventT = rand(35, 55); if (enemies.alive < this.cap - 4) spawnCompositeEvent(); }
     this.bossT -= dt;
     if (this.bossT <= 0) { this.bossT = rand(85, 120); if (enemies.alive < this.cap - 1) spawnBossEvent(); }
+    this.bruteT -= dt;
+    if (this.bruteT <= 0) { this.bruteT = rand(40, 60); if (enemies.alive < this.cap - 2) spawnBrute(); }
   },
   spawnOne() {
     const types = Object.keys(G.enemy.types);
@@ -1160,6 +1163,16 @@ function spawnCompositeEvent() {
     SFX.unlock();
   }
 }
+function spawnBrute() {
+  // giant monster orb: appears periodically in EVERY galaxy, very tough
+  const e = spawnEnemy('BRUTE', pick(G.enemy.colors), randi(1, LANES - 2), -0.05);
+  if (e) {
+    const p = w2s(e.lane, 0.14);
+    floatText(p.x, p.y, '⚠ GIANT ORB', '#ff5d5d', true);
+    SFX.unlock();
+  }
+  return e;
+}
 function spawnBossEvent() {
   spawnEnemy('BOSS', pick(G.enemy.colors)); // guardian warning drawn in spawnEnemy
 }
@@ -1186,6 +1199,7 @@ function spawnEnemy(type, color, lane, t0) {
     e.boss = (type === 'BOSS') ? G.boss.name : null;
     e.comp = null; e.compKind = null; // pool reuse: never leak composite state
     e.enterDir = 0; // side-entry glide state (0 = normal)
+    e.bvx = 0; e.bvy = 0; // burst-scatter velocity (brute children)
     e.shield = 0; e.maxShield = 0; e.shieldOn = false; e.shieldT = 0;
     if (type === 'SHIELDED') {
       e.maxShield = e.shield = Math.round(e.maxhp * 0.5);
@@ -1297,6 +1311,20 @@ function killEnemy(e, srcHue) {
       if (c) { c.hp = c.maxhp = Math.round(ENEMY_DEF.MINI.hp * Director.hpMult() * G.enemy.hpMul); }
     }
   }
+  if (e.type === 'BRUTE') {
+    // the giant goes down HARD: screen shake + orbs burst out of the wreck
+    S.shake = Math.max(S.shake, 0.55);
+    burst(p.x, p.y, e.hue, 42, 520);
+    floatText(p.x, p.y - 34 * p.s, '💥 GIANT DOWN!', '#ffd54a', true);
+    for (let k = 0; k < 5; k++) {
+      const c = spawnEnemy('MINI', e.color, clamp(Math.round(e.lane), 0, LANES - 1), e.t);
+      if (c) {
+        c.hp = c.maxhp = Math.round(ENEMY_DEF.MINI.hp * Director.hpMult() * G.enemy.hpMul);
+        c.lane = e.lane; c.t = e.t;
+        c.bvx = rand(-1.5, 1.5); c.bvy = rand(-0.32, 0.06); // scattered flying orbs
+      }
+    }
+  }
   // clear priority if it was the target
   if (S.priority && S.priority.id === e.id) S.priority = null;
   pKill(enemies, e);
@@ -1351,6 +1379,15 @@ function updateEnemies(dt) {
         if (healed) burst(p.x, p.y, 150, 8, 150);
       }
     }
+    if (e.bvx || e.bvy) { // burst scatter: pop outward, friction settles it
+      e.lane += e.bvx * dt;
+      e.t += e.bvy * dt;
+      const dec = Math.pow(0.10, dt);
+      e.bvx *= dec; e.bvy *= dec;
+      if (Math.abs(e.bvx) < 0.03) e.bvx = 0;
+      if (Math.abs(e.bvy) < 0.01) e.bvy = 0;
+      if (!e.bvx && !e.enterDir && (e.lane < 0 || e.lane > LANES - 1)) e.enterDir = e.lane < 0 ? 1 : -1; // scattered off-grid: glide back in
+    }
     let sp = e.speed;
     if (S.time < e.slowUntil) sp *= (1 - TURRET_DEF.ELECTRIC.slowPct);
     e.t += sp * dt;
@@ -1358,7 +1395,7 @@ function updateEnemies(dt) {
     if (e.enterDir) { // side-entry orb: glide in from off-grid until it reaches the lanes
       e.lane += e.enterDir * 0.55 * dt;
       if (e.lane >= 0 && e.lane <= LANES - 1) e.enterDir = 0;
-    } else {
+    } else if (!e.bvx && !e.bvy) {
       e.lane = clamp(e.lane, 0, LANES - 1);
     }
     if (e.t >= 1) breachBase(e);
@@ -1393,6 +1430,19 @@ function drawEnemies() {
         const a = k * Math.PI / 2 + 0.4;
         ctx.beginPath(); ctx.arc(p.x + Math.cos(a) * r * 1.25, p.y + Math.sin(a) * r * 1.25, 2.4 * p.s, 0, TAU); ctx.fill();
       }
+    } else if (e.type === 'BRUTE') {
+      // monster orb: rotating spikes + pulsing core
+      ctx.strokeStyle = 'hsla(' + e.hue + ',95%,65%,.9)'; ctx.lineWidth = Math.max(2, 3.5 * p.s);
+      for (let k = 0; k < 8; k++) {
+        const a = k * Math.PI / 4 + e.wob * 0.4;
+        ctx.beginPath();
+        ctx.moveTo(p.x + Math.cos(a) * r * 1.05, p.y + Math.sin(a) * r * 1.05);
+        ctx.lineTo(p.x + Math.cos(a) * r * 1.38, p.y + Math.sin(a) * r * 1.38);
+        ctx.stroke();
+      }
+      const pr = r * (0.42 + 0.07 * Math.sin(S.time * 4));
+      ctx.fillStyle = 'hsla(' + ((e.hue + 180) % 360) + ',95%,68%,.9)';
+      ctx.beginPath(); ctx.arc(p.x, p.y, pr, 0, TAU); ctx.fill();
     } else if (e.type === 'RUNNER') {
       ctx.strokeStyle = 'hsla(' + e.hue + ',95%,65%,.6)'; ctx.lineWidth = 2 * p.s;
       ctx.beginPath(); ctx.moveTo(p.x - r * 0.5, p.y - r * 1.8); ctx.lineTo(p.x - r * 0.5, p.y - r * 0.9); ctx.stroke();
@@ -2407,7 +2457,7 @@ window.__ND = {
   addCoins, spendCoins, checkGalaxyUnlocks, buyWeapon, buyCraft, buyCraftUpg, craftStats,
   buySpawnTier, setSpawnTier,
   AdProvider, BillingProvider, enterGalaxy, confirmEnterGalaxy,
-  spawnComposite, damageComposite, drawComposite, spawnCompositeEvent, spawnBossEvent, Director,
+  spawnComposite, damageComposite, drawComposite, spawnCompositeEvent, spawnBossEvent, spawnBrute, Director,
   turretMuzzle, turretPos, turretIcon, toggleWeaponPanel, _openWeapon: () => openWeapon,
   turrets, projY,
   enemies, projs, parts, floats, beams, turrets,
