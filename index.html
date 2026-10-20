@@ -335,6 +335,7 @@ const ECON = {
     galaxies:     { ember: 25, jade: 50, indigo: 75, eclipse: 100 },
     upgCost:      lvl => Math.min(5, 1 + lvl),
     craftUpgCost: lvl => Math.min(5, 1 + lvl),
+    craftSizeCost:[3, 5, 8, 12, 18, 25, 35, 50], // saucer size lvls 1-8 (x1.5 -> x5)
     spawnTierCost:[0, 5, 5, 5], // index into SPAWN_TIERS; tier ×1 free
   },
   production: {
@@ -343,6 +344,7 @@ const ECON = {
     galaxies:     { ember: 5000, jade: 25000, indigo: 100000, eclipse: 400000 },
     upgCost:      lvl => Math.floor(50 * Math.pow(1.35, lvl)),
     craftUpgCost: lvl => Math.floor(40 * Math.pow(1.35, lvl)),
+    craftSizeCost:[150, 300, 600, 1000, 1600, 2400, 3500, 5000],
     spawnTierCost:[0, 200, 600, 1500],
   },
 }[ECON_PROFILE];
@@ -450,7 +452,7 @@ function defaultSave() {
     econ: { avail: 0, total: 0 }, // available (spendable) + total earned (never decreases)
     weapons: { ELECTRIC: true, LASER: false, ROCKET: false, VOID: false },
     up: { eDmg: 0, eRate: 0, eRange: 0, lDmg: 0, lEff: 0, lRange: 0, rDmg: 0, rRate: 0, rAoe: 0, vDmg: 0, vRate: 0, vPull: 0, base: 0 },
-    craft: { owned: false, up: { dmg: 0, spd: 0, rate: 0, radius: 0, range: 0 } },
+    craft: { owned: false, up: { dmg: 0, spd: 0, rate: 0, radius: 0, range: 0, size: 0 } },
     spawnTier: 0, // index into SPAWN_TIERS
     galaxy: { current: 'aurora', unlocked: ['aurora'], notified: {} },
     settings: { fx: true, sfx: true },
@@ -894,6 +896,7 @@ function craftStats() {
     cool: Math.max(0.8, 2.4 * Math.pow(0.92, u.rate)),
     radius: 0.14 * (1 + 0.12 * u.radius),
     range: 1.0 * (1 + 0.08 * u.range),
+    size: 1 + 0.5 * (u.size || 0), // visual scale: lvl 0 = x1 ... lvl 8 = x5
   };
 }
 function buyCraft() {
@@ -910,7 +913,8 @@ function buyCraftUpg(key) {
   if (!SAVE.craft.owned) return false;
   const lvl = SAVE.craft.up[key];
   if (lvl === undefined || lvl >= 8) return false;
-  if (!spendCoins(ECON.craftUpgCost(lvl))) return false; // nothing deducted when short
+  const cost = (key === 'size') ? ECON.craftSizeCost[lvl] : ECON.craftUpgCost(lvl);
+  if (!spendCoins(cost)) return false; // nothing deducted when short
   SAVE.craft.up[key]++;
   persist(); renderPanel(); updateGoldHUD();
   return true;
@@ -922,6 +926,7 @@ function craftUpgDesc(key, cs) {
     case 'rate': return cs.cool.toFixed(1) + 's → ' + Math.max(0.8, cs.cool * 0.92).toFixed(1) + 's';
     case 'radius': return 'blast +' + Math.round(cs.radius * 100) + '%';
     case 'range': return 'detect +' + Math.round(cs.range * 100) + '%';
+    case 'size': return 'SIZE ×' + cs.size.toFixed(1) + ' → ×' + (cs.size + 0.5).toFixed(1);
   }
   return '';
 }
@@ -965,14 +970,16 @@ function drawCraft() {
   if (!SAVE.craft.owned) return;
   const p = w2s(craft.lane, craft.t);
   const s = p.s, bank = craft.bank || 0;
-  const g = ctx.createRadialGradient(p.x, p.y + 8 * s, 1, p.x, p.y + 8 * s, 26 * s);
+  const zm = craftStats().size; // saucer size multiplier (upgrade: up to x5)
+  const g = ctx.createRadialGradient(p.x, p.y + 8 * s * zm, 1, p.x, p.y + 8 * s * zm, 26 * s * zm);
   g.addColorStop(0, 'hsla(190,100%,65%,.8)');
   g.addColorStop(1, 'hsla(190,100%,65%,0)');
   ctx.fillStyle = g;
-  ctx.beginPath(); ctx.arc(p.x, p.y + 8 * s, 26 * s, 0, TAU); ctx.fill();
+  ctx.beginPath(); ctx.arc(p.x, p.y + 8 * s * zm, 26 * s * zm, 0, TAU); ctx.fill();
   ctx.save();
   ctx.translate(p.x, p.y + Math.sin(S.time * 3) * 3 * s);
   ctx.rotate(bank * 0.25);
+  ctx.scale(zm, zm);
   const bg = ctx.createLinearGradient(0, -8 * s, 0, 8 * s);
   bg.addColorStop(0, '#dfe9ff'); bg.addColorStop(0.5, '#8fa8d8'); bg.addColorStop(1, '#4a5f8f');
   ctx.fillStyle = bg;
@@ -2026,7 +2033,7 @@ function renderPanel() {
       h += '<button class="bigBtn go" data-craftbuy' + (SAVE.econ.avail >= price ? '' : ' disabled') + '>🛸 BUY — ' + fmt(price) + ' 🪙</button>';
     } else {
       const cs = craftStats();
-      h += '<div class="gxPrev">💥 ' + Math.round(cs.dmg) + ' dmg · 🔁 ' + cs.cool.toFixed(1) + 's · 📡 radius ' + Math.round(cs.radius * 100) + '% · 🎯 range ' + Math.round(cs.range * 100) + '%</div>';
+      h += '<div class="gxPrev">💥 ' + Math.round(cs.dmg) + ' dmg · 🔁 ' + cs.cool.toFixed(1) + 's · 📡 radius ' + Math.round(cs.radius * 100) + '% · 🎯 range ' + Math.round(cs.range * 100) + '% · 🔍 size ×' + cs.size.toFixed(1) + '</div>';
     }
     h += '</div>';
     if (owned) {
@@ -2037,9 +2044,10 @@ function renderPanel() {
         { key: 'rate', icon: '🔁', name: 'ATTACK RATE' },
         { key: 'radius', icon: '📡', name: 'PULSE RADIUS' },
         { key: 'range', icon: '🎯', name: 'DETECT RANGE' },
+        { key: 'size', icon: '🔍', name: 'SAUCER SIZE' },
       ];
       for (const d of defs) {
-        const lvl = SAVE.craft.up[d.key], maxed = lvl >= 8, cost = ECON.craftUpgCost(lvl);
+        const lvl = SAVE.craft.up[d.key], maxed = lvl >= 8, cost = (d.key === 'size') ? ECON.craftSizeCost[lvl] : ECON.craftUpgCost(lvl);
         const can = !maxed && SAVE.econ.avail >= cost;
         h += '<div class="ucard"><span class="lvl">L' + lvl + '</span>' +
           '<div class="uico">' + d.icon + '</div><div class="unm">' + d.name + '</div>' +
