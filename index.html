@@ -1753,7 +1753,12 @@ function turretIcon(kind) {
     cv.width = cv.height = 120;
     const c = cv.getContext('2d');
     if (!c) return null;
-    paintDomeTurret(c, kind, 60, 80, 1.35, 0);
+    const glow = c.createRadialGradient(60, 62, 4, 60, 62, 58);
+    glow.addColorStop(0, 'hsla(' + TURRET_DEF[kind].hue + ',85%,60%,.35)');
+    glow.addColorStop(1, 'hsla(' + TURRET_DEF[kind].hue + ',85%,60%,0)');
+    c.fillStyle = glow;
+    c.fillRect(0, 0, 120, 120);
+    paintDomeTurret(c, kind, 60, 94, 1.7, 0);
     const url = cv.toDataURL('image/png');
     turretIcons[kind] = url;
     return url;
@@ -1767,25 +1772,14 @@ function drawTurrets() {
     // shadow
     ctx.fillStyle = 'rgba(0,0,0,.45)';
     ctx.beginPath(); ctx.ellipse(p.x, p.y + 20 * s, 34 * s, 10 * s, 0, 0, TAU); ctx.fill();
-    const spr = turretIcon(t.kind);
     if (t.locked) {
-      if (spr) {
-        // locked slot: desaturated sprite + lock
-        ctx.save();
-        ctx.globalAlpha = 0.55;
-        try { ctx.filter = 'grayscale(0.9) brightness(0.5)'; } catch (e) {}
-        const sz = 66 * s, sh = sz * spr.naturalHeight / spr.naturalWidth;
-        ctx.drawImage(spr, p.x - sz / 2, p.y - sh / 2, sz, sh);
-        ctx.restore();
-      } else {
-        // fallback silhouette
-        ctx.fillStyle = 'rgba(20,28,52,.9)';
-        ctx.beginPath(); ctx.arc(p.x, p.y, 24 * s, 0, TAU); ctx.fill();
-        ctx.strokeStyle = 'rgba(120,140,180,.35)'; ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.arc(p.x, p.y, 24 * s, 0, TAU); ctx.stroke();
-      }
+      // locked slot: ghost dome + lock
+      ctx.save();
+      ctx.globalAlpha = 0.38;
+      paintDomeTurret(ctx, t.kind, p.x, p.y, s, 0);
+      ctx.restore();
       ctx.font = Math.round(20 * s) + 'px Arial'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText('🔒', p.x, p.y - 2);
+      ctx.fillText('🔒', p.x, p.y - 16 * s);
       ctx.fillStyle = 'rgba(140,160,200,.6)';
       ctx.font = '600 ' + Math.round(9 * s + 4) + 'px Tahoma, Arial';
       ctx.fillText(t.kind, p.x, p.y + 24 * s);
