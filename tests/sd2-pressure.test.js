@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
 // Analytical pressure estimate, NOT a game-engine combat simulation.
-// All constants are extracted from the SD2 Preview source at the time of authoring;
+// All constants are extracted from the GitHub development-branch source at the time of authoring;
 // source drift is checked below to prevent silent calibration changes.
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 const sd2source = readFileSync(new URL('../experimental/sd2.js', import.meta.url), 'utf8');
@@ -30,7 +30,7 @@ const cfg = (() => {
 })();
 function estimate(level, profile='mid') {
   const upgrade = Math.min(6,Math.round(6*(level-1)/14*({new:.4,mid:.7,adv:1}[profile])));
-  const dps = 18*Math.pow(1.12,upgrade)*Math.min(20,2.8*Math.pow(1.08,upgrade));
+  const dps = 14*Math.pow(1.12,upgrade)*Math.min(20,2.8*Math.pow(1.08,upgrade));
   const w = weights[level-1];
   const total = w.reduce((a,b)=>a+b,0);
   const avgHp = w.reduce((sum,p,i)=>sum+p*enemy[types[i]].hp,0)/total;
@@ -41,7 +41,7 @@ function estimate(level, profile='mid') {
 }
 describe('SD2 source-calibrated pressure indicators (not actual breach outcomes)',()=>{
   it('matches the baseline electric weapon parameters',()=>{
-    expect(html).toMatch(/ELECTRIC:\s*\{[^\n]*dmg:\s*18,\s*rate:\s*2\.8/);
+    expect(html).toMatch(/ELECTRIC:\s*\{[^\n]*dmg:\s*14,\s*rate:\s*2\.8/);
     expect(html).toMatch(/d\.dmg \* Math\.pow\(1\.12, u\.eDmg\)/);
     expect(html).toMatch(/d\.rate \* Math\.pow\(1\.08, u\.eRate\)/);
   });
