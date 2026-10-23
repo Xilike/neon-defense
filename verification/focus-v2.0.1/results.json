@@ -1,0 +1,501 @@
+{
+  "version": "focus-v2.0.1",
+  "checks": [
+    {
+      "width": 360,
+      "height": 800,
+      "open": false,
+      "kind": "ELECTRIC",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 18
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": false,
+      "kind": "ELECTRIC",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 18
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": false,
+      "kind": "LASER",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 72
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": false,
+      "kind": "LASER",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 72
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": false,
+      "kind": "ROCKET",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 70
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": false,
+      "kind": "ROCKET",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 70
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": false,
+      "kind": "VOID",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 65
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": false,
+      "kind": "VOID",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 65
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": true,
+      "kind": "ELECTRIC",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 18
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": true,
+      "kind": "ELECTRIC",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 18
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": true,
+      "kind": "LASER",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 72
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": true,
+      "kind": "LASER",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 72
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": true,
+      "kind": "ROCKET",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 70
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": true,
+      "kind": "ROCKET",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 70
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": true,
+      "kind": "VOID",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 65
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "open": true,
+      "kind": "VOID",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 65
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": false,
+      "kind": "ELECTRIC",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 18
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": false,
+      "kind": "ELECTRIC",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 18
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": false,
+      "kind": "LASER",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 72
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": false,
+      "kind": "LASER",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 72
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": false,
+      "kind": "ROCKET",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 70
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": false,
+      "kind": "ROCKET",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 70
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": false,
+      "kind": "VOID",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 65
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": false,
+      "kind": "VOID",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 65
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": true,
+      "kind": "ELECTRIC",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 18
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": true,
+      "kind": "ELECTRIC",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 18
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": true,
+      "kind": "LASER",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 72
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": true,
+      "kind": "LASER",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 72
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": true,
+      "kind": "ROCKET",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 70
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": true,
+      "kind": "ROCKET",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 70
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": true,
+      "kind": "VOID",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 65
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "open": true,
+      "kind": "VOID",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 65
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": false,
+      "kind": "ELECTRIC",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 18
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": false,
+      "kind": "ELECTRIC",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 18
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": false,
+      "kind": "LASER",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 72
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": false,
+      "kind": "LASER",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 72
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": false,
+      "kind": "ROCKET",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 70
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": false,
+      "kind": "ROCKET",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 70
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": false,
+      "kind": "VOID",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 65
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": false,
+      "kind": "VOID",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 65
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": true,
+      "kind": "ELECTRIC",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 18
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": true,
+      "kind": "ELECTRIC",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 18
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": true,
+      "kind": "LASER",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 72
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": true,
+      "kind": "LASER",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 72
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": true,
+      "kind": "ROCKET",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 70
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": true,
+      "kind": "ROCKET",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 70
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": true,
+      "kind": "VOID",
+      "type": "NORMAL",
+      "autoWaited": true,
+      "manualDamage": 65
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "open": true,
+      "kind": "VOID",
+      "type": "BOSS",
+      "autoWaited": true,
+      "manualDamage": 65
+    }
+  ],
+  "runs": [],
+  "contracts": {
+    "first": true,
+    "kept": true,
+    "graceBlocked": true,
+    "cooling": true,
+    "fired": true,
+    "notReset": true,
+    "hiddenBlocked": true
+  },
+  "automaticCombatUnchanged": [
+    {
+      "hp": 62,
+      "phase": "combat",
+      "level": 2,
+      "kills": 132,
+      "coins": {
+        "avail": 845,
+        "total": 1538
+      },
+      "up": {
+        "eDmg": 2,
+        "eRate": 2,
+        "eRange": 0,
+        "lDmg": 0,
+        "lEff": 0,
+        "lRange": 0,
+        "rDmg": 0,
+        "rRate": 0,
+        "rAoe": 0,
+        "vDmg": 0,
+        "vRate": 0,
+        "vPull": 0,
+        "base": 0
+      },
+      "spawned": 78
+    },
+    {
+      "hp": 62,
+      "phase": "combat",
+      "level": 2,
+      "kills": 132,
+      "coins": {
+        "avail": 845,
+        "total": 1538
+      },
+      "up": {
+        "eDmg": 2,
+        "eRate": 2,
+        "eRange": 0,
+        "lDmg": 0,
+        "lEff": 0,
+        "lRange": 0,
+        "rDmg": 0,
+        "rRate": 0,
+        "rAoe": 0,
+        "vDmg": 0,
+        "vRate": 0,
+        "vPull": 0,
+        "base": 0
+      },
+      "spawned": 78
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "version": "2.0.1-focus",
+  "files": {
+    "manifest.webmanifest": {
+      "bytes": 169,
+      "sha256": "5406d11b9208c0110c4299d4891c6f59ae4a2797414cb48a8178fedf8412db84"
+    },
+    "balance.js": {
+      "bytes": 2041,
+      "sha256": "4d5345759ec6970d0718862e89a775540f03957a13e2d344ee2f72e6d42628ae"
+    },
+    "index.html": {
+      "bytes": 196841,
+      "sha256": "ff1cd7097bab770b9d8ab98263398ffcb8ecfe460aae0c7e16ace7d620c29809"
+    },
+    "levels.js": {
+      "bytes": 2567,
+      "sha256": "3244f7e204f2b3c2c6c5e28293a62b2d021afce032e0045bf3b2c59127795282"
+    },
+    "vercel.json": {
+      "bytes": 185,
+      "sha256": "44e1e1dd7b7646bae93556e978ed79157b5dea282b39a26616817c5c6b6b3f53"
+    }
+  }
+}

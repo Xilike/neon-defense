@@ -1,0 +1,40 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+const {chromium}=createRequire(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES+'/playwright/package.json')('playwright');
+const lambda=(await import('/workspace/scratch/c9705fbd8663/browser-deps/node_modules/@sparticuz/chromium/build/index.js')).default;
+const proxyUrl=process.env.HTTPS_PROXY||process.env.HTTP_PROXY;
+const browser=await chromium.launch({...(proxyUrl?{proxy:{server:proxyUrl}}:{}),executablePath:'/tmp/chromium',args:lambda.args.filter(a=>a!=='--single-process'),headless:true});
+try{
+ const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,ignoreHTTPSErrors:true});
+ const page=await context.newPage();page.setDefaultTimeout(20000);page.setDefaultNavigationTimeout(20000);console.log('browser ready');const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ const clean='https://neon-defense-play-xilike.vercel.app';
+ await page.goto(fs.readFileSync('/tmp/neon-live-access.txt','utf8').trim());
+ console.log('access loaded');await page.waitForFunction(()=>typeof ND_BALANCE!=='undefined');
+ await page.goto(clean+'/?sd2debug=adv&schedule=1&debug=1');
+ await page.waitForFunction(()=>typeof SAVE!=='undefined');
+ console.log('game loaded');const initial=await page.evaluate(()=>({version:ND_BALANCE.config.version,coins:SAVE.econ.avail,up:SAVE.up.eDmg,debug:!!window.__ND,sd2:!!window.SD2,combat:document.getElementById('playerLevel').textContent}));
+ assert.deepEqual(initial,{version:'2.0.1-focus',coins:0,up:0,debug:false,sd2:false,combat:'LEVEL 1'});
+ console.log('starting');await page.locator('#btnStart').tap();await page.locator('#ovTransit').tap();
+ console.log('waiting income');await page.waitForFunction(()=>SAVE.econ.avail>=70,null,{timeout:45000});
+ await page.locator('[data-tab="defense"]').tap();
+ await page.locator('[data-wtoggle="ELECTRIC"]').tap();
+ await page.locator('[data-buy="eDmg"]').tap();
+ const purchased=await page.evaluate(()=>({up:SAVE.up.eDmg,earned:SAVE.econ.total,available:SAVE.econ.avail,at:S.time,kills:S.kills}));
+ assert.equal(purchased.up,1);assert.equal(purchased.available,purchased.earned-70);
+ console.log('purchase passed');const target=await page.evaluate(()=>{
+  clearField(); const e=spawnEnemy('NORMAL','blue',2,.18);e.speed=e.baseSpeed=0;e.visibleFor=2;e.hp=e.maxhp=3000;
+  const p=w2s(e.lane,e.t);return {id:e.id,x:p.x,y:p.y,hp:e.hp};
+ });
+ await page.touchscreen.tap(target.x,target.y);
+ await page.waitForFunction(id=>enemyById(id)?.hp<3000,target.id,{timeout:10000});
+ const farFocus=await page.evaluate(id=>({id,hp:enemyById(id)?.hp,t:enemyById(id)?.t}),target.id);
+ assert(farFocus.hp<target.hp);assert.equal(farFocus.t,.18);
+ await page.screenshot({path:path.join(import.meta.dirname,'live-gameplay.png')});
+ await page.reload();await page.waitForFunction(()=>typeof SAVE!=='undefined');
+ assert.equal(await page.evaluate(()=>SAVE.up.eDmg),1);assert.deepEqual(errors,[]);
+ const report={url:clean,initial,purchased,reloadPersisted:true,farFocus,errors,normalPlayConfirmed:true};
+ fs.writeFileSync(path.join(import.meta.dirname,'live-results.json'),JSON.stringify(report,null,2)+'\n');
+ console.log(JSON.stringify(report));
+}catch(e){console.error(String(e.message).split('Call log')[0].replace(/\?[^\s]+/g,'?[redacted]'));process.exitCode=1;}finally{await browser.close();fs.rmSync('/tmp/neon-live-access.txt',{force:true});}

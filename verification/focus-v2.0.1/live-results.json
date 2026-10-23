@@ -1,0 +1,26 @@
+{
+  "url": "https://neon-defense-play-xilike.vercel.app",
+  "initial": {
+    "version": "2.0.1-focus",
+    "coins": 0,
+    "up": 0,
+    "debug": false,
+    "sd2": false,
+    "combat": "LEVEL 1"
+  },
+  "purchased": {
+    "up": 1,
+    "earned": 76,
+    "available": 6,
+    "at": 25.380899999999933,
+    "kills": 8
+  },
+  "reloadPersisted": true,
+  "farFocus": {
+    "id": 18,
+    "hp": 2980.2,
+    "t": 0.18
+  },
+  "errors": [],
+  "normalPlayConfirmed": true
+}

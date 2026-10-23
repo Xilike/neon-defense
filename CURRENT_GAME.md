@@ -1,7 +1,7 @@
-# Current game: fixed combat levels v2
+# Current game: focus targeting v2.0.1
 
-Current source and Vercel deploy root: `releases/levels-v2/`.
-URL: https://neon-defense-sd2-preview-145zvff91-xilike3-8922s-projects.vercel.app
+Current source and Vercel deploy root: `releases/focus-v2.0.1/`.
+URL: https://neon-defense-play-xilike.vercel.app
 
 The user selected the recovered Vercel 5di2a47zj game. They then rejected the
 v1 balance because enemies died under the header and the XP rank looked like a
@@ -9,10 +9,11 @@ combat level. This v2 corrects the system, not just numerical multipliers.
 
 - Immutable original: recovered/vercel-5di2a47zj/.
 - Historical first attempt: releases/balanced-v1/; do not resume from it.
-- Build current HTML: python scripts/build-levels.py.
+- Build current HTML: python scripts/build-focus.py (uses preserved levels-v2 source).
 - Fixed level composition, HP and intervals: releases/levels-v2/levels.js.
 - Actual weapon/upgrade/price formulas: releases/levels-v2/balance.js.
-- Evidence: verification/levels-v2/RELEASE.md and JSON results.
+- Current evidence: verification/focus-v2.0.1/RELEASE.md and JSON results.
+- Previous combat-level evidence: verification/levels-v2/RELEASE.md.
 
 The large HUD label is COMBAT LEVEL. XP is explicitly separate and cosmetic.
 A level has a finite authored enemy deck, health and speed. The next level starts
@@ -22,8 +23,10 @@ Guardian escapes do not award a clear. There are no forced inter-level menus.
 Normal play has no debug profiles, test grants or automatic upgrade schedule.
 
 The combat projection starts below the actual HUD bounds. Enemies must be fully
-on screen for 1.1 seconds and in the engagement zone before targeting or damage,
-including splash, craft and powers. The range is normalized to battlefield size.
+on screen for 1.1 seconds before damage. Automatic fire keeps its prior engagement
+zone and normalized range. Manual focus reaches fully revealed distant targets
+at the normal cooldown, and remains selected during reveal grace. Fired packets
+retain manual authorization after focus changes. Difficulty and economy are unchanged.
 The save namespace is neonDefense_levels_v2. Prior saves are not modified.
 
 Only dev/neon-defense is authorized. Deploy non-production snapshots to the
