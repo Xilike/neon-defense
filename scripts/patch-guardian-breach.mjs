@@ -8,7 +8,9 @@ if(!s.includes('SD2.bind({'))throw new Error('Not an integrated SD2 preview');
 const changes=[
   ["  pKill(enemies, e);\n  if (S.baseHP <= 0) gameOver();\n}","  pKill(enemies, e);\n  if (S.baseHP <= 0) gameOver();\n  else if (e.stageBoss && SD2.isActive()) gameOver('guardianBreached');\n}"],
   ["function gameOver() {\n  if(SD2.isActive())SD2.onDefeat('baseDestroyed');","function gameOver(reason = 'baseDestroyed') {\n  if(SD2.isActive())SD2.onDefeat(reason);"],
-  ["document.getElementById('endTitle').textContent = 'BASE DESTROYED';","document.getElementById('endTitle').textContent = reason === 'guardianBreached' ? 'GUARDIAN BREACHED' : 'BASE DESTROYED';"]
+  ["document.getElementById('endTitle').textContent = 'BASE DESTROYED';","document.getElementById('endTitle').textContent = reason === 'guardianBreached' ? 'GUARDIAN BREACHED' : 'BASE DESTROYED';"],
+  ["const isFinal=cleared>=goal-1;","const isFinal=cleared>=goal;"],
+  ["e.stageBoss=true;e.finalGalaxyBoss=isFinal;e.stageGoal=cleared+1;","e.stageBoss=true;e.finalGalaxyBoss=isFinal;e.stageGoal=isFinal?goal:cleared+1;"]
 ];
 for(const [before,after] of changes){
  if(s.includes(after))continue;
