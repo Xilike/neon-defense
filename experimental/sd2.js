@@ -32,10 +32,10 @@
     levels: 15,
     maxAlive: 12,                // سقف الأعداء الأحياء (آيفون رأسي)
     childAllowance: 6,           // زيادة مسموحة لأبناء الـ Splitter
-    stageDuration: 110,           // ثواني — مدة توزيع ميزانية المستوى
+    stageDuration: 125,           // ثواني — مدة توزيع ميزانية المستوى
     firstSpawnDelay: 1,
     jitter: 0.2,                 // ±20% على فاصل الظهور عشان ما يبقاش إيقاع ثابت
-    baseBudget: 35,
+    baseBudget: 25,
     growth: 1.10,
     keys: { main: 'neonDefense2_test', sd2: 'neon_sd2_save', log: 'SD2_LOG' },
 
