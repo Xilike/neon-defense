@@ -10,6 +10,7 @@ const changes=[
   ["function gameOver() {\n  if(SD2.isActive())SD2.onDefeat('baseDestroyed');","function gameOver(reason = 'baseDestroyed') {\n  if(SD2.isActive())SD2.onDefeat(reason);"],
   ["document.getElementById('endTitle').textContent = 'BASE DESTROYED';","document.getElementById('endTitle').textContent = reason === 'guardianBreached' ? 'GUARDIAN BREACHED' : 'BASE DESTROYED';"],
   ["const isFinal=cleared>=goal-1;","const isFinal=cleared>=goal;"],
+  [" const e=spawnEnemy('BOSS',pick(G.enemy.colors));"," if(SD2.isActive()) ENEMY_DEF.BOSS.speed = 0.012; // SD2-only guardian speed\n const e=spawnEnemy('BOSS',pick(G.enemy.colors));"],
   ["e.stageBoss=true;e.finalGalaxyBoss=isFinal;e.stageGoal=cleared+1;","e.stageBoss=true;e.finalGalaxyBoss=isFinal;e.stageGoal=isFinal?goal:cleared+1;"]
 ];
 for(const [before,after] of changes){
