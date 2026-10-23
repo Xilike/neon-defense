@@ -57,6 +57,6 @@ try {
   }
 } finally { await browser.close(); }
 console.log(JSON.stringify({ kind: 'actual-game-update-pipeline-with-virtual-frames', results }, null, 2));
-if (results.some(r => r.errors.length || !r.saveIsolation?.ok || !r.finalDefeated || r.reachedLevel !== 15 || r.levels.length !== 14 || r.levels.some(l => l.spawned.guardian !== 1 || l.killed.guardian !== 1))) process.exitCode = 1;
+if (results.some(r => r.errors.length || !r.saveIsolation?.ok || !r.finalDefeated || r.reachedLevel !== 15 || r.levels.length !== 15 || r.levels.some(l => l.spawned.guardian !== 1 || l.killed.guardian !== 1))) process.exitCode = 1;
 const summary = results.map(r => ({ seed:r.seed, profile:r.profile, reachedLevel:r.reachedLevel, phase:r.phase, kills:r.kills, breaches:r.levels.reduce((n,l)=>n+Object.values(l.breached).reduce((a,b)=>a+b,0),0) }));
 console.error('SD2_SEEDED_SUMMARY ' + JSON.stringify(summary));
