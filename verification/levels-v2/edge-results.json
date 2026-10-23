@@ -1,0 +1,69 @@
+{
+  "version": "levels-v2",
+  "checks": [
+    {
+      "name": "touch + real gameplay 360x800",
+      "passed": true,
+      "layout": {
+        "levelText": "LEVEL 1",
+        "status": "AURORA · 1/72 defeated",
+        "overflow": false,
+        "game": {
+          "x": 0,
+          "y": 0,
+          "width": 360,
+          "height": 498,
+          "top": 0,
+          "right": 360,
+          "bottom": 498,
+          "left": 0
+        },
+        "hp": 120,
+        "kills": 1
+      }
+    },
+    {
+      "name": "touch + real gameplay 390x844",
+      "passed": true,
+      "layout": {
+        "levelText": "LEVEL 1",
+        "status": "AURORA · 1/72 defeated",
+        "overflow": false,
+        "game": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 530.5625,
+          "top": 0,
+          "right": 390,
+          "bottom": 530.5625,
+          "left": 0
+        },
+        "hp": 120,
+        "kills": 1
+      }
+    },
+    {
+      "name": "touch + real gameplay 412x915",
+      "passed": true,
+      "layout": {
+        "levelText": "LEVEL 1",
+        "status": "AURORA · 1/72 defeated",
+        "overflow": false,
+        "game": {
+          "x": 0,
+          "y": 0,
+          "width": 412,
+          "height": 583.109375,
+          "top": 0,
+          "right": 412,
+          "bottom": 583.109375,
+          "left": 0
+        },
+        "hp": 120,
+        "kills": 1
+      }
+    }
+  ],
+  "runs": []
+}

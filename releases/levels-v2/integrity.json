@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0-levels",
+  "files": {
+    "manifest.webmanifest": {
+      "bytes": 169,
+      "sha256": "5406d11b9208c0110c4299d4891c6f59ae4a2797414cb48a8178fedf8412db84"
+    },
+    "balance.js": {
+      "bytes": 2042,
+      "sha256": "2eef61ffe9d179eb4213d5dd214a033369b5da878ffb083d5c776f9d7cad530e"
+    },
+    "index.html": {
+      "bytes": 196086,
+      "sha256": "84758c0391556c06071b5c3bea4f1865de8cb016edca071550bfd2b76cc4f344"
+    },
+    "levels.js": {
+      "bytes": 2567,
+      "sha256": "3244f7e204f2b3c2c6c5e28293a62b2d021afce032e0045bf3b2c59127795282"
+    },
+    "vercel.json": {
+      "bytes": 185,
+      "sha256": "44e1e1dd7b7646bae93556e978ed79157b5dea282b39a26616817c5c6b6b3f53"
+    }
+  }
+}

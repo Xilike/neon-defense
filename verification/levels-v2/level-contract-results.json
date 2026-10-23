@@ -1,0 +1,117 @@
+{
+  "passed": true,
+  "result": {
+    "rows": [
+      {
+        "level": 1,
+        "count": 72,
+        "sum": 72,
+        "hp": 100
+      },
+      {
+        "level": 2,
+        "count": 84,
+        "sum": 84,
+        "hp": 135
+      },
+      {
+        "level": 3,
+        "count": 96,
+        "sum": 96,
+        "hp": 165
+      },
+      {
+        "level": 4,
+        "count": 108,
+        "sum": 108,
+        "hp": 195
+      },
+      {
+        "level": 5,
+        "count": 120,
+        "sum": 120,
+        "hp": 230
+      },
+      {
+        "level": 6,
+        "count": 132,
+        "sum": 132,
+        "hp": 270
+      },
+      {
+        "level": 7,
+        "count": 144,
+        "sum": 144,
+        "hp": 320
+      },
+      {
+        "level": 8,
+        "count": 156,
+        "sum": 156,
+        "hp": 380
+      },
+      {
+        "level": 9,
+        "count": 168,
+        "sum": 168,
+        "hp": 450
+      },
+      {
+        "level": 10,
+        "count": 180,
+        "sum": 180,
+        "hp": 530
+      },
+      {
+        "level": 11,
+        "count": 192,
+        "sum": 192,
+        "hp": 620
+      },
+      {
+        "level": 12,
+        "count": 204,
+        "sum": 204,
+        "hp": 725
+      },
+      {
+        "level": 13,
+        "count": 216,
+        "sum": 216,
+        "hp": 850
+      },
+      {
+        "level": 14,
+        "count": 228,
+        "sum": 228,
+        "hp": 995
+      },
+      {
+        "level": 15,
+        "count": 240,
+        "sum": 240,
+        "hp": 1165
+      }
+    ],
+    "xpOnly": {
+      "before": 1,
+      "after": 1,
+      "label": "LEVEL 1"
+    },
+    "hiddenBlocked": true,
+    "graceBlocked": true,
+    "visibleDamage": 10,
+    "blocked": true,
+    "bossHp": 1100,
+    "levelAfterEscape": 1,
+    "retryHp": 1100,
+    "afterKill": 2,
+    "keys": [
+      "neonDefense_balanced_panel_v1",
+      "neonDefense_levels_v2"
+    ],
+    "version": "2.0.0-levels"
+  },
+  "reloadLevel": 2,
+  "errors": []
+}

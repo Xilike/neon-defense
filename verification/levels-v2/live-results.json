@@ -1,0 +1,21 @@
+{
+  "url": "https://neon-defense-sd2-preview-145zvff91-xilike3-8922s-projects.vercel.app",
+  "initial": {
+    "version": "2.0.0-levels",
+    "coins": 0,
+    "up": 0,
+    "debug": false,
+    "sd2": false,
+    "combat": "LEVEL 1"
+  },
+  "purchased": {
+    "up": 1,
+    "earned": 79,
+    "available": 9,
+    "at": 21.281100000000006,
+    "kills": 7
+  },
+  "reloadPersisted": true,
+  "errors": [],
+  "normalPlayConfirmed": true
+}
