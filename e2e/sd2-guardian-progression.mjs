@@ -24,6 +24,8 @@ try {
     const run = await page.evaluate(() => {
       if (S.phase === 'transit') confirmEnterGalaxy();
       // Calibrate the isolated Preview at the same settings as experimental/sd2.js.
+      // Test-only high-DPS weapon and protected base: validates lifecycle, not balance.
+      TURRET_DEF.ELECTRIC.dmg = 500; TURRET_DEF.ELECTRIC.range = 5000; TURRET_DEF.ELECTRIC.rate = 10;
       SD2.cfg.baseBudget = 1;
       SD2.cfg.stageDuration = 1;
       SD2.startLevel(1);
