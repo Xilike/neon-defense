@@ -24,8 +24,8 @@ try {
     const run = await page.evaluate(() => {
       if (S.phase === 'transit') confirmEnterGalaxy();
       // Calibrate the isolated Preview at the same settings as experimental/sd2.js.
-      SD2.cfg.baseBudget = 50;
-      SD2.cfg.stageDuration = 90;
+      SD2.cfg.baseBudget = 35;
+      SD2.cfg.stageDuration = 110;
       SD2.startLevel(1);
       startContinuousAuto();
       const dt = 0.05;
