@@ -24,13 +24,13 @@ try {
     const run = await page.evaluate(() => {
       if (S.phase === 'transit') confirmEnterGalaxy();
       // Calibrate the isolated Preview at the same settings as experimental/sd2.js.
-      SD2.cfg.baseBudget = 35;
-      SD2.cfg.stageDuration = 110;
+      SD2.cfg.baseBudget = 25;
+      SD2.cfg.stageDuration = 125;
       SD2.startLevel(1);
       startContinuousAuto();
       const dt = 0.05;
       let frames = 0;
-      while (frames++ < 120000 && S.phase === 'combat' && Number(galaxyProgress(G.id).cleared || 1) < 15) {
+      while (frames++ < 160000 && S.phase === 'combat' && !galaxyProgress(G.id).finalDefeated) {
         S.time += dt;
         Director.update(dt);
         galaxyActiveTick(dt);
@@ -45,7 +45,7 @@ try {
       return {
         phase: S.phase, simulatedSeconds: +(frames * dt).toFixed(1),
         reachedLevel: galaxyProgress(G.id).cleared,
-        baseHP: S.baseHP, kills: S.kills,
+        baseHP: S.baseHP, kills: S.kills, finalDefeated: !!galaxyProgress(G.id).finalDefeated,
         levels: SD2.report().levels, saveIsolation: SD2.debug.verify(),
       };
     });
