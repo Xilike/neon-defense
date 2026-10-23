@@ -1,0 +1,1786 @@
+{
+  "version": "balanced-v1",
+  "checks": [
+    {
+      "name": "normal play, query immunity, purchases, persistence, DPS, laser integration, shield overflow, timed spawning",
+      "passed": true,
+      "laser": {
+        "damage": 72,
+        "expected": 72
+      }
+    },
+    {
+      "name": "touch + real gameplay 360x800",
+      "passed": true,
+      "layout": {
+        "overflow": false,
+        "game": {
+          "x": 0,
+          "y": 0,
+          "width": 360,
+          "height": 498,
+          "top": 0,
+          "right": 360,
+          "bottom": 498,
+          "left": 0
+        },
+        "hp": 120,
+        "kills": 1
+      }
+    },
+    {
+      "name": "touch + real gameplay 390x844",
+      "passed": true,
+      "layout": {
+        "overflow": false,
+        "game": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 530.5625,
+          "top": 0,
+          "right": 390,
+          "bottom": 530.5625,
+          "left": 0
+        },
+        "hp": 120,
+        "kills": 1
+      }
+    },
+    {
+      "name": "touch + real gameplay 412x915",
+      "passed": true,
+      "layout": {
+        "overflow": false,
+        "game": {
+          "x": 0,
+          "y": 0,
+          "width": 412,
+          "height": 583.109375,
+          "top": 0,
+          "right": 412,
+          "bottom": 583.109375,
+          "left": 0
+        },
+        "hp": 120,
+        "kills": 1
+      }
+    }
+  ],
+  "runs": [
+    {
+      "seed": 13,
+      "noSpend": false,
+      "seconds": 600,
+      "phase": "combat",
+      "hp": 120,
+      "kills": 347,
+      "earned": 4295,
+      "available": 1656,
+      "spent": 2639,
+      "firstPurchase": 21.016666666666755,
+      "level": 4,
+      "progress": {
+        "active": 542.3416666666035,
+        "coins": 4295,
+        "kills": 347,
+        "visited": true,
+        "cleared": 4,
+        "finalDefeated": false,
+        "stageBossId": null
+      },
+      "unlocked": [
+        "aurora"
+      ],
+      "maxAlive": 5,
+      "purchases": [
+        {
+          "at": 21,
+          "item": "eDmg"
+        },
+        {
+          "at": 39,
+          "item": "eDmg"
+        },
+        {
+          "at": 54,
+          "item": "eRate"
+        },
+        {
+          "at": 69,
+          "item": "eRate"
+        },
+        {
+          "at": 129,
+          "item": "LASER"
+        },
+        {
+          "at": 147,
+          "item": "eDmg"
+        },
+        {
+          "at": 174,
+          "item": "eDmg"
+        },
+        {
+          "at": 177,
+          "item": "eRate"
+        },
+        {
+          "at": 186,
+          "item": "eRate"
+        },
+        {
+          "at": 288,
+          "item": "CRAFT"
+        },
+        {
+          "at": 402,
+          "item": "ROCKET"
+        }
+      ],
+      "points": [
+        {
+          "at": 0,
+          "hp": 120,
+          "kills": 0,
+          "earned": 0,
+          "dps": 50.4,
+          "level": 1
+        },
+        {
+          "at": 60,
+          "hp": 120,
+          "kills": 32,
+          "earned": 305,
+          "dps": 64.6,
+          "level": 1
+        },
+        {
+          "at": 120,
+          "hp": 120,
+          "kills": 66,
+          "earned": 656,
+          "dps": 68.5,
+          "level": 1
+        },
+        {
+          "at": 180,
+          "hp": 120,
+          "kills": 98,
+          "earned": 1127,
+          "dps": 115.6,
+          "level": 2
+        },
+        {
+          "at": 240,
+          "hp": 120,
+          "kills": 133,
+          "earned": 1472,
+          "dps": 120.9,
+          "level": 2
+        },
+        {
+          "at": 300,
+          "hp": 120,
+          "kills": 168,
+          "earned": 1807,
+          "dps": 131.8,
+          "level": 2
+        },
+        {
+          "at": 360,
+          "hp": 120,
+          "kills": 201,
+          "earned": 2328,
+          "dps": 131.8,
+          "level": 3
+        },
+        {
+          "at": 420,
+          "hp": 120,
+          "kills": 237,
+          "earned": 2752,
+          "dps": 191.3,
+          "level": 3
+        },
+        {
+          "at": 480,
+          "hp": 120,
+          "kills": 275,
+          "earned": 3206,
+          "dps": 191.3,
+          "level": 3
+        },
+        {
+          "at": 540,
+          "hp": 120,
+          "kills": 307,
+          "earned": 3779,
+          "dps": 191.3,
+          "level": 4
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "noSpend": false,
+      "seconds": 600,
+      "phase": "combat",
+      "hp": 120,
+      "kills": 344,
+      "earned": 4256,
+      "available": 1617,
+      "spent": 2639,
+      "firstPurchase": 18.016666666666925,
+      "level": 4,
+      "progress": {
+        "active": 536.7916666666085,
+        "coins": 4256,
+        "kills": 344,
+        "visited": true,
+        "cleared": 4,
+        "finalDefeated": false,
+        "stageBossId": null
+      },
+      "unlocked": [
+        "aurora"
+      ],
+      "maxAlive": 5,
+      "purchases": [
+        {
+          "at": 18,
+          "item": "eDmg"
+        },
+        {
+          "at": 33,
+          "item": "eDmg"
+        },
+        {
+          "at": 51,
+          "item": "eRate"
+        },
+        {
+          "at": 66,
+          "item": "eRate"
+        },
+        {
+          "at": 129,
+          "item": "LASER"
+        },
+        {
+          "at": 141,
+          "item": "eDmg"
+        },
+        {
+          "at": 162,
+          "item": "eDmg"
+        },
+        {
+          "at": 177,
+          "item": "eRate"
+        },
+        {
+          "at": 180,
+          "item": "eRate"
+        },
+        {
+          "at": 288,
+          "item": "CRAFT"
+        },
+        {
+          "at": 405,
+          "item": "ROCKET"
+        }
+      ],
+      "points": [
+        {
+          "at": 0,
+          "hp": 120,
+          "kills": 0,
+          "earned": 0,
+          "dps": 50.4,
+          "level": 1
+        },
+        {
+          "at": 60,
+          "hp": 120,
+          "kills": 32,
+          "earned": 325,
+          "dps": 64.6,
+          "level": 1
+        },
+        {
+          "at": 120,
+          "hp": 120,
+          "kills": 65,
+          "earned": 659,
+          "dps": 68.5,
+          "level": 1
+        },
+        {
+          "at": 180,
+          "hp": 120,
+          "kills": 98,
+          "earned": 1160,
+          "dps": 120.9,
+          "level": 2
+        },
+        {
+          "at": 240,
+          "hp": 120,
+          "kills": 133,
+          "earned": 1492,
+          "dps": 120.9,
+          "level": 2
+        },
+        {
+          "at": 300,
+          "hp": 120,
+          "kills": 167,
+          "earned": 1822,
+          "dps": 131.8,
+          "level": 2
+        },
+        {
+          "at": 360,
+          "hp": 120,
+          "kills": 201,
+          "earned": 2352,
+          "dps": 131.8,
+          "level": 3
+        },
+        {
+          "at": 420,
+          "hp": 120,
+          "kills": 236,
+          "earned": 2793,
+          "dps": 191.3,
+          "level": 3
+        },
+        {
+          "at": 480,
+          "hp": 120,
+          "kills": 274,
+          "earned": 3249,
+          "dps": 191.3,
+          "level": 3
+        },
+        {
+          "at": 540,
+          "hp": 120,
+          "kills": 305,
+          "earned": 3803,
+          "dps": 191.3,
+          "level": 4
+        }
+      ]
+    },
+    {
+      "seed": 99,
+      "noSpend": false,
+      "seconds": 600,
+      "phase": "combat",
+      "hp": 120,
+      "kills": 350,
+      "earned": 4250,
+      "available": 1611,
+      "spent": 2639,
+      "firstPurchase": 21.016666666666755,
+      "level": 4,
+      "progress": {
+        "active": 532.1916666666127,
+        "coins": 4250,
+        "kills": 350,
+        "visited": true,
+        "cleared": 4,
+        "finalDefeated": false,
+        "stageBossId": null
+      },
+      "unlocked": [
+        "aurora"
+      ],
+      "maxAlive": 5,
+      "purchases": [
+        {
+          "at": 21,
+          "item": "eDmg"
+        },
+        {
+          "at": 36,
+          "item": "eDmg"
+        },
+        {
+          "at": 51,
+          "item": "eRate"
+        },
+        {
+          "at": 63,
+          "item": "eRate"
+        },
+        {
+          "at": 129,
+          "item": "LASER"
+        },
+        {
+          "at": 141,
+          "item": "eDmg"
+        },
+        {
+          "at": 162,
+          "item": "eDmg"
+        },
+        {
+          "at": 183,
+          "item": "eRate"
+        },
+        {
+          "at": 186,
+          "item": "eRate"
+        },
+        {
+          "at": 288,
+          "item": "CRAFT"
+        },
+        {
+          "at": 408,
+          "item": "ROCKET"
+        }
+      ],
+      "points": [
+        {
+          "at": 0,
+          "hp": 120,
+          "kills": 0,
+          "earned": 0,
+          "dps": 50.4,
+          "level": 1
+        },
+        {
+          "at": 60,
+          "hp": 120,
+          "kills": 33,
+          "earned": 334,
+          "dps": 64.6,
+          "level": 1
+        },
+        {
+          "at": 120,
+          "hp": 120,
+          "kills": 66,
+          "earned": 660,
+          "dps": 68.5,
+          "level": 1
+        },
+        {
+          "at": 180,
+          "hp": 120,
+          "kills": 96,
+          "earned": 942,
+          "dps": 110.6,
+          "level": 1
+        },
+        {
+          "at": 240,
+          "hp": 120,
+          "kills": 133,
+          "earned": 1488,
+          "dps": 120.9,
+          "level": 2
+        },
+        {
+          "at": 300,
+          "hp": 120,
+          "kills": 168,
+          "earned": 1832,
+          "dps": 131.8,
+          "level": 2
+        },
+        {
+          "at": 360,
+          "hp": 120,
+          "kills": 200,
+          "earned": 2327,
+          "dps": 131.8,
+          "level": 3
+        },
+        {
+          "at": 420,
+          "hp": 120,
+          "kills": 236,
+          "earned": 2731,
+          "dps": 191.3,
+          "level": 3
+        },
+        {
+          "at": 480,
+          "hp": 120,
+          "kills": 274,
+          "earned": 3161,
+          "dps": 191.3,
+          "level": 3
+        },
+        {
+          "at": 540,
+          "hp": 120,
+          "kills": 306,
+          "earned": 3531,
+          "dps": 191.3,
+          "level": 3
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "noSpend": true,
+      "seconds": 760,
+      "phase": "over",
+      "hp": 0,
+      "kills": 400,
+      "earned": 4889,
+      "available": 4889,
+      "spent": 0,
+      "firstPurchase": null,
+      "level": 4,
+      "progress": {
+        "active": 608.3583333332101,
+        "coins": 4889,
+        "kills": 400,
+        "visited": true,
+        "cleared": 4,
+        "finalDefeated": false,
+        "stageBossId": null
+      },
+      "unlocked": [
+        "aurora"
+      ],
+      "maxAlive": 14,
+      "purchases": [],
+      "points": [
+        {
+          "at": 0,
+          "hp": 120,
+          "kills": 0,
+          "earned": 0,
+          "dps": 50.4,
+          "level": 1
+        },
+        {
+          "at": 60,
+          "hp": 120,
+          "kills": 33,
+          "earned": 322,
+          "dps": 50.4,
+          "level": 1
+        },
+        {
+          "at": 120,
+          "hp": 120,
+          "kills": 66,
+          "earned": 644,
+          "dps": 50.4,
+          "level": 1
+        },
+        {
+          "at": 180,
+          "hp": 120,
+          "kills": 95,
+          "earned": 925,
+          "dps": 50.4,
+          "level": 1
+        },
+        {
+          "at": 240,
+          "hp": 120,
+          "kills": 128,
+          "earned": 1455,
+          "dps": 50.4,
+          "level": 2
+        },
+        {
+          "at": 300,
+          "hp": 120,
+          "kills": 163,
+          "earned": 1806,
+          "dps": 50.4,
+          "level": 2
+        },
+        {
+          "at": 360,
+          "hp": 120,
+          "kills": 197,
+          "earned": 2150,
+          "dps": 50.4,
+          "level": 2
+        },
+        {
+          "at": 420,
+          "hp": 120,
+          "kills": 222,
+          "earned": 2569,
+          "dps": 50.4,
+          "level": 3
+        },
+        {
+          "at": 480,
+          "hp": 120,
+          "kills": 258,
+          "earned": 2989,
+          "dps": 50.4,
+          "level": 3
+        },
+        {
+          "at": 540,
+          "hp": 120,
+          "kills": 292,
+          "earned": 3363,
+          "dps": 50.4,
+          "level": 3
+        },
+        {
+          "at": 600,
+          "hp": 120,
+          "kills": 328,
+          "earned": 3779,
+          "dps": 50.4,
+          "level": 3
+        },
+        {
+          "at": 660,
+          "hp": 120,
+          "kills": 355,
+          "earned": 4253,
+          "dps": 50.4,
+          "level": 4
+        },
+        {
+          "at": 720,
+          "hp": 43,
+          "kills": 379,
+          "earned": 4596,
+          "dps": 50.4,
+          "level": 4
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "noSpend": false,
+      "seconds": 4200,
+      "phase": "combat",
+      "hp": 120,
+      "kills": 3821,
+      "earned": 50349,
+      "available": 661,
+      "spent": 49688,
+      "firstPurchase": 21.016666666666755,
+      "level": 15,
+      "progress": {
+        "active": 3236.7845382341034,
+        "coins": 50349,
+        "kills": 3821,
+        "visited": true,
+        "cleared": 15,
+        "finalDefeated": true,
+        "stageBossId": null
+      },
+      "unlocked": [
+        "aurora",
+        "ember"
+      ],
+      "maxAlive": 8,
+      "purchases": [
+        {
+          "at": 21,
+          "item": "eDmg"
+        },
+        {
+          "at": 36,
+          "item": "eDmg"
+        },
+        {
+          "at": 51,
+          "item": "eRate"
+        },
+        {
+          "at": 69,
+          "item": "eRate"
+        },
+        {
+          "at": 138,
+          "item": "LASER"
+        },
+        {
+          "at": 147,
+          "item": "eDmg"
+        },
+        {
+          "at": 171,
+          "item": "eDmg"
+        },
+        {
+          "at": 180,
+          "item": "eRate"
+        },
+        {
+          "at": 195,
+          "item": "eRate"
+        },
+        {
+          "at": 294,
+          "item": "CRAFT"
+        },
+        {
+          "at": 408,
+          "item": "ROCKET"
+        },
+        {
+          "at": 633,
+          "item": "VOID"
+        },
+        {
+          "at": 645,
+          "item": "lDmg"
+        },
+        {
+          "at": 657,
+          "item": "lDmg"
+        },
+        {
+          "at": 672,
+          "item": "lEff"
+        },
+        {
+          "at": 690,
+          "item": "eDmg"
+        },
+        {
+          "at": 711,
+          "item": "lDmg"
+        },
+        {
+          "at": 723,
+          "item": "lEff"
+        },
+        {
+          "at": 729,
+          "item": "rDmg"
+        },
+        {
+          "at": 732,
+          "item": "eDmg"
+        },
+        {
+          "at": 741,
+          "item": "vDmg"
+        },
+        {
+          "at": 756,
+          "item": "lDmg"
+        },
+        {
+          "at": 777,
+          "item": "lEff"
+        },
+        {
+          "at": 792,
+          "item": "rDmg"
+        },
+        {
+          "at": 813,
+          "item": "rRate"
+        },
+        {
+          "at": 831,
+          "item": "vRate"
+        },
+        {
+          "at": 852,
+          "item": "eRate"
+        },
+        {
+          "at": 858,
+          "item": "eDmg"
+        },
+        {
+          "at": 867,
+          "item": "vDmg"
+        },
+        {
+          "at": 888,
+          "item": "lDmg"
+        },
+        {
+          "at": 906,
+          "item": "lEff"
+        },
+        {
+          "at": 927,
+          "item": "rDmg"
+        },
+        {
+          "at": 930,
+          "item": "rRate"
+        },
+        {
+          "at": 948,
+          "item": "vRate"
+        },
+        {
+          "at": 969,
+          "item": "eRate"
+        },
+        {
+          "at": 978,
+          "item": "eDmg"
+        },
+        {
+          "at": 987,
+          "item": "vDmg"
+        },
+        {
+          "at": 1008,
+          "item": "lDmg"
+        },
+        {
+          "at": 1029,
+          "item": "lEff"
+        },
+        {
+          "at": 1050,
+          "item": "rDmg"
+        },
+        {
+          "at": 1071,
+          "item": "rRate"
+        },
+        {
+          "at": 1092,
+          "item": "vRate"
+        },
+        {
+          "at": 1104,
+          "item": "eRate"
+        },
+        {
+          "at": 1122,
+          "item": "eDmg"
+        },
+        {
+          "at": 1146,
+          "item": "vDmg"
+        },
+        {
+          "at": 1149,
+          "item": "lDmg"
+        },
+        {
+          "at": 1176,
+          "item": "lEff"
+        },
+        {
+          "at": 1200,
+          "item": "rDmg"
+        },
+        {
+          "at": 1227,
+          "item": "rRate"
+        },
+        {
+          "at": 1239,
+          "item": "vRate"
+        },
+        {
+          "at": 1263,
+          "item": "eRate"
+        },
+        {
+          "at": 1287,
+          "item": "eDmg"
+        },
+        {
+          "at": 1317,
+          "item": "vDmg"
+        },
+        {
+          "at": 1341,
+          "item": "lDmg"
+        },
+        {
+          "at": 1356,
+          "item": "lEff"
+        },
+        {
+          "at": 1368,
+          "item": "rDmg"
+        },
+        {
+          "at": 1386,
+          "item": "rRate"
+        },
+        {
+          "at": 1410,
+          "item": "vRate"
+        },
+        {
+          "at": 1434,
+          "item": "eRate"
+        },
+        {
+          "at": 1455,
+          "item": "eDmg"
+        },
+        {
+          "at": 1473,
+          "item": "vDmg"
+        },
+        {
+          "at": 1494,
+          "item": "lDmg"
+        },
+        {
+          "at": 1518,
+          "item": "lEff"
+        },
+        {
+          "at": 1551,
+          "item": "rDmg"
+        },
+        {
+          "at": 1575,
+          "item": "rRate"
+        },
+        {
+          "at": 1596,
+          "item": "vRate"
+        },
+        {
+          "at": 1608,
+          "item": "eRate"
+        },
+        {
+          "at": 1641,
+          "item": "eDmg"
+        },
+        {
+          "at": 1668,
+          "item": "vDmg"
+        },
+        {
+          "at": 1695,
+          "item": "lDmg"
+        },
+        {
+          "at": 1719,
+          "item": "lEff"
+        },
+        {
+          "at": 1743,
+          "item": "rDmg"
+        },
+        {
+          "at": 1773,
+          "item": "rRate"
+        },
+        {
+          "at": 1800,
+          "item": "vRate"
+        },
+        {
+          "at": 1836,
+          "item": "eRate"
+        },
+        {
+          "at": 1848,
+          "item": "eDmg"
+        },
+        {
+          "at": 1869,
+          "item": "vDmg"
+        },
+        {
+          "at": 1902,
+          "item": "lDmg"
+        },
+        {
+          "at": 1932,
+          "item": "lEff"
+        },
+        {
+          "at": 1968,
+          "item": "rDmg"
+        },
+        {
+          "at": 1992,
+          "item": "rRate"
+        },
+        {
+          "at": 2034,
+          "item": "vRate"
+        },
+        {
+          "at": 2067,
+          "item": "eRate"
+        },
+        {
+          "at": 2091,
+          "item": "eDmg"
+        },
+        {
+          "at": 2118,
+          "item": "vDmg"
+        },
+        {
+          "at": 2145,
+          "item": "lDmg"
+        },
+        {
+          "at": 2181,
+          "item": "lEff"
+        },
+        {
+          "at": 2220,
+          "item": "rDmg"
+        },
+        {
+          "at": 2250,
+          "item": "rRate"
+        },
+        {
+          "at": 2280,
+          "item": "vRate"
+        },
+        {
+          "at": 2322,
+          "item": "eRate"
+        },
+        {
+          "at": 2355,
+          "item": "eDmg"
+        },
+        {
+          "at": 2382,
+          "item": "vDmg"
+        },
+        {
+          "at": 2409,
+          "item": "lDmg"
+        },
+        {
+          "at": 2451,
+          "item": "lEff"
+        },
+        {
+          "at": 2496,
+          "item": "rDmg"
+        },
+        {
+          "at": 2526,
+          "item": "rRate"
+        },
+        {
+          "at": 2565,
+          "item": "vRate"
+        },
+        {
+          "at": 2604,
+          "item": "eRate"
+        },
+        {
+          "at": 2625,
+          "item": "eDmg"
+        },
+        {
+          "at": 2655,
+          "item": "vDmg"
+        },
+        {
+          "at": 2706,
+          "item": "lDmg"
+        },
+        {
+          "at": 2739,
+          "item": "lEff"
+        },
+        {
+          "at": 2793,
+          "item": "rDmg"
+        },
+        {
+          "at": 2847,
+          "item": "rRate"
+        },
+        {
+          "at": 2883,
+          "item": "vRate"
+        },
+        {
+          "at": 2913,
+          "item": "eRate"
+        },
+        {
+          "at": 2964,
+          "item": "eDmg"
+        },
+        {
+          "at": 3000,
+          "item": "vDmg"
+        },
+        {
+          "at": 3051,
+          "item": "lDmg"
+        },
+        {
+          "at": 3093,
+          "item": "lEff"
+        },
+        {
+          "at": 3132,
+          "item": "rDmg"
+        },
+        {
+          "at": 3192,
+          "item": "rRate"
+        },
+        {
+          "at": 3219,
+          "item": "vRate"
+        },
+        {
+          "at": 3222,
+          "item": "eRate"
+        },
+        {
+          "at": 3246,
+          "item": "eDmg"
+        },
+        {
+          "at": 3300,
+          "item": "vDmg"
+        },
+        {
+          "at": 3345,
+          "item": "lDmg"
+        },
+        {
+          "at": 3396,
+          "item": "lEff"
+        },
+        {
+          "at": 3447,
+          "item": "rDmg"
+        },
+        {
+          "at": 3501,
+          "item": "rRate"
+        },
+        {
+          "at": 3558,
+          "item": "vRate"
+        },
+        {
+          "at": 3612,
+          "item": "eRate"
+        },
+        {
+          "at": 3669,
+          "item": "eDmg"
+        },
+        {
+          "at": 3726,
+          "item": "vDmg"
+        },
+        {
+          "at": 3786,
+          "item": "lDmg"
+        },
+        {
+          "at": 3843,
+          "item": "lEff"
+        },
+        {
+          "at": 3909,
+          "item": "rDmg"
+        },
+        {
+          "at": 3963,
+          "item": "rRate"
+        },
+        {
+          "at": 4029,
+          "item": "vRate"
+        },
+        {
+          "at": 4086,
+          "item": "eRate"
+        },
+        {
+          "at": 4155,
+          "item": "eDmg"
+        }
+      ],
+      "points": [
+        {
+          "at": 0,
+          "hp": 120,
+          "kills": 0,
+          "earned": 0,
+          "dps": 50.4,
+          "level": 1
+        },
+        {
+          "at": 60,
+          "hp": 120,
+          "kills": 33,
+          "earned": 318,
+          "dps": 64.6,
+          "level": 1
+        },
+        {
+          "at": 120,
+          "hp": 120,
+          "kills": 66,
+          "earned": 636,
+          "dps": 68.5,
+          "level": 1
+        },
+        {
+          "at": 180,
+          "hp": 120,
+          "kills": 95,
+          "earned": 1092,
+          "dps": 115.6,
+          "level": 2
+        },
+        {
+          "at": 240,
+          "hp": 120,
+          "kills": 131,
+          "earned": 1458,
+          "dps": 120.9,
+          "level": 2
+        },
+        {
+          "at": 300,
+          "hp": 120,
+          "kills": 166,
+          "earned": 1790,
+          "dps": 131.8,
+          "level": 2
+        },
+        {
+          "at": 360,
+          "hp": 120,
+          "kills": 199,
+          "earned": 2316,
+          "dps": 131.8,
+          "level": 3
+        },
+        {
+          "at": 420,
+          "hp": 120,
+          "kills": 236,
+          "earned": 2740,
+          "dps": 191.3,
+          "level": 3
+        },
+        {
+          "at": 480,
+          "hp": 120,
+          "kills": 273,
+          "earned": 3130,
+          "dps": 191.3,
+          "level": 3
+        },
+        {
+          "at": 540,
+          "hp": 120,
+          "kills": 306,
+          "earned": 3689,
+          "dps": 191.3,
+          "level": 4
+        },
+        {
+          "at": 600,
+          "hp": 120,
+          "kills": 342,
+          "earned": 4086,
+          "dps": 191.3,
+          "level": 4
+        },
+        {
+          "at": 660,
+          "hp": 120,
+          "kills": 387,
+          "earned": 4672,
+          "dps": 217.4,
+          "level": 4
+        },
+        {
+          "at": 720,
+          "hp": 120,
+          "kills": 422,
+          "earned": 5051,
+          "dps": 231.7,
+          "level": 4
+        },
+        {
+          "at": 780,
+          "hp": 120,
+          "kills": 469,
+          "earned": 5868,
+          "dps": 257.5,
+          "level": 5
+        },
+        {
+          "at": 840,
+          "hp": 120,
+          "kills": 513,
+          "earned": 6340,
+          "dps": 269.2,
+          "level": 5
+        },
+        {
+          "at": 900,
+          "hp": 120,
+          "kills": 562,
+          "earned": 6994,
+          "dps": 294.9,
+          "level": 5
+        },
+        {
+          "at": 960,
+          "hp": 120,
+          "kills": 602,
+          "earned": 7658,
+          "dps": 310.6,
+          "level": 6
+        },
+        {
+          "at": 1020,
+          "hp": 120,
+          "kills": 658,
+          "earned": 8414,
+          "dps": 340.4,
+          "level": 6
+        },
+        {
+          "at": 1080,
+          "hp": 120,
+          "kills": 703,
+          "earned": 8949,
+          "dps": 357.5,
+          "level": 6
+        },
+        {
+          "at": 1140,
+          "hp": 120,
+          "kills": 752,
+          "earned": 9580,
+          "dps": 384.1,
+          "level": 6
+        },
+        {
+          "at": 1200,
+          "hp": 120,
+          "kills": 799,
+          "earned": 10300,
+          "dps": 406.1,
+          "level": 7
+        },
+        {
+          "at": 1260,
+          "hp": 120,
+          "kills": 852,
+          "earned": 10930,
+          "dps": 414.2,
+          "level": 7
+        },
+        {
+          "at": 1320,
+          "hp": 120,
+          "kills": 905,
+          "earned": 11525,
+          "dps": 447.4,
+          "level": 7
+        },
+        {
+          "at": 1380,
+          "hp": 120,
+          "kills": 953,
+          "earned": 12315,
+          "dps": 469.2,
+          "level": 8
+        },
+        {
+          "at": 1440,
+          "hp": 120,
+          "kills": 1016,
+          "earned": 13025,
+          "dps": 491.2,
+          "level": 8
+        },
+        {
+          "at": 1500,
+          "hp": 120,
+          "kills": 1072,
+          "earned": 13820,
+          "dps": 525.1,
+          "level": 8
+        },
+        {
+          "at": 1560,
+          "hp": 120,
+          "kills": 1120,
+          "earned": 14398,
+          "dps": 542.3,
+          "level": 8
+        },
+        {
+          "at": 1620,
+          "hp": 120,
+          "kills": 1168,
+          "earned": 15286,
+          "dps": 568,
+          "level": 9
+        },
+        {
+          "at": 1680,
+          "hp": 120,
+          "kills": 1219,
+          "earned": 15883,
+          "dps": 598.3,
+          "level": 9
+        },
+        {
+          "at": 1740,
+          "hp": 120,
+          "kills": 1280,
+          "earned": 16680,
+          "dps": 610.7,
+          "level": 9
+        },
+        {
+          "at": 1800,
+          "hp": 120,
+          "kills": 1336,
+          "earned": 17391,
+          "dps": 640,
+          "level": 9
+        },
+        {
+          "at": 1860,
+          "hp": 120,
+          "kills": 1389,
+          "earned": 18291,
+          "dps": 687,
+          "level": 10
+        },
+        {
+          "at": 1920,
+          "hp": 120,
+          "kills": 1447,
+          "earned": 18989,
+          "dps": 702.4,
+          "level": 10
+        },
+        {
+          "at": 1980,
+          "hp": 120,
+          "kills": 1511,
+          "earned": 19749,
+          "dps": 725.3,
+          "level": 10
+        },
+        {
+          "at": 2040,
+          "hp": 120,
+          "kills": 1567,
+          "earned": 20338,
+          "dps": 740.3,
+          "level": 10
+        },
+        {
+          "at": 2100,
+          "hp": 120,
+          "kills": 1624,
+          "earned": 21195,
+          "dps": 795.1,
+          "level": 11
+        },
+        {
+          "at": 2160,
+          "hp": 120,
+          "kills": 1679,
+          "earned": 21972,
+          "dps": 812.7,
+          "level": 11
+        },
+        {
+          "at": 2220,
+          "hp": 120,
+          "kills": 1738,
+          "earned": 22634,
+          "dps": 839.2,
+          "level": 11
+        },
+        {
+          "at": 2280,
+          "hp": 120,
+          "kills": 1804,
+          "earned": 23524,
+          "dps": 856.5,
+          "level": 11
+        },
+        {
+          "at": 2340,
+          "hp": 120,
+          "kills": 1861,
+          "earned": 24158,
+          "dps": 879.6,
+          "level": 11
+        },
+        {
+          "at": 2400,
+          "hp": 120,
+          "kills": 1914,
+          "earned": 25184,
+          "dps": 927.3,
+          "level": 12
+        },
+        {
+          "at": 2460,
+          "hp": 120,
+          "kills": 1976,
+          "earned": 25828,
+          "dps": 945,
+          "level": 12
+        },
+        {
+          "at": 2520,
+          "hp": 120,
+          "kills": 2041,
+          "earned": 26693,
+          "dps": 971.1,
+          "level": 12
+        },
+        {
+          "at": 2580,
+          "hp": 120,
+          "kills": 2091,
+          "earned": 27411,
+          "dps": 991.3,
+          "level": 12
+        },
+        {
+          "at": 2640,
+          "hp": 120,
+          "kills": 2150,
+          "earned": 28550,
+          "dps": 1065.8,
+          "level": 13
+        },
+        {
+          "at": 2700,
+          "hp": 120,
+          "kills": 2207,
+          "earned": 29200,
+          "dps": 1073.6,
+          "level": 13
+        },
+        {
+          "at": 2760,
+          "hp": 120,
+          "kills": 2276,
+          "earned": 29998,
+          "dps": 1093.5,
+          "level": 13
+        },
+        {
+          "at": 2820,
+          "hp": 120,
+          "kills": 2331,
+          "earned": 30573,
+          "dps": 1123.9,
+          "level": 13
+        },
+        {
+          "at": 2880,
+          "hp": 120,
+          "kills": 2398,
+          "earned": 31395,
+          "dps": 1144,
+          "level": 13
+        },
+        {
+          "at": 2940,
+          "hp": 120,
+          "kills": 2453,
+          "earned": 32381,
+          "dps": 1178.8,
+          "level": 14
+        },
+        {
+          "at": 3000,
+          "hp": 120,
+          "kills": 2518,
+          "earned": 33192,
+          "dps": 1243.3,
+          "level": 14
+        },
+        {
+          "at": 3060,
+          "hp": 120,
+          "kills": 2587,
+          "earned": 33894,
+          "dps": 1260.2,
+          "level": 14
+        },
+        {
+          "at": 3120,
+          "hp": 120,
+          "kills": 2653,
+          "earned": 34852,
+          "dps": 1265.6,
+          "level": 14
+        },
+        {
+          "at": 3180,
+          "hp": 120,
+          "kills": 2706,
+          "earned": 35524,
+          "dps": 1301.1,
+          "level": 14
+        },
+        {
+          "at": 3240,
+          "hp": 120,
+          "kills": 2766,
+          "earned": 37483,
+          "dps": 1365,
+          "level": 15
+        },
+        {
+          "at": 3300,
+          "hp": 120,
+          "kills": 2833,
+          "earned": 38226,
+          "dps": 1439.9,
+          "level": 15
+        },
+        {
+          "at": 3360,
+          "hp": 120,
+          "kills": 2908,
+          "earned": 39135,
+          "dps": 1459.1,
+          "level": 15
+        },
+        {
+          "at": 3420,
+          "hp": 120,
+          "kills": 2974,
+          "earned": 39874,
+          "dps": 1465,
+          "level": 15
+        },
+        {
+          "at": 3480,
+          "hp": 120,
+          "kills": 3043,
+          "earned": 40791,
+          "dps": 1506.4,
+          "level": 15
+        },
+        {
+          "at": 3540,
+          "hp": 120,
+          "kills": 3108,
+          "earned": 41490,
+          "dps": 1533.6,
+          "level": 15
+        },
+        {
+          "at": 3600,
+          "hp": 120,
+          "kills": 3178,
+          "earned": 42342,
+          "dps": 1538.1,
+          "level": 15
+        },
+        {
+          "at": 3660,
+          "hp": 120,
+          "kills": 3230,
+          "earned": 43020,
+          "dps": 1580.9,
+          "level": 15
+        },
+        {
+          "at": 3720,
+          "hp": 120,
+          "kills": 3297,
+          "earned": 43925,
+          "dps": 1656.3,
+          "level": 15
+        },
+        {
+          "at": 3780,
+          "hp": 120,
+          "kills": 3356,
+          "earned": 44711,
+          "dps": 1668,
+          "level": 15
+        },
+        {
+          "at": 3840,
+          "hp": 120,
+          "kills": 3424,
+          "earned": 45516,
+          "dps": 1689.7,
+          "level": 15
+        },
+        {
+          "at": 3900,
+          "hp": 120,
+          "kills": 3489,
+          "earned": 46227,
+          "dps": 1696.1,
+          "level": 15
+        },
+        {
+          "at": 3960,
+          "hp": 120,
+          "kills": 3566,
+          "earned": 47171,
+          "dps": 1744.3,
+          "level": 15
+        },
+        {
+          "at": 4020,
+          "hp": 120,
+          "kills": 3629,
+          "earned": 47918,
+          "dps": 1776.1,
+          "level": 15
+        },
+        {
+          "at": 4080,
+          "hp": 120,
+          "kills": 3689,
+          "earned": 48671,
+          "dps": 1781.3,
+          "level": 15
+        },
+        {
+          "at": 4140,
+          "hp": 120,
+          "kills": 3751,
+          "earned": 49520,
+          "dps": 1831.1,
+          "level": 15
+        }
+      ]
+    }
+  ]
+}

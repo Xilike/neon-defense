@@ -1,5 +1,10 @@
 # Neon Defense SD2
 
+**Current continuation:** use [CURRENT_GAME.md](CURRENT_GAME.md) and
+`releases/balanced-v1/`, recovered from the Vercel version selected by the user.
+The root application and instructions below are historical and do not build the
+current normal-play release. Keep `main` and Production unchanged.
+
 Portrait Canvas defense game with continuous combat, five galaxies, four weapons,
 permanent upgrades and an autonomous shuttle. See [RECOVERY.md](RECOVERY.md) for
 source recovery, the unavailable historical integration, and current SD2 scope.

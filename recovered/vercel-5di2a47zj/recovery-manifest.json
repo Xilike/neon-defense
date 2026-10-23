@@ -1,0 +1,27 @@
+{
+  "deploymentId": "dpl_2Mq8rooxq5BKpafujPNbz9Zs89aL",
+  "url": "https://neon-defense-sd2-preview-5di2a47zj-xilike3-8922s-projects.vercel.app",
+  "source": "Authenticated deployed HTTP response bodies, UTF-8 text; not original compressed upload chunks",
+  "query": "?sd2debug=mid&schedule=1",
+  "files": [
+    {
+      "name": "index.html",
+      "size": 209250,
+      "sha256": "40688a64cf3b16eb5e74458a55fed8a7f07b1e675ca35d464925b522273b4c7d"
+    },
+    {
+      "name": "sd2.js",
+      "size": 24578,
+      "sha256": "1dcbb59ae82b37c0de6c6e4c61dcf6da5c5ea861e0667e1d00bb59db727d7b56"
+    }
+  ],
+  "verification": {
+    "inlineScriptsParsed": 1,
+    "sd2SyntaxValid": true,
+    "htmlClosingTags": true,
+    "sameAsCurrentDev": false,
+    "browserGameplayRun": false
+  },
+  "currentDevBytes": 122492,
+  "note": "Vercel feedback script is preserved as served. No application logic was changed."
+}

@@ -1,0 +1,20 @@
+{
+  "url": "https://neon-defense-sd2-preview-bnuhweg6d-xilike3-8922s-projects.vercel.app",
+  "initial": {
+    "version": "1.0.0-balanced",
+    "coins": 0,
+    "up": 0,
+    "debug": false,
+    "sd2": false
+  },
+  "purchased": {
+    "up": 1,
+    "earned": 79,
+    "available": 9,
+    "at": 20.231000000000012,
+    "kills": 7
+  },
+  "reloadPersisted": true,
+  "errors": [],
+  "normalPlayConfirmed": true
+}

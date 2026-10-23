@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0-balanced",
+  "files": {
+    "manifest.webmanifest": {
+      "bytes": 169,
+      "sha256": "5406d11b9208c0110c4299d4891c6f59ae4a2797414cb48a8178fedf8412db84"
+    },
+    "balance.js": {
+      "bytes": 3147,
+      "sha256": "92509144b765fa40b56e0c638b786d5079f448b0f9a59d099287b2ab2f2055a1"
+    },
+    "index.html": {
+      "bytes": 195697,
+      "sha256": "5a944b9671f2f5db332f8e39d016735fd28194b128f347adef8682ca80f1a2a0"
+    },
+    "vercel.json": {
+      "bytes": 185,
+      "sha256": "44e1e1dd7b7646bae93556e978ed79157b5dea282b39a26616817c5c6b6b3f53"
+    }
+  }
+}
