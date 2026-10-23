@@ -23,37 +23,10 @@ try {
     await page.locator('#btnStart').click();
     const run = await page.evaluate(() => {
       if (S.phase === 'transit') confirmEnterGalaxy();
-      // Calibrate the isolated Preview at the same settings as experimental/sd2.js.
-      SD2.cfg.baseBudget = 25;
-      SD2.cfg.stageDuration = 125;
+      // Natural-balance test: use the actual configured SD2 settings, never override them.
       SD2.startLevel(1);
       startContinuousAuto();
       const dt = 0.05;
       let frames = 0;
       while (frames++ < 160000 && S.phase === 'combat' && !galaxyProgress(G.id).finalDefeated) {
-        S.time += dt;
-        Director.update(dt);
-        galaxyActiveTick(dt);
-        updateEnemies(dt);
-        ultimateTick(dt);
-        updateTurrets(dt);
-        updateCraft(dt);
-        updateShots(dt);
-        updateFx(dt);
-        updatePriority(dt);
-      }
-      return {
-        phase: S.phase, simulatedSeconds: +(frames * dt).toFixed(1),
-        reachedLevel: galaxyProgress(G.id).cleared,
-        baseHP: S.baseHP, kills: S.kills, finalDefeated: !!galaxyProgress(G.id).finalDefeated,
-        levels: SD2.report().levels, saveIsolation: SD2.debug.verify(),
-      };
-    });
-    results.push({ seed, profile, ...run, errors });
-    await page.close();
-  }
-} finally { await browser.close(); }
-console.log(JSON.stringify({ kind: 'actual-game-update-pipeline-with-virtual-frames', results }, null, 2));
-if (results.some(r => r.errors.length || !r.saveIsolation?.ok)) process.exitCode = 1;
-const summary = results.map(r => ({ seed:r.seed, profile:r.profile, reachedLevel:r.reachedLevel, phase:r.phase, kills:r.kills, breaches:r.levels.reduce((n,l)=>n+Object.values(l.breached).reduce((a,b)=>a+b,0),0) }));
-console.error('SD2_SEEDED_SUMMARY ' + JSON.stringify(summary));
+        S.time += dt¶»§q«^

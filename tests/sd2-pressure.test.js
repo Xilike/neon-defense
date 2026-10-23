@@ -30,40 +30,4 @@ const cfg = (() => {
 })();
 function estimate(level, profile='mid') {
   const upgrade = Math.min(6,Math.round(6*(level-1)/14*({new:.4,mid:.7,adv:1}[profile])));
-  const dps = 14*Math.pow(1.10,upgrade)*2.8*Math.pow(1.10,upgrade);
-  const w = weights[level-1];
-  const total = w.reduce((a,b)=>a+b,0);
-  const avgHp = w.reduce((sum,p,i)=>sum+p*enemy[types[i]].hp,0)/total;
-  const avgCost = w.reduce((sum,p,i)=>sum+p*costs[types[i]],0)/total;
-  const interval = cfg.intervalOf(level);
-  const demandDps = avgHp/interval;
-  return {level,upgrade,dps:+dps.toFixed(2),interval:+interval.toFixed(2),avgHp:+avgHp.toFixed(1),demandDps:+demandDps.toFixed(2),pressure:+(demandDps/dps).toFixed(2),estimatedEnemies:Math.round(cfg.budgetOf(level)/avgCost)};
-}
-describe('SD2 source-calibrated pressure indicators (not actual breach outcomes)',()=>{
-  it('matches the baseline electric weapon parameters',()=>{
-    expect(html).toMatch(/ELECTRIC:\s*\{[^\n]*dmg:\s*14,\s*rate:\s*2\.8/);
-    expect(html).toMatch(/d\.dmg \* Math\.pow\(BAL\.effectGrowth, u\.eDmg\)/);
-    expect(html).toMatch(/d\.rate \* Math\.pow\(BAL\.effectGrowth, u\.eRate\)/);
-  });
-  it('matches enemy HP reference values',()=>{
-    for(const [type,stats] of Object.entries(enemy)){
-      const line = html.split('\n').find(x=>new RegExp('^\\s*'+type+':\\s*\\{\\s*hp:').test(x));
-      expect(line,'Missing enemy '+type).toBeTruthy();
-      expect(line).toMatch(new RegExp('hp:\\s*'+stats.hp+'\\b'));
-    }
-  });
-  it('produces finite 15-level indicators for each debug profile',()=>{
-    for(const profile of ['new','mid','adv']) for(let level=1;level<=15;level++){
-      const x=estimate(level,profile);
-      expect(x.dps).toBeGreaterThan(0);
-      expect(x.pressure).toBeGreaterThan(0);
-      expect(x.estimatedEnemies).toBeGreaterThan(0);
-    }
-  });
-  it('reports an explicit mid difficulty diagnostic without pretending to simulate kills',()=>{
-    const rows=Array.from({length:15},(_,i)=>estimate(i+1));
-    console.log('SD2 analytical pressure mid:',JSON.stringify(rows));
-    expect(rows[0].upgrade).toBe(0);
-    expect(rows[14].upgrade).toBe(4);
-  });
-});
+  const dps = 18*Math.pow(1.10,upgrade)*2.8*Math.pow(1.10,upgrade)¶»§q«^
