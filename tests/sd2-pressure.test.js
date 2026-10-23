@@ -30,7 +30,7 @@ const cfg = (() => {
 })();
 function estimate(level, profile='mid') {
   const upgrade = Math.min(6,Math.round(6*(level-1)/14*({new:.4,mid:.7,adv:1}[profile])));
-  const dps = 14*Math.pow(1.12,upgrade)*Math.min(20,2.8*Math.pow(1.08,upgrade));
+  const dps = 14*Math.pow(1.10,upgrade)*2.8*Math.pow(1.10,upgrade);
   const w = weights[level-1];
   const total = w.reduce((a,b)=>a+b,0);
   const avgHp = w.reduce((sum,p,i)=>sum+p*enemy[types[i]].hp,0)/total;
@@ -42,8 +42,8 @@ function estimate(level, profile='mid') {
 describe('SD2 source-calibrated pressure indicators (not actual breach outcomes)',()=>{
   it('matches the baseline electric weapon parameters',()=>{
     expect(html).toMatch(/ELECTRIC:\s*\{[^\n]*dmg:\s*14,\s*rate:\s*2\.8/);
-    expect(html).toMatch(/d\.dmg \* Math\.pow\(1\.12, u\.eDmg\)/);
-    expect(html).toMatch(/d\.rate \* Math\.pow\(1\.08, u\.eRate\)/);
+    expect(html).toMatch(/d\.dmg \* Math\.pow\(BAL\.effectGrowth, u\.eDmg\)/);
+    expect(html).toMatch(/d\.rate \* Math\.pow\(BAL\.effectGrowth, u\.eRate\)/);
   });
   it('matches enemy HP reference values',()=>{
     for(const [type,stats] of Object.entries(enemy)){
