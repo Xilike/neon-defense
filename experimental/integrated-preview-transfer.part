@@ -242,4 +242,249 @@
   .gxDeck{height:100%;display:flex;align-items:center;justify-content:center;gap:4px;touch-action:pan-y}
   .gxDeckArrow{flex:0 0 29px;height:74px;border:0;border-radius:10px;background:#25334b;color:#e3f5ff;font-size:29px;touch-action:manipulation}
   .gxDeckCard{position:relative;flex:1;min-width:0;height:125px;border:1px solid var(--gx-accent);border-radius:15px;background:linear-gradient(110deg,#121d32,#1a2940);display:flex;align-items:stretch;padding:9px;gap:10px;box-shadow:0 4px 0 -1px #41526b,0 8px 0 -2px #26354e;overflow:hidden;touch-action:pan-y}
-  .gxDeckVisual{position:relative;flex:0 0 30%;max-width:100px;border-radius:11px;background:radial-gradient(ellipse at 55% 45%,va
+  .gxDeckVisual{position:relative;flex:0 0 30%;max-width:100px;border-radius:11px;background:radial-gradient(ellipse at 55% 45%,var(--gx-accent),#10172d 72%);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .gxPlanet{height:48px;width:48px;border-radius:50%;border:2px solid #ffffff77;background:radial-gradient(circle at 30% 25%,#ffffff99,var(--gx-accent) 36%,#090d28 100%);box-shadow:0 0 20px var(--gx-accent)}
+  .gxDeckNo{position:absolute;bottom:3px;right:6px;font-size:9px;font-weight:700;color:white}
+  .gxDeckInfo{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;justify-content:center}
+  .gxDeckTitle{font-size:14px;font-weight:800;letter-spacing:.8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gxDeckTitle small{font-size:8px;color:var(--gx-accent)}
+  .gxDeckSub{font-size:10px;color:var(--gx-accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gxDeckDesc{font-size:10px;line-height:1.25;color:#b7c5d7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .gxDeckAction{display:flex;align-items:center;min-height:29px;margin-top:3px}
+  .gxStart{background:var(--gx-accent);color:#06101c;border:0;border-radius:8px;font-size:11px;font-weight:800;padding:7px 18px;touch-action:manipulation}
+  .gxCurrent,.gxLocked{font-size:10px;color:#c2d0e0;font-weight:700}
+  @media(max-width:360px){.gxDeckCard{gap:6px;padding:6px}.gxDeckVisual{flex-basis:25%}.gxDeckArrow{flex-basis:25px}.gxDeckDesc{font-size:9px}}
+
+  /* Distinct illustrated galaxy identities, rendered locally without remote images */
+  .gxDeckVisual:before{content:'';position:absolute;inset:-40%;background:repeating-conic-gradient(from 30deg,#ffffff22 0deg 2deg,transparent 2deg 31deg);opacity:.45;animation:gxOrbit 24s linear infinite}
+  .gxPlanet{z-index:1;display:grid;place-items:center;position:relative;isolation:isolate}
+  .gxPlanet i{font-style:normal;font-size:25px;font-weight:900;color:#fff;text-shadow:0 0 9px #fff,0 0 14px var(--gx-accent)}
+  .gxDeckNo{z-index:2}
+  .gx-aurora .gxDeckVisual{background:radial-gradient(ellipse at 20% 85%,#23f4ceaa,transparent 55%),radial-gradient(ellipse at 90% 10%,#a151f7,#03192c 70%)}
+  .gx-ember .gxDeckVisual{background:radial-gradient(circle at 70% 75%,#ffd86d,#ed4e15 35%,#270612 78%)}
+  .gx-ember .gxPlanet{background:repeating-linear-gradient(125deg,#ffdf85,#ed491b 10px,#7b180e 17px)}
+  .gx-jade .gxDeckVisual{background:repeating-linear-gradient(145deg,#022a26,#115f4c 18px,#06231e 32px)}
+  .gx-jade .gxPlanet{border-radius:15%;transform:rotate(15deg);background:linear-gradient(45deg,#003f36,#36e6a5,#0c4b38)}
+  .gx-jade .gxPlanet i{transform:rotate(-15deg)}
+  .gx-indigo .gxDeckVisual{background:radial-gradient(ellipse at 30% 35%,#bf5aff,#4220a0 40%,#080b2b 85%)}
+  .gx-indigo .gxPlanet{background:radial-gradient(circle at 60% 35%,#dd8cff,#6b37c7 55%,#110a40)}
+  .gx-eclipse .gxDeckVisual{background:radial-gradient(circle at 50% 50%,#e8a86a 0 10%,#1d1526 35%,#07070e 75%)}
+  .gx-eclipse .gxPlanet{background:linear-gradient(100deg,#090b18 55%,#d6a16a 57%,#140f1b 70%);box-shadow:0 0 20px #ffb77c}
+  .gx-nova .gxDeckVisual{background:repeating-conic-gradient(from 10deg,#fff1a6 0 8deg,#d95c21 9deg 22deg,#401136 24deg 42deg)}
+  .gx-nova .gxPlanet{background:radial-gradient(circle,#fff,#ffe387 30%,#f64e30 70%)}
+  .gx-cryon .gxDeckVisual{background:repeating-linear-gradient(145deg,#0a2344,#2f87b3 8px,#d7f6ff 10px,#103659 20px)}
+  .gx-cryon .gxPlanet{background:conic-gradient(#e8fcff,#3998ce,#c4faff,#15598b,#e8fcff)}
+  .gx-bloodmoon .gxDeckVisual{background:radial-gradient(circle at 50% 40%,#ae192c,#390912 56%,#0c0611)}
+  .gx-bloodmoon .gxPlanet{background:radial-gradient(circle at 32% 30%,#ff7a66,#bd2038 40%,#40060c 85%);box-shadow:0 0 24px #ef273b}
+  .gx-nexus .gxDeckVisual{background:repeating-linear-gradient(90deg,#07292f 0 7px,#188eaa 8px,#0b1637 13px)}
+  .gx-nexus .gxPlanet{border-radius:20%;background:conic-gradient(#0af3e3,#183267,#61e8ff,#173763,#0af3e3);transform:rotate(45deg)}
+  .gx-nexus .gxPlanet i{transform:rotate(-45deg)}
+  .gx-singularity .gxDeckVisual{background:radial-gradient(ellipse,#03030a 10%,#e9b4f7 24%,#642b94 33%,#090818 67%)}
+  .gx-singularity .gxPlanet{background:radial-gradient(circle,#020208 45%,#f6d2ff 50%,#54247c 63%,#080714 78%);box-shadow:0 0 24px #ce82ff}
+  @keyframes gxOrbit{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){.gxDeckVisual:before{animation:none}}
+
+/* ===== V36 visual system: reference-matched neon HUD and weapon dock ===== */
+:root{--panel:rgba(7,15,37,.94);--line:rgba(73,137,236,.45);--cyan:#43ddff}
+body{background:#030b21}
+#battleWrap{background:radial-gradient(ellipse at 50% 16%,#16204d 0%,#060d26 53%,#030819 100%)}
+#hud{display:grid;grid-template-columns:minmax(105px,1.45fr) minmax(75px,1fr) minmax(61px,.85fr) 34px;
+ grid-template-rows:48px 46px 7px;gap:6px;align-items:stretch;top:0;padding:calc(7px + env(safe-area-inset-top)) 8px 0;
+ background:linear-gradient(180deg,rgba(2,8,27,.83),rgba(3,9,29,.34) 90%,transparent);pointer-events:none}
+#hud>*{min-width:0;pointer-events:auto}
+#playerProgress{position:relative;inset:auto;width:auto;max-width:none;height:48px;display:flex;align-items:center;text-align:left;gap:6px;
+ padding:4px 6px;border-radius:11px;background:linear-gradient(135deg,rgba(14,36,81,.95),rgba(9,17,47,.92));
+ border:1px solid #388df3;box-shadow:inset 0 0 12px #2266b755,0 0 11px #0b7dff44;backdrop-filter:blur(8px)}
+#playerProgress .rankEmblem{display:grid;place-items:center;flex:0 0 27px;width:27px;height:32px;border:1px solid #58baff;border-radius:8px;
+ background:radial-gradient(circle,#6d5cff 0%,#132f7e 48%,#081b4c 75%);font-size:24px;color:#7de8ff;text-shadow:0 0 7px #a5caff;box-shadow:0 0 8px #357cff66}
+#playerProgress .rankData{flex:1;min-width:0}
+#playerName{font-size:10px;line-height:12px;text-align:left;font-weight:700}
+#playerLevel{font-size:15px;line-height:18px;color:#ffd55a;text-shadow:0 0 6px #ffae3388}
+#playerProgress .ndProgressTrack{height:5px;margin-top:1px;background:#111b37}
+#playerXpFill{background:linear-gradient(90deg,#ffb82f,#ffe86a);box-shadow:0 0 7px #ffbe48}
+#playerProgress .ndNextGalaxy,#playerProgress .ndGalaxyTrack{display:none}
+#goldBig.hudChip,.gemChip{height:46px;display:flex;justify-content:center;align-items:center;gap:4px;
+ padding:4px;border-radius:11px;border:1px solid #315db6;background:linear-gradient(135deg,#0b1a42,#080f2a);
+ box-shadow:inset 0 0 12px #285fc32a,0 0 7px #1757c22a;font-size:clamp(12px,2.7vw,18px);color:#f8faff;text-shadow:none}
+#goldBig .coinIcon,.gemChip>span{font-size:20px;filter:drop-shadow(0 0 5px #e7ae47)}
+#hTotal{display:none}
+.upgradeBalance{padding:6px 10px;margin-bottom:6px;border:1px solid #315db6;border-radius:9px;background:#101e40;color:#dceaff;font-size:11px;font-weight:700}.upgradeBalance b{color:#ffd66d}.upgradeBalance span{color:#92bde0}
+#topSettings,#pauseBtn{border:1px solid #3b67bb;border-radius:10px;background:linear-gradient(145deg,#11224c,#08132e);color:#e9f5ff;
+ font-size:22px;padding:0;box-shadow:inset 0 0 10px #397be02b}
+#topSettings{grid-column:4;grid-row:1}
+#baseWrap{grid-column:1/span 2;grid-row:2;max-width:none;height:46px;display:flex;align-items:center;gap:6px;
+ padding:5px 7px;border-radius:10px;border:1px solid #3d7bcb;background:linear-gradient(100deg,#071939ed,#0b1536dd);box-shadow:0 0 8px #216bd13d}
+.defShield{font-size:23px;filter:drop-shadow(0 0 6px #30caff)}
+.defData{flex:1;min-width:0}
+.defLabel{font-size:9px;font-weight:800;letter-spacing:.4px;color:#e0f4ff;margin-bottom:3px}
+#baseBarBg{height:9px;background:#182743;border:0;box-shadow:0 0 5px #29ff9c44}
+#baseBar{background:linear-gradient(90deg,#14cba0,#73ffad);box-shadow:0 0 10px #21f5a5}
+#baseTxt{font-size:10px;color:#e9f6ff;font-weight:800;white-space:nowrap;margin-top:10px}
+#galaxyQuick{grid-column:3/span 2;grid-row:2;border-radius:10px!important;display:flex;align-items:center;gap:5px;
+ padding:3px 5px!important;background:linear-gradient(135deg,#0c1a46,#070e27)!important;border:1px solid #3d70c6!important;
+ color:#6be9ff;min-width:0}
+.galaxyPortal{font-size:22px;display:grid;place-items:center;width:31px;height:32px;flex:0 0 31px;border:1px solid #6b5cf9;
+ background:radial-gradient(circle,#8727f9,#16235e 65%);border-radius:6px;box-shadow:0 0 8px #8d41ff8a}
+.galaxyInfo{display:flex;flex-direction:column;align-items:flex-start;overflow:hidden;min-width:0}
+#hud #hGalaxy{color:#70e7ff!important;font-size:clamp(9px,2.4vw,13px);overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.galaxyInfo small{font-size:8px;color:#a5b8d6}
+#galaxyNextLabel{font-size:8px;color:#ffd67a;font-weight:800;white-space:nowrap;margin-top:2px;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+#galaxyNextTrack{height:5px;width:100%;min-width:92px;background:#263756;border-radius:9px;overflow:hidden;margin-top:3px}
+#galaxyNextFill{display:block;width:0%;height:100%;background:linear-gradient(90deg,#23c8fa,#ffd66d);border-radius:9px;transition:width .3s}
+#galaxyQuick{min-height:62px!important}
+#baseWrap{min-height:62px}
+.galaxyArrow{margin-left:auto;font-size:14px;color:#69eaff}
+#pauseBtn{position:absolute;top:calc(111px + env(safe-area-inset-top));right:8px;width:30px;height:28px;font-size:15px;opacity:.85}
+#galaxyMilestone{grid-column:1/-1;grid-row:3;display:none;align-items:center;gap:6px;justify-content:center;opacity:.9}
+#galaxyMilestoneText{font-size:8px;font-weight:700;color:#ffce6b;white-space:nowrap}
+#galaxyMilestone .ndProgressTrack{width:90px;margin:0;background:#29334d;height:3px}
+#milestoneFill{height:100%;background:linear-gradient(90deg,#ff973d,#ffe067)}
+#sideTools{left:8px;top:calc(135px + env(safe-area-inset-top));transform:none;gap:7px}
+#sideMenuToggle{display:none}
+#sideMenuItems,#sideMenuItems[hidden]{display:flex;flex-direction:column;gap:7px}
+#sideTools button{width:54px;height:57px;border-radius:11px;border:1px solid #315fae;background:linear-gradient(150deg,#0b1c41,#070d26);
+ box-shadow:inset 0 0 9px #2472c12c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+#sideTools button svg{width:23px;height:23px}
+#sideTools button::after{font-size:7px;color:#e5edff;font-weight:800;letter-spacing:.2px}
+#sideTools [data-act="settings"]{display:none}
+#sideTools [data-act="stats"]::after{content:"STATS"}
+#sideTools [data-act="trophy"]::after{content:"PROGRESS"}
+#sideTools [data-act="shop"]::after{content:"UPGRADES"}
+#powersCol{top:calc(143px + env(safe-area-inset-top));right:9px}
+#ultimateToggle{width:55px;height:62px;border-radius:15px;font-size:28px;box-shadow:0 0 18px #b64dff9c,inset 0 0 12px #e4b8ff77}
+#ultimateToggle::after{content:"SKILLS";display:block;font-size:8px;letter-spacing:.5px;margin-top:-3px}
+#panel{order:1;height:clamp(172px,26vh,300px);background:linear-gradient(180deg,#060c23,#080e26);
+ border-top:2px solid #1d4f9a;padding:8px 7px;overflow-y:auto}
+#tabbar{order:2;min-height:69px;padding:5px 6px calc(5px + env(safe-area-inset-bottom));
+ background:linear-gradient(180deg,#081333,#04091c);border:1px solid #284d91;border-radius:15px 15px 0 0;gap:4px}
+#tabbar button{border:1px solid #263e74;border-radius:12px;font-size:8px;font-weight:800;padding:6px 2px;background:#091431;color:#aebad7}
+#tabbar button .ico{font-size:22px;filter:drop-shadow(0 0 5px #508eff55)}
+#tabbar button.on{background:linear-gradient(180deg,#117dd8,#082654);color:#fff;border:1px solid #4fe5ff;box-shadow:0 0 11px #15a7ff77,inset 0 0 9px #55baff55}
+#panel .ucardRow{display:flex;gap:7px;overflow-x:auto;padding:3px 2px 6px;align-items:stretch}
+#panel .wcard{flex:1 0 0;min-width:85px;min-height:155px;border-radius:13px;padding:6px 5px 7px;
+ background:linear-gradient(180deg,#101d43,#080d25 72%);border:1px solid #267dc7;box-shadow:inset 0 0 15px #1c70b226,0 0 6px #0f7dd43b}
+#panel .wcard:nth-child(2){border-color:#e33e75;box-shadow:inset 0 0 15px #d3296129}
+#panel .wcard:nth-child(3){border-color:#f6b93c;box-shadow:inset 0 0 15px #ffc83c24}
+#panel .wcard:nth-child(4){border-color:#a451ef;box-shadow:inset 0 0 15px #af40ef27}
+#panel .wcard .wimg{width:55px;height:49px;max-width:100%;filter:drop-shadow(0 0 10px #22aaff8a)}
+#panel .wcard .unm{font-size:11px;font-weight:900;letter-spacing:.4px;margin-top:4px}
+#panel .wcard .weaponLevel{font-size:10px;color:#61dafa;font-weight:700;margin:4px 0}
+#panel .wcard:nth-child(2) .weaponLevel{color:#ff7eac}
+#panel .wcard:nth-child(3) .weaponLevel{color:#ffe26c}
+#panel .wcard:nth-child(4) .weaponLevel{color:#c69aff}
+#panel .wcard .unx{font-size:9px;line-height:1.35;min-height:32px;color:#9cb6d8;margin:5px 0}
+#panel .wcard .whint{display:none}
+#panel .wcard .buyBtn{display:block;width:100%;min-width:0;font-size:9px;padding:6px 2px;border-radius:9px;margin-top:5px;background:linear-gradient(180deg,#145ca7,#09254b);border:1px solid #39bfff;color:#e9faff}
+#panel .wcard:nth-child(4) .buyBtn.go{background:linear-gradient(180deg,#ffe66a,#edaa20);color:#2b1930;border-color:#ffd54a}
+#panel .wcard .buyBtn:disabled{opacity:.7;color:#9cb8dc}
+#panel .wcard .wchev{display:none}
+@media(max-width:390px){
+ #hud{grid-template-columns:minmax(90px,1.5fr) minmax(67px,1fr) minmax(54px,.9fr) 31px;gap:4px;padding-left:5px;padding-right:5px}
+ #playerProgress{gap:3px;padding:3px}
+ #playerProgress .rankEmblem{flex-basis:23px;width:23px;font-size:19px}
+ #goldBig.hudChip,.gemChip{font-size:12px}
+ #goldBig .coinIcon,.gemChip>span{font-size:15px}
+ #panel .wcard{min-width:77px}
+}
+
+
+/* V37 collapsible cards: battlefield expands without leaving blank space */
+#panelShell{order:1;position:relative;flex:0 0 auto;z-index:19;background:#07132e;min-height:0}
+#panelHandle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:25px;border:0;border-top:1px solid #3e84d5;
+ background:linear-gradient(180deg,#0c2451,#071329);color:#8fe9ff;font-size:10px;font-weight:800;letter-spacing:1px;cursor:pointer;touch-action:pan-y}
+#panelHandle .handleLine{width:26px;height:3px;border-radius:8px;background:#4edbff;box-shadow:0 0 6px #4edbff88}
+#panelHandleArrow{font-size:17px;line-height:1}
+#panelShell #panel{order:initial;transition:none}
+#panelShell.collapsed #panel{display:none}
+#panelShell.collapsed #panelHandle{height:27px;border-top:1px solid #3473c1}
+#panelShell.collapsed #panelHandleArrow{transform:rotate(180deg)}
+</style>
+</head>
+<body>
+<div id="battleWrap">
+<canvas id="game"></canvas>
+
+<div id="hud">
+  <div id="playerProgress" aria-label="Player experience">
+    <span class="rankEmblem">⬡</span>
+    <div class="rankData">
+      <button id="playerName" type="button" title="Change player name">Bb</button>
+      <span id="playerLevel">Lv.1</span>
+      <div class="ndProgressTrack"><div id="playerXpFill"></div></div>
+      <div class="ndNextGalaxy" hidden><span id="nextGalaxyName">EMBER</span><span id="nextGalaxyPct">0%</span></div>
+      <div class="ndProgressTrack ndGalaxyTrack" hidden><div id="nextGalaxyFill"></div></div>
+    </div>
+  </div>
+  <div id="goldBig" class="hudChip"><span class="coinIcon">🪙</span><b id="hGold" title="Available coins to spend">0</b><span id="hTotal">Σ 0</span></div>
+  <div class="hudChip gemChip"><span>💎</span><b>0</b></div>
+  <button id="topSettings" type="button" aria-label="Settings">⚙</button>
+  <div id="baseWrap">
+    <span class="defShield">🛡️</span>
+    <div class="defData"><div class="defLabel">DEFENSE LINE</div><div id="baseBarBg"><div id="baseBar"></div></div></div>
+    <div id="baseTxt">100%</div>
+  </div>
+  <button id="galaxyQuick" class="pill" type="button"><span class="galaxyPortal">🌀</span><span class="galaxyInfo"><b id="hGalaxy">AURORA</b><small id="galaxyNum">Galaxy 1/10</small><span id="galaxyNextLabel">NEXT · EMBER</span><span id="galaxyNextTrack"><span id="galaxyNextFill"></span></span></span><span class="galaxyArrow">❯</span></button>
+  <button id="pauseBtn" title="Pause" aria-label="Pause">⏸</button>
+  <div id="galaxyMilestone"><span id="galaxyMilestoneText">EMBER · 0%</span><div class="ndProgressTrack ndGalaxyTrack"><div id="milestoneFill"></div></div></div>
+</div>
+
+<!-- left quick-access toolbar -->
+<div id="sideTools">
+  <button id="sideMenuToggle" type="button" aria-label="Open quick menu" aria-expanded="false" title="Menu">☰</button>
+  <div id="sideMenuItems" hidden>
+  <button data-act="settings" title="Settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2h4l.6 2.3 2.1.9 2.1-1.2 2.8 2.8-1.2 2.1.9 2.1L23 10v4l-2.3.6-.9 2.1 1.2 2.1-2.8 2.8-2.1-1.2-2.1.9L14 23h-4l-.6-2.3-2.1-.9-2.1 1.2-2.8-2.8 1.2-2.1-.9-2.1L1 14v-4l2.3-.6.9-2.1L3 5.2l2.8-2.8 2.1 1.2 2.1-.9L10 2Z"/><circle cx="12" cy="12" r="3.3"/></svg></button>
+  <button data-act="stats" title="Stats"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 18v-6h4v6M10 18V4h4v14M15 18V9h4v9"/></svg></button>
+  <button data-act="trophy" title="Progress"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v7a5 5 0 0 1-10 0V3ZM7 5H3v3a4 4 0 0 0 4 4M17 5h4v3a4 4 0 0 1-4 4M12 15v4M8 21h8M9 19h6"/></svg></button>
+  <button data-act="shop" title="Upgrades"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h3l2.3 11h12l2-8H6M9 20h.01M18 20h.01"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span class="ndot" id="shopDot" style="display:none"></span></button>
+  </div>
+</div>
+
+<!-- compact ultimate launcher: no arena-blocking SOON cards -->
+<div id="powersCol">
+  <button id="ultimateToggle" aria-label="Open ultimate powers">✦<small id="ultimateCount"></small></button>
+  <div id="ultimatePanel" hidden>
+    <div class="ultimateHead"><b>✦ ULTIMATE POWERS</b><button id="ultimateClose">×</button></div>
+    <p class="ultimateNote">Single use · Real damage · Ads coming later</p>
+    <div id="ultimateItems"></div>
+  </div>
+</div>
+
+<div id="ultimateFx"></div>
+<div id="toast"></div>
+<div id="dmgFlash"></div>
+<div id="fpsTag"></div>
+</div><!-- /battleWrap -->
+
+<nav id="tabbar">
+  <button data-tab="defense" class="on"><span class="ico">🛡️</span>DEFENSE</button>
+  <button data-tab="spacecraft"><span class="ico">🛸</span>SPACECRAFT</button>
+  <button data-tab="tech"><span class="ico">⚙️</span>TECH</button>
+  <button data-tab="economy"><span class="ico">💠</span>ECONOMY</button>
+  <button data-tab="galaxy"><span class="ico">🌌</span>GALAXY</button>
+</nav>
+<div id="panelShell"><button id="panelHandle" type="button" aria-expanded="true" aria-controls="panel"><span class="handleLine"></span><span id="panelHandleLabel">HIDE CARDS</span><span id="panelHandleArrow">⌄</span></button><div id="panel"></div></div>
+
+<div class="overlay open" id="ovMenu">
+  <div class="card">
+    <h1>NEON DEFENSE</h1>
+    <p><b id="menuGalaxy">🌌 AURORA</b> — continuous defense, no waves<br>Hold the line across 5 lanes. Tap enemies to prioritize, long-press to lock.</p>
+    <div class="row"><button class="bigBtn go" id="btnStart">▶ START DEFENSE</button></div>
+    <p style="margin-top:12px;font-size:11px">v0.1-phase1 · progress saves locally</p>
+  </div>
+</div>
+
+<div class="overlay" id="ovUnlock">
+  <div class="card">
+    <div class="unlockFlash">🔴</div>
+    <h2 style="color:var(--red)">LASER TURRET UNLOCKED</h2>
+    <p>Red beam emitter online.<br>1.5× damage vs <b style="color:var(--red)">red</b> enemies.<br>Permanently unlocked &amp; saved.</p>
+    <div class="row"><button class="bigBtn go" id="btnUnlockOk">DEPLOY →</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="ovPause">
+  <div class="card">
+    <h2>⏸ PAUSED</h2>
+    <div class="setRow"><span>Effects</span><div class="tgl on" id="tglFx"></div></div>
+    <div class="setRow"><span>Sound FX</span><div class="tgl on" id="tglSfx"></div></div>
+    <div class="setRow"><span>Haptic Feedback <small style="color:#8996aa">(device support)</small></span><div class="
