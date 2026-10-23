@@ -3,6 +3,6 @@ export default defineConfig({
   testDir: './e2e',
   timeout: 30_000,
   retries: 1,
-  use: { ...devices['iPhone 13'], browserName: 'chromium', baseURL: 'http://127.0.0.1:4173', trace: 'retain-on-failure' },
-  webServer: { command: 'python3 -m http.server 4173 --bind 127.0.0.1', url: 'http://127.0.0.1:4173', reuseExistingServer: !process.env.CI, timeout: 15_000 },
+  use: { ...devices['iPhone 13'], browserName: 'chromium', launchOptions: process.env.CHROMIUM_EXECUTABLE_PATH ? {executablePath:process.env.CHROMIUM_EXECUTABLE_PATH} : {}, baseURL: process.env.PREVIEW_URL || 'http://127.0.0.1:4173', trace: 'retain-on-failure' },
+  webServer: process.env.PREVIEW_URL ? undefined : { command: 'node scripts/serve.mjs', url: 'http://127.0.0.1:4173', reuseExistingServer: !process.env.CI, timeout: 15_000 },
 });

@@ -3,3 +3,8 @@ playwright-report/
 test-results/
 coverage/
 .DS_Store
+dist/
+.vercel/
+android/.gradle/
+android/app/build/
+android/local.properties

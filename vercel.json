@@ -1,0 +1,1 @@
+{"buildCommand":"npm run build","outputDirectory":"dist","framework":null,"headers":[{"source":"/runtime-config.js","headers":[{"key":"Cache-Control","value":"no-store"}]},{"source":"/integrity.json","headers":[{"key":"Cache-Control","value":"no-store"}]}]}
