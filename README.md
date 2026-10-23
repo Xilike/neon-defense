@@ -20,7 +20,7 @@ only to `neon-defense-independent`. Never promote or deploy production without
 explicit authorization. `npm run build` defaults to production settings locally;
 it does not publish anything. Vercel uses `VERCEL_ENV` to select the economy.
 
-Android offline Preview APK (JDK 17+, Android SDK platform 35 / build tools 36):
+Android offline Preview APK (JDK 17+, Python 3, Android SDK platform 35 / build tools 36):
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/build-android.ps1

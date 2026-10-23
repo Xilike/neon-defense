@@ -22,8 +22,10 @@ about 59.7 simulated seconds. This is a regression scenario, not proof of balanc
 for every galaxy/build or a human playtest. Additional purchase tests use explicit
 test fixtures to isolate purchase and damage behavior.
 
-Android build verification includes Java compilation, DEX compilation, zip
-alignment and APK signature verification. Installation/runtime verification still
+Android build verification includes Java compilation, DEX compilation, normalized
+ZIP paths, all bundled asset SHA-256 hashes, alignment and APK signatures.
+Preview feedback injection must be off for byte-identical deployed HTML.
+Installation/runtime verification still
 requires a connected Android device or an installed emulator/system image.
 
 Historical `SD2_*REPORT.md` files describe earlier experiments and unavailable

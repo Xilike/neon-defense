@@ -17,6 +17,8 @@ $classFiles = @(Get-ChildItem "$apkWork/classes" -Recurse -Filter '*.class' | Fo
 & "$buildTools/d8.bat" --lib $androidJar --min-api 26 --output "$apkWork/dex" @classFiles
 if ($LASTEXITCODE -ne 0) { throw 'DEX failed' }
 jar uf "$apkWork/unsigned.apk" -C "$apkWork/dex" classes.dex
+python scripts/normalize-apk.py "$apkWork/unsigned.apk"
+if ($LASTEXITCODE -ne 0) { throw 'APK asset integrity failed' }
 & "$buildTools/zipalign.exe" -f -p 4 "$apkWork/unsigned.apk" "$apkWork/aligned.apk"
 if ($LASTEXITCODE -ne 0) { throw 'Alignment failed' }
 $keyFile = Join-Path $apkWork 'preview.keystore'
