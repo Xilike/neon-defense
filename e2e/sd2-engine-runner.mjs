@@ -7,17 +7,26 @@ if (!base || !/^https?:\/\/(127\.0\.0\.1|localhost)(:\d+)?\/?$/.test(base)) {
   throw new Error('Set SD2_PREVIEW_URL to a localhost isolated preview server; production URLs are rejected.');
 }
 const profiles = ['new', 'mid', 'adv'];
+const seeds = [1, 42, 2026];
 const results = [];
 const browser = await chromium.launch({ headless: true });
 try {
-  for (const profile of profiles) {
+  for (const seed of seeds) for (const profile of profiles) {
     const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));
+    await page.addInitScript(seed => {
+      let x = seed >>> 0;
+      Math.random = () => ((x = (Math.imul(x, 1664525) + 1013904223) >>> 0) / 4294967296);
+    }, seed);
     await page.goto(base + '?sd2debug=' + profile + '&schedule=1');
     await page.locator('#btnStart').click();
     const run = await page.evaluate(() => {
       if (S.phase === 'transit') confirmEnterGalaxy();
+      // Calibrate the isolated Preview at the same settings as experimental/sd2.js.
+      SD2.cfg.baseBudget = 50;
+      SD2.cfg.stageDuration = 90;
+      SD2.startLevel(1);
       startContinuousAuto();
       const dt = 0.05;
       let frames = 0;
@@ -40,9 +49,11 @@ try {
         levels: SD2.report().levels, saveIsolation: SD2.debug.verify(),
       };
     });
-    results.push({ profile, ...run, errors });
+    results.push({ seed, profile, ...run, errors });
     await page.close();
   }
 } finally { await browser.close(); }
 console.log(JSON.stringify({ kind: 'actual-game-update-pipeline-with-virtual-frames', results }, null, 2));
 if (results.some(r => r.errors.length || !r.saveIsolation?.ok)) process.exitCode = 1;
+const summary = results.map(r => ({ seed:r.seed, profile:r.profile, reachedLevel:r.reachedLevel, phase:r.phase, kills:r.kills, breaches:r.levels.reduce((n,l)=>n+Object.values(l.breached).reduce((a,b)=>a+b,0),0) }));
+console.error('SD2_SEEDED_SUMMARY ' + JSON.stringify(summary));
