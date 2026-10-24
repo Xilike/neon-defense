@@ -1,12 +1,17 @@
-# Campaign balance 3.1.0
+# Campaign balance 3.1.0 — published
 
 Play: https://neon-defense-play-xilike.vercel.app
 Lab: https://neon-defense-lab-xilike.vercel.app
-Normal: dpl_BdmujTRfetthJqJAL7FGF1xu8dt6
+Production (explicitly approved after testing): dpl_6qsNSzVb4YGeNRkQTYiiVWbz6AaR
+https://neon-defense-independent-2pedprdhr-xilike3-8922s-projects.vercel.app
+Production project: neon-defense-independent / prj_pOzJaFXHJtG2HF7Mx6lb3o8GMF1s.
+Play alias now points to this production deployment, retaining browser save origin.
+Normal tested preview snapshot: dpl_BdmujTRfetthJqJAL7FGF1xu8dt6
 https://neon-defense-sd2-preview-ovdg3kbhb-xilike3-8922s-projects.vercel.app
 Lab: dpl_HEnubqA5WkJfBMo9Kr5ic6u73RTi
 https://neon-defense-sd2-preview-no4uvzt1q-xilike3-8922s-projects.vercel.app
-Existing preview project/team only, READY, target null; Production unchanged.
+Both original test snapshots remain READY with target null. The separately
+approved publication is READY with target production and identical normal files.
 
 ## Proven problem
 
@@ -103,5 +108,9 @@ Authenticated fetched HTML/campaign/profile/integrity bytes are compared to loca
 roots before alias assignment. All browser execution is localhost-only with
 external routes blocked. Never retry the previously rejected Vercel-login probe:
 its Sentry telemetry failed automatic approval review. No physical iPhone claim.
-Only dev/neon-defense and non-production snapshots/aliases are changed. Main,
-Production, historical immutable URLs and the unapproved UI preview stay intact.
+Development only changed dev/neon-defense and preview snapshots. After the user
+explicitly requested publication of the approved 3.1, identical normal files were
+published to neon-defense-independent production and the play alias reassigned.
+Four production files match the tested bytes. Lab, main, historical immutable URLs
+and the unapproved UI preview remain unchanged. Publication scope is this approved
+release; future experiments remain in preview. See publication.json.

@@ -1,0 +1,52 @@
+{
+  "version": "3.1.0-campaign",
+  "codeCommit": "e785c74add35a31be33a9abb791303583b8c87f5",
+  "project": "neon-defense-independent",
+  "projectId": "prj_pOzJaFXHJtG2HF7Mx6lb3o8GMF1s",
+  "teamId": "team_hsTsYHs7F7ZS4rfen67cxnQJ",
+  "deployment": "dpl_6qsNSzVb4YGeNRkQTYiiVWbz6AaR",
+  "url": "https://neon-defense-independent-2pedprdhr-xilike3-8922s-projects.vercel.app",
+  "target": "production",
+  "state": "READY",
+  "play": "https://neon-defense-play-xilike.vercel.app",
+  "previousProduction": "dpl_4VfdKTy2dkCM9wACHt3MaeJhZHGb",
+  "previousPlaySnapshot": "dpl_BdmujTRfetthJqJAL7FGF1xu8dt6",
+  "labUnchanged": "dpl_HEnubqA5WkJfBMo9Kr5ic6u73RTi",
+  "authorization": "User explicitly requested publishing this approved version; this release only.",
+  "verifiedFiles": [
+    {
+      "file": "index.html",
+      "match": true,
+      "deployment": "dpl_6qsNSzVb4YGeNRkQTYiiVWbz6AaR"
+    },
+    {
+      "file": "campaign.js",
+      "match": true,
+      "deployment": "dpl_6qsNSzVb4YGeNRkQTYiiVWbz6AaR"
+    },
+    {
+      "file": "runtime-config.js",
+      "match": true,
+      "deployment": "dpl_6qsNSzVb4YGeNRkQTYiiVWbz6AaR"
+    },
+    {
+      "file": "integrity.json",
+      "match": true,
+      "deployment": "dpl_6qsNSzVb4YGeNRkQTYiiVWbz6AaR"
+    }
+  ],
+  "anonymousPlayVerification": [
+    {
+      "file": "campaign.js",
+      "anonymousHTTP": 200,
+      "sha256": "6937d3d7bc9cfa8bd6a8d1a7f77660ffbcd2f04e5f59b5a437973b0891bdbcbd",
+      "match": true
+    },
+    {
+      "file": "runtime-config.js",
+      "anonymousHTTP": 200,
+      "sha256": "2a877f5ea7beb3a666db9eaf21925db5b4025011411a851b46d0d23982fa7e62",
+      "match": true
+    }
+  ]
+}

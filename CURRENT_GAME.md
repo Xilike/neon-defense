@@ -2,6 +2,9 @@
 
 Play: https://neon-defense-play-xilike.vercel.app
 All-galaxies-open lab: https://neon-defense-lab-xilike.vercel.app
+Production: neon-defense-independent, dpl_6qsNSzVb4YGeNRkQTYiiVWbz6AaR.
+The user explicitly approved publishing 3.1; play alias points to this production
+deployment. Code snapshot e785c74; publication.json records verification/rollback.
 Roots: releases/campaign-v3/ and releases/campaign-v3-lab/.
 Build: python scripts/build-campaign.py
 Single authority: gameplay/campaign-v3/campaign.js (including frozen rules).
@@ -87,7 +90,9 @@ These are deterministic simulations, not human difficulty ratings, an exhaustive
 All browser execution stays on localhost with external requests blocked. Compare
 deployed bytes via authenticated Vercel fetch. Never retry the blocked external
 Vercel-login browser probe: automatic review rejected its Sentry telemetry.
-Only dev/neon-defense and preview snapshots in existing neon-defense-sd2-preview
-project are authorized. Preserve main, Production and immutable old deployment URLs.
+Development stays on dev/neon-defense and preview snapshots in the existing
+neon-defense-sd2-preview project. The user approved production publication of
+3.1 only; preserve that stable production release during subsequent experiments.
+Main and immutable old deployment URLs remain unchanged.
 The unapproved UI alias stays on its old separate defense-wall candidate.
 Old root HTML/APK scripts are historical: never package them as the current game.
