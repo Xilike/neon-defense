@@ -443,6 +443,7 @@ body{background:#030b21}
   <button id="galaxyQuick" class="pill" type="button"><span class="galaxyPortal">🌀</span><span class="galaxyInfo"><b id="hGalaxy">AURORA</b><small id="galaxyNum">Galaxy 1/10</small><span id="galaxyNextLabel">NEXT · EMBER</span><span id="galaxyNextTrack"><span id="galaxyNextFill"></span></span></span><span class="galaxyArrow">❯</span></button>
   <button id="pauseBtn" title="Pause" aria-label="Pause">⏸</button>
   <div id="combatLevelStatus" role="status">AURORA · 0/72 defeated</div>
+  <button id="campaignContinue" hidden type="button" style="grid-column:1/-1;grid-row:3;background:#10354b;color:#8affdb;border:1px solid #36c9bb;border-radius:6px;padding:0 4px;font-size:11px;font-weight:800"></button>
   <div id="galaxyMilestone"><span id="galaxyMilestoneText">EMBER · 0%</span><div class="ndProgressTrack ndGalaxyTrack"><div id="milestoneFill"></div></div></div>
 </div>
 
@@ -488,7 +489,7 @@ body{background:#030b21}
     <h1>NEON DEFENSE</h1>
     <p><b id="menuGalaxy">🌌 AURORA</b> — continuous defense, no waves<br>Hold the line across 5 lanes. Defense fires automatically. Tap enemies to prioritize, long-press to lock.</p>
     <div class="row"><button class="bigBtn go" id="btnStart">▶ START DEFENSE</button></div>
-    <p style="margin-top:12px;font-size:11px">v3.0 Campaign · progress saves locally</p>
+    <p style="margin-top:12px;font-size:11px">v3.0.1 Campaign · progress saves locally</p>
   </div>
 </div>
 
@@ -932,6 +933,7 @@ function renderPlayerProgress(){
   const xp=SAVE.player.xp,lv=playerLevelFor(xp),low=xpAtLevel(lv),high=xpAtLevel(lv+1);
   document.getElementById('playerName').textContent=SAVE.player.name+' · XP '+lv;
   document.getElementById('playerLevel').textContent='LEVEL '+galaxyLevel(G.id);
+  renderCampaignCompletion();
   const spec=levelSpec(),done=Director.killed+Director.breached;
   document.getElementById('playerXpFill').style.width=(100*Math.min(1,done/spec.count))+'%';
   document.getElementById('combatLevelStatus').textContent=Director.phase==='guardian'?'GUARDIAN · '+G.name:Director.phase==='complete'?'GALAXY COMPLETE':G.name+' · '+Director.killed+'/'+spec.count+' defeated'+(Director.breached?' · '+Director.breached+' breached':'');
@@ -1573,6 +1575,7 @@ function spawnComposite(kind, color, lane) {
   const baseHp = 260 * Director.hpMult() * G.enemy.hpMul * playerEnemyHpScale();
   return pSpawn(enemies, e => {
     e.id = uid();e.bonusGold=false;e.goldLife=0;e.visibleFor=0;e.levelNo=galaxyLevel(G.id);e.levelKind='child';
+    e.stageBoss=false;e.finalGalaxyBoss=false;e.stageGoal=0;
     e.type = 'COMPOSITE'; e.compKind = kind; e.color = color; e.hue = HUES[color] ?? HUES.gold;
     e.lane = (lane === undefined) ? randi(0, LANES - 1) : lane;
     e.laneFrom = e.lane; e.laneTo = e.lane; e.laneT = 1;
@@ -1594,7 +1597,7 @@ function spawnComposite(kind, color, lane) {
       }),
     };
     e.maxhp = e.hp = e.comp.parts.reduce((a, q) => a + q.maxhp, 0);
-    e.reward = 0; e.breach = 30; // rewards are per destroyed part, exactly once
+    e.reward=0;e.breach=Math.round(30*levelSpec().breachScale); // rewards are per destroyed part, exactly once
   });
 }
 function damageComposite(e, dmg, matchHue, wkind) {
@@ -1626,8 +1629,8 @@ function damageComposite(e, dmg, matchHue, wkind) {
       part.rewarded = true;
       galaxyKillActivity();
       awardPlayerXp(part);
-      addCoins(Math.round(part.reward * (S.time < ultimateMagnetUntil ? ULTIMATE_MAGNET_MULT : 1)));
-      floatText(p.x, p.y - 12, '+' + part.reward, '#ffd54a');
+      const paid=combatReward(part.reward,true);addCoins(paid);
+      floatText(p.x,p.y-12,'+'+fmt(paid),'#ffd54a');
     }
     const def = COMP_DEFS[c.kind];
     if (def.onPartLost) def.onPartLost(e, c);
@@ -2366,9 +2369,7 @@ function killEnemy(e, srcHue) {
     if(e.levelKind==='child'&&e.type!=='AEGIS'&&e.type!=='BLAST'){
       if(Director.childRewards>=levelSpec().childRewardLimit)paidReward=0;else Director.childRewards++;
     }
-    const wantedBonus=S.time<ultimateMagnetUntil?paidReward*(ULTIMATE_MAGNET_MULT-1):0;
-    const bonus=Math.min(wantedBonus,Math.max(0,ultimateMagnetBonusLeft));ultimateMagnetBonusLeft-=bonus;
-    const sd2Reward=Math.round(paidReward+bonus);
+    const sd2Reward=combatReward(paidReward);
     addCoins(sd2Reward);
 
     S.kills++;
@@ -3712,11 +3713,13 @@ function saveCombatDifficulty(){persist();}
 function restoreCombatDifficulty(){retryThreatFloor=0;}
 /* ================= flow ================= */
 function clearField() {
+  resetCombatEffects();
   for (const pool of [enemies, projs, parts, floats, beams])
     for (let i = 0; i < pool.n; i++) pKill(pool, pool.arr[i]);
   S.priority = null; S.spawnQueue = [];GoldCarrier.reset();
 }
 function newRun() {
+  layoutTurrets();craft.lane=2;craft.t=.55;craft.cool=0;craft.bank=0;
   jadeNextQueen=S.time+35;
   autoFireContinuous=true;
   CombatMetrics.reset();
@@ -3782,7 +3785,7 @@ function confirmEnterGalaxy() {
   if (transitTimer) { clearTimeout(transitTimer); transitTimer = null; }
   hideOverlay('ovTransit');
   newRun(); // base restored; coins, upgrades, unlocks intact
-  S.phase = 'combat'; // continuous combat starts at once — no waves, no waiting
+  S.phase = 'combat';if(document.hidden)pauseForBackground(); // Resume explicitly after a hidden transit. — no waves, no waiting
   toast('🌌 ' + G.name + ' — defend the line!');
   renderPanel();
 }
@@ -3941,7 +3944,7 @@ const Lab={
   const gs=document.getElementById('labGalaxy');for(const g of GALAXIES)gs.add(new Option(g.name,g.id));gs.value=G.id;
   document.getElementById('labLevel').value=galaxyLevel(G.id);
   document.getElementById('labGo').onclick=()=>this.jump(gs.value,document.getElementById('labLevel').value);
-  document.getElementById('labNext').onclick=()=>this.jump(G.id,galaxyLevel(G.id)+1);
+  document.getElementById('labNext').onclick=()=>{const g=galaxyIndex(G.id),lv=galaxyLevel(G.id);if(lv<ND_CAMPAIGN.lengths[g])this.jump(G.id,lv+1);else if(g<9)this.jump(GALAXIES[g+1].id,1);else toast('CAMPAIGN END · Choose a level to replay');};
   document.getElementById('labSpeed').onchange=e=>{this.speed=[1,2,4].includes(+e.target.value)?+e.target.value:1;SFX.click();};
   document.getElementById('labFunds').onchange=e=>{if(e.target.checked){this.walletBefore={...SAVE.econ};this.unlimited=true;this.funds();}else{this.unlimited=false;SAVE.econ={...(this.walletBefore||{avail:0,total:0})};this.walletBefore=null;}persist();updateGoldHUD();renderPanel();SFX.click();};
   document.getElementById('labReset').onclick=()=>this.reset();
@@ -3956,7 +3959,7 @@ function simulateCombat(dt){
 
 
 function installCampaignLab(){
- const update=()=>{const spec=levelSpec();document.getElementById('labBalance').textContent='مرحلة '+spec.campaignLevel+'/375 · دخل متوقع '+fmt(spec.expectedIncome)+' · كرة عادية '+fmt(spec.hp.NORMAL)+' HP · السرعة '+spec.speed.toFixed(2)+'×';};
+ const update=()=>{const spec=levelSpec();document.getElementById('labLevel').max=ND_CAMPAIGN.lengths[galaxyIndex(document.getElementById('labGalaxy').value)];document.getElementById('labBalance').textContent='مرحلة '+spec.campaignLevel+'/375 · دخل متوقع '+fmt(spec.expectedIncome)+' · كرة عادية '+fmt(spec.hp.NORMAL)+' HP · السرعة '+spec.speed.toFixed(2)+'×';};
  const jump=Lab.jump.bind(Lab);Lab.jump=(gid,lv)=>{jump(gid,Math.min(ND_CAMPAIGN.lengths[galaxyIndex(gid)],Math.max(1,Number(lv)||1)));update();};
  document.getElementById('labLoadout').onclick=()=>{
   if(!TEST_BUILD)return;
@@ -3965,9 +3968,40 @@ function installCampaignLab(){
   const ref=ND_CAMPAIGN.recommended(galaxyLevel(G.id),galaxyIndex(G.id));
   SAVE.up={...ref.up};SAVE.weapons={...ref.weapons};SAVE.craft=JSON.parse(JSON.stringify(ref.craft));
   if(!Lab.unlimited)SAVE.econ={avail:ref.wallet,total:ref.total};
+  else Lab.walletBefore={avail:ref.wallet,total:ref.total};
   layoutTurrets();newRun();S.phase='combat';persist();renderPanel();update();SFX.click();toast('STAGE LOADOUT · Expected earned budget');
- };update();
+ };document.getElementById('labGalaxy').onchange=update;update();
 }
+
+
+// All combat rewards share the same finite magnet allowance, including parts.
+function combatReward(base,helper=false){
+ base=Math.max(0,Math.round(Number(base)||0));
+ if(helper){if(Director.childRewards>=levelSpec().childRewardLimit)return 0;Director.childRewards++;}
+ const wanted=S.time<ultimateMagnetUntil?base*(ULTIMATE_MAGNET_MULT-1):0;
+ const bonus=Math.min(wanted,Math.max(0,ultimateMagnetBonusLeft));ultimateMagnetBonusLeft-=bonus;
+ return base+bonus;
+}
+function resetCombatEffects(){
+ ultimateMagnetUntil=0;ultimateMagnetBonusLeft=0;ultimateHoleUntil=0;ultimateHoleTick=0;ultimateFxUntil=0;ultimateFxKind='';
+ const fx=document.getElementById('ultimateFx');if(fx)fx.className='';
+ const panel=document.getElementById('ultimatePanel');if(panel)panel.hidden=true;
+}
+function renderCampaignCompletion(){
+ const button=document.getElementById('campaignContinue');if(!button)return;
+ const done=galaxyProgress(G.id).finalDefeated,g=galaxyIndex(G.id),next=GALAXIES[g+1];
+ button.hidden=!done||S.phase==='transit';
+ document.getElementById('combatLevelStatus').hidden=!button.hidden;
+ button.disabled=!next;
+ button.textContent=next?'✓ '+G.name+' COMPLETE · '+next.name+' →':'🏆 SINGULARITY COMPLETE · CAMPAIGN END';
+ button.onclick=next?()=>{if(SAVE.galaxy.unlocked.includes(next.id)){SFX.click();button.disabled=true;enterGalaxy(next.id);renderCampaignCompletion();}}:null;
+ if(TEST_BUILD){const info=document.getElementById('labBalance');if(info){const s=levelSpec();info.textContent='مرحلة '+s.campaignLevel+'/375 · دخل متوقع '+fmt(s.expectedIncome)+' · كرة عادية '+fmt(s.hp.NORMAL)+' HP · السرعة '+s.speed.toFixed(2)+'×';}}
+}
+function pauseForBackground(){
+ if(S.phase==='combat'){togglePause();persist();}
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseForBackground();});
+window.addEventListener('pagehide',pauseForBackground);
 
 /* ================= render ================= */
 function render() {
@@ -3997,6 +4031,7 @@ function render() {
 let last = performance.now(), uiT = 0;
 const DEBUG=false;
 function loop(now) {
+  if(document.hidden)pauseForBackground();
   requestAnimationFrame(loop);
   let dt = (now - last) / 1000; last = now;
   if (dt > 0.05) dt = 0.05;

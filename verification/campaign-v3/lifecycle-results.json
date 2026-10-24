@@ -1,0 +1,28 @@
+{
+  "effects": {
+    "noEffectLeak": true,
+    "cooldownsReset": true,
+    "noRefund": true
+  },
+  "rewards": {
+    "partBonusCapped": true,
+    "helperPartCap": true,
+    "pooledFlagsCleared": true,
+    "scaledCompositeBreach": true
+  },
+  "pause": {
+    "paused": true,
+    "frozen": true,
+    "resumes": true,
+    "pagehidePaused": true,
+    "transitPaused": true
+  },
+  "labBoundary": true,
+  "labCampaignEnd": true,
+  "labWalletRestoresPreset": true,
+  "completion": {
+    "nextGalaxyFromRealFinalGuardian": true,
+    "lastGalaxyEndsWithoutInvalidTarget": true
+  },
+  "passed": true
+}

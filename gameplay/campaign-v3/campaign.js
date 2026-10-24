@@ -7,7 +7,7 @@
  const offsets=lengths.map((_,g)=>lengths.slice(0,g).reduce((a,b)=>a+b,0));
  const types=['NORMAL','RUNNER','TANK','SPLITTER','SHIELDED','SUPPORTER'];
  const clamp=(n,a,b)=>Math.max(a,Math.min(b,Number(n)||0));
- const config=Object.freeze({version:'3.0.0-campaign',saveKey:'neonDefense_campaign_v3',labSaveKey:'neonDefense_lab_v3',
+ const config=Object.freeze({version:'3.0.1-campaign',saveKey:'neonDefense_campaign_v3',labSaveKey:'neonDefense_lab_v3',
   damageGrowth:1.05,priceGrowth:1.06,weapons:Object.freeze({LASER:350,ROCKET:900,VOID:1800}),spacecraft:600,
   prices:Object.freeze({eDmg:70,eRate:55,eRange:60,lDmg:75,lEff:70,lRange:80,rDmg:120,rRate:90,rAoe:110,vDmg:80,vRate:65,vPull:120,base:90}),
   craftPrices:Object.freeze({dmg:100,spd:70,rate:100,radius:85,range:70}),

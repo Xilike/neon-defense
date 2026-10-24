@@ -127,6 +127,55 @@ function installCampaignLab(){
 }
 '''
 replace('/* ================= render ================= */',lab+'\n/* ================= render ================= */')
+# v3.0.1: close reward/lifecycle gaps and make campaign completion actionable.
+replace("v3.0 Campaign · progress saves locally","v3.0.1 Campaign · progress saves locally")
+replace("    const wantedBonus=S.time<ultimateMagnetUntil?paidReward*(ULTIMATE_MAGNET_MULT-1):0;\n    const bonus=Math.min(wantedBonus,Math.max(0,ultimateMagnetBonusLeft));ultimateMagnetBonusLeft-=bonus;\n    const sd2Reward=Math.round(paidReward+bonus);", "    const sd2Reward=combatReward(paidReward);")
+replace("addCoins(Math.round(part.reward * (S.time < ultimateMagnetUntil ? ULTIMATE_MAGNET_MULT : 1)));\n      floatText(p.x, p.y - 12, '+' + part.reward, '#ffd54a');", "const paid=combatReward(part.reward,true);addCoins(paid);\n      floatText(p.x,p.y-12,'+'+fmt(paid),'#ffd54a');")
+replace("e.type = 'COMPOSITE'; e.compKind", "e.stageBoss=false;e.finalGalaxyBoss=false;e.stageGoal=0;\n    e.type = 'COMPOSITE'; e.compKind")
+replace("e.reward = 0; e.breach = 30;", "e.reward=0;e.breach=Math.round(30*levelSpec().breachScale);")
+replace("function clearField() {", "function clearField() {\n  resetCombatEffects();")
+replace("function newRun() {", "function newRun() {\n  layoutTurrets();craft.lane=2;craft.t=.55;craft.cool=0;craft.bank=0;")
+replace("if(!Lab.unlimited)SAVE.econ={avail:ref.wallet,total:ref.total};", "if(!Lab.unlimited)SAVE.econ={avail:ref.wallet,total:ref.total};\n  else Lab.walletBefore={avail:ref.wallet,total:ref.total};")
+replace("document.getElementById('labNext').onclick=()=>this.jump(G.id,galaxyLevel(G.id)+1);", "document.getElementById('labNext').onclick=()=>{const g=galaxyIndex(G.id),lv=galaxyLevel(G.id);if(lv<ND_CAMPAIGN.lengths[g])this.jump(G.id,lv+1);else if(g<9)this.jump(GALAXIES[g+1].id,1);else toast('CAMPAIGN END · Choose a level to replay');};")
+replace(" const update=()=>{const spec=levelSpec();document.getElementById('labBalance').textContent=", " const update=()=>{const spec=levelSpec();document.getElementById('labLevel').max=ND_CAMPAIGN.lengths[galaxyIndex(document.getElementById('labGalaxy').value)];document.getElementById('labBalance').textContent=")
+replace(" };update();\n}\n", " };document.getElementById('labGalaxy').onchange=update;update();\n}\n")
+replace('<div id="combatLevelStatus" role="status">AURORA · 0/72 defeated</div>', '<div id="combatLevelStatus" role="status">AURORA · 0/72 defeated</div>\n  <button id="campaignContinue" hidden type="button" style="grid-column:1/-1;grid-row:3;background:#10354b;color:#8affdb;border:1px solid #36c9bb;border-radius:6px;padding:0 4px;font-size:11px;font-weight:800"></button>')
+replace("  const spec=levelSpec(),done=Director.killed+Director.breached;", "  renderCampaignCompletion();\n  const spec=levelSpec(),done=Director.killed+Director.breached;")
+replace("function loop(now) {", "function loop(now) {\n  if(document.hidden)pauseForBackground();")
+replace("S.phase = 'combat'; // continuous combat starts at once", "S.phase = 'combat';if(document.hidden)pauseForBackground(); // Resume explicitly after a hidden transit.")
+extra=\
+'''
+// All combat rewards share the same finite magnet allowance, including parts.
+function combatReward(base,helper=false){
+ base=Math.max(0,Math.round(Number(base)||0));
+ if(helper){if(Director.childRewards>=levelSpec().childRewardLimit)return 0;Director.childRewards++;}
+ const wanted=S.time<ultimateMagnetUntil?base*(ULTIMATE_MAGNET_MULT-1):0;
+ const bonus=Math.min(wanted,Math.max(0,ultimateMagnetBonusLeft));ultimateMagnetBonusLeft-=bonus;
+ return base+bonus;
+}
+function resetCombatEffects(){
+ ultimateMagnetUntil=0;ultimateMagnetBonusLeft=0;ultimateHoleUntil=0;ultimateHoleTick=0;ultimateFxUntil=0;ultimateFxKind='';
+ const fx=document.getElementById('ultimateFx');if(fx)fx.className='';
+ const panel=document.getElementById('ultimatePanel');if(panel)panel.hidden=true;
+}
+function renderCampaignCompletion(){
+ const button=document.getElementById('campaignContinue');if(!button)return;
+ const done=galaxyProgress(G.id).finalDefeated,g=galaxyIndex(G.id),next=GALAXIES[g+1];
+ button.hidden=!done||S.phase==='transit';
+ document.getElementById('combatLevelStatus').hidden=!button.hidden;
+ button.disabled=!next;
+ button.textContent=next?'✓ '+G.name+' COMPLETE · '+next.name+' →':'🏆 SINGULARITY COMPLETE · CAMPAIGN END';
+ button.onclick=next?()=>{if(SAVE.galaxy.unlocked.includes(next.id)){SFX.click();button.disabled=true;enterGalaxy(next.id);renderCampaignCompletion();}}:null;
+ if(TEST_BUILD){const info=document.getElementById('labBalance');if(info){const s=levelSpec();info.textContent='مرحلة '+s.campaignLevel+'/375 · دخل متوقع '+fmt(s.expectedIncome)+' · كرة عادية '+fmt(s.hp.NORMAL)+' HP · السرعة '+s.speed.toFixed(2)+'×';}}
+}
+function pauseForBackground(){
+ if(S.phase==='combat'){togglePause();persist();}
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseForBackground();});
+window.addEventListener('pagehide',pauseForBackground);
+'''
+replace('/* ================= render ================= */',extra+'\n/* ================= render ================= */')
+
 normal=root/'releases/campaign-v3';test=root/'releases/campaign-v3-lab'
 for folder,flag in [(normal,False),(test,True)]:
  folder.mkdir(exist_ok=True)
@@ -137,5 +186,5 @@ for folder,flag in [(normal,False),(test,True)]:
  (folder/'balance.js').write_text('(function(g){const c=g.ND_CAMPAIGN;g.ND_BALANCE=Object.freeze({config:c.config,weaponStats:c.weaponStats,weaponDps:c.weaponDps,price:c.price});})(globalThis);\n')
  (folder/'levels.js').write_text('(function(g){const c=g.ND_CAMPAIGN;g.ND_LEVELS=Object.freeze({version:3,stages:c.tables,stage:c.stage,deck:c.deck});})(globalThis);\n')
  files={p.name:{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(folder.iterdir()) if p.name!='integrity.json'}
- (folder/'integrity.json').write_text(json.dumps({'version':'3.0.0-campaign','profile':'lab' if flag else 'normal','files':files},indent=2)+'\n')
+ (folder/'integrity.json').write_text(json.dumps({'version':'3.0.1-campaign','profile':'lab' if flag else 'normal','files':files},indent=2)+'\n')
 print('Built campaign v3 normal and all-galaxies-open lab.')

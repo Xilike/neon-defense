@@ -1,12 +1,44 @@
-# Campaign balance 3.0.0
+# Campaign balance 3.0.1
 
 Play: https://neon-defense-play-xilike.vercel.app
 Lab: https://neon-defense-lab-xilike.vercel.app
-Normal deployment: dpl_GtmGRyNvUS56YK2sX9zcZM5fnFkk
-https://neon-defense-sd2-preview-c3rq7l6q3-xilike3-8922s-projects.vercel.app
-Lab deployment: dpl_HhUpk4DcMnJ64zNxfo9kpSPPUP7Z
-https://neon-defense-sd2-preview-c2v991xd7-xilike3-8922s-projects.vercel.app
+Normal deployment: dpl_34TpUZwEURyLRt8g9YZ66yqfj868
+https://neon-defense-sd2-preview-c7i94u4ey-xilike3-8922s-projects.vercel.app
+Lab deployment: dpl_9nvMA5dtHqxs1fGyybKPMpdiPgWj
+https://neon-defense-sd2-preview-57kcm8fru-xilike3-8922s-projects.vercel.app
 Both READY, target null (non-production), existing project/team only.
+
+## Completion and lifecycle fixes (3.0.1)
+
+The campaign coefficients, 375 stages, prices, save keys and targeting rules are
+unchanged. This patch closes concrete lifecycle/continuation gaps:
+
+- A completed galaxy has a direct next-galaxy button in the existing status row;
+  the last galaxy instead displays a disabled terminal indicator. Normal unlock
+  gates are retained. No forced menu between ordinary levels and no new header row.
+- Visibility loss and pagehide freeze combat until explicit Resume. A galaxy
+  transit that completes while hidden also pauses, so it cannot start an unseen
+  fight. Focus and active power durations freeze instead of being consumed.
+- Field resets clear spent magnet/black-hole/visual effects and fresh-run weapon
+  and craft cooldowns. Inventory is not refunded, and saves/earned coins remain.
+- Composite parts now share the finite helper reward count and magnet bonus
+  allowance; their floats show actual paid rewards. This was a latent alternate
+  reward path, not a newly added enemy event. Pooled composites clear stale boss
+  flags and use the campaign breach scale.
+- Lab Next moves from the last level of one galaxy to the first of the next;
+  at the campaign end it keeps the current stage for explicit replay. Selector
+  maximums match galaxy length. Stage status follows actual level progression.
+  Leaving infinite funds after applying a preset restores that preset's wallet.
+
+lifecycle.mjs exercises those paths through the actual local browser/engine,
+including real final-guardian defeat and a touch on the continuation button,
+composite-part kills with exhausted caps, visibility/pagehide and hidden transit,
+retry effect/cooldown cleanup, cross-galaxy Lab Next and preset wallet restoration.
+All assertions pass. Existing audit, 48-case focus suite, save/gameplay contracts,
+30 active combat fixtures, natural Aurora journey and no-upgrade controls rerun.
+The older 30-case automatic report remains evidence from 3.0.0; it was not rerun
+for this lifecycle patch. All browsers remain localhost-only with external routes
+blocked. No claim of physical iPhone or human enjoyment validation is made.
 
 ## Problem and changes
 
@@ -94,7 +126,7 @@ previous-galaxy completion; the lab is completely unlocked.
   completion takes longer because distant manual targeting is absent.
 - journey-results.json: a fresh continuous Aurora run, not 15 reset fixtures.
   Starts with zero coins, the base Electric gun and no grants; actual purchases
-  and HP attrition persist across all 15 levels. Result: 51551 coins in 2914.7 simulated seconds, HP 172/295.
+  and HP attrition persist across all 15 levels. Result: 51729 coins in 2874.2 simulated seconds, HP 194/295.
   Active targeting and a scripted purchasing policy are stronger than casual play;
   this is an affordability/solvability check, not a human difficulty rating.
 - control-results.json: the same base gun without development clears level 1,

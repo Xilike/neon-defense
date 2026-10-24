@@ -1,4 +1,4 @@
-# Current game: campaign balance v3.0
+# Current game: campaign balance v3.0.1
 
 Play: https://neon-defense-play-xilike.vercel.app
 All-galaxies-open lab: https://neon-defense-lab-xilike.vercel.app
@@ -9,6 +9,19 @@ Canonical balance and campaign source: gameplay/campaign-v3/campaign.js
 Evidence: verification/campaign-v3/RELEASE.md and its JSON reports.
 The generator reads the preserved releases/events-v2.1/ HTML; do not delete it.
 The recovered original and earlier releases remain immutable historical inputs.
+
+## Lifecycle completion patch (3.0.1)
+
+Final-guardian victory exposes a continuation button in the existing status row,
+without changing battlefield geometry or forcing an inter-level menu. Normal
+progress gates still apply; the final galaxy has a terminal completion indicator.
+Backgrounding/pagehide pauses combat and requires explicit Resume; hidden galaxy
+transit also lands paused. Field resets clear consumed skill effects and combat
+cooldowns without refunding charges. Composite-part rewards share the magnet and
+helper allowance, and pooled composite objects clear stale guardian flags.
+Lab Next crosses galaxy boundaries, its level maximum follows the selector, and
+disabling unlimited funds after a stage preset restores that preset wallet.
+Evidence: verification/campaign-v3/lifecycle.mjs and lifecycle-results.json.
 
 ## Approved combat rules retained
 

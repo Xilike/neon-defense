@@ -18,7 +18,7 @@ try{
    Object.keys(SAVE).forEach(k=>delete SAVE[k]);Object.assign(SAVE,defaultSave());SAVE.settings.sfx=false;SAVE.settings.fx=false;SAVE.settings.shake=false;
    G=galaxyById(id);SAVE.galaxy.current=id;const ref=ND_CAMPAIGN.recommended(lv,g);if(control){const d=defaultSave();Object.assign(ref,{up:d.up,weapons:d.weapons,craft:d.craft,wallet:0,total:0});}SAVE.up={...ref.up};SAVE.weapons={...ref.weapons};SAVE.craft=structuredClone(ref.craft);SAVE.econ={avail:ref.wallet,total:ref.total};
    const gp=galaxyProgress(id);gp.combatLevel=lv;gp.visited=true;gp.finalDefeated=false;gp.lastDefeated=lv-1;gp.goldVisited=0;
-   S.time=0;layoutTurrets();resize();newRun();S.phase='combat';const beforeTotal=SAVE.econ.total;let purchases=0,bossAt=null,bossKilledAt=null;const goal=journey?ND_CAMPAIGN.lengths[g]:lv,milestones=[];
+   S.time=0;layoutTurrets();resize();newRun();S.phase='combat';const beforeTotal=SAVE.econ.total;let purchases=0,bossAt=null,bossKilledAt=null,lastBossSeconds=null;const goal=journey?ND_CAMPAIGN.lengths[g]:lv,milestones=[];
    // Suppress DOM-only card rebuilding in accelerated simulations. All combat,
    // actual purchases/prices, rewards, projectiles and galaxy mechanics stay real.
    renderPanel=()=>{};renderPlayerProgress=()=>{};
@@ -39,10 +39,10 @@ try{
     }
     simulateCombat(1/60);
     if(Director.phase==='guardian'&&bossAt===null)bossAt=S.time;
-    if(gp.lastDefeated>(milestones.at(-1)?.level||0))milestones.push({level:gp.lastDefeated,time:S.time,hp:S.baseHP,maxHP:S.baseMax,earned:SAVE.econ.total-beforeTotal});
+    if(gp.lastDefeated>(milestones.at(-1)?.level||0)){lastBossSeconds=bossAt===null?null:S.time-bossAt;milestones.push({level:gp.lastDefeated,time:S.time,hp:S.baseHP,maxHP:S.baseMax,earned:SAVE.econ.total-beforeTotal,guardianSeconds:lastBossSeconds});bossAt=null;}
     if(gp.lastDefeated>=goal||gp.finalDefeated){bossKilledAt=S.time;break;}
    }
-   return{id,g,lv,won:gp.lastDefeated>=goal||gp.finalDefeated,milestones,phase:S.phase,hp:S.baseHP,maxHP:S.baseMax,kills:S.kills,breached:Director.breached,earned:SAVE.econ.total-beforeTotal,expected:ND_CAMPAIGN.stage(lv,g).expectedIncome,time:S.time,bossSeconds:bossAt===null?null:(bossKilledAt??S.time)-bossAt,purchases,normalHP:ND_CAMPAIGN.stage(lv,g).hp.NORMAL,bossState:enemies.arr.filter(e=>e.on&&e.stageBoss).map(e=>({hp:e.hp,max:e.maxhp,t:e.t,visible:e.visibleFor,speed:e.speed,slow:e.slowUntil,shield:e.shield,phase:e.galaxyBossStage})),up:{...SAVE.up},craft:structuredClone(SAVE.craft)};
+   return{id,g,lv,won:gp.lastDefeated>=goal||gp.finalDefeated,milestones,phase:S.phase,hp:S.baseHP,maxHP:S.baseMax,kills:S.kills,breached:Director.breached,earned:SAVE.econ.total-beforeTotal,expected:ND_CAMPAIGN.stage(lv,g).expectedIncome,time:S.time,bossSeconds:lastBossSeconds??(bossAt===null?null:(bossKilledAt??S.time)-bossAt),purchases,normalHP:ND_CAMPAIGN.stage(lv,g).hp.NORMAL,bossState:enemies.arr.filter(e=>e.on&&e.stageBoss).map(e=>({hp:e.hp,max:e.maxhp,t:e.t,visible:e.visibleFor,speed:e.speed,slow:e.slowUntil,shield:e.shield,phase:e.galaxyBossStage})),up:{...SAVE.up},craft:structuredClone(SAVE.craft)};
   },{...scenario,manual:!automatic,control,journey});
   report.cases.push(result);fs.writeFileSync(path.join(out,outputName),JSON.stringify(report,null,2)+'\n');console.log(scenario.id,scenario.lv,result.won?'CLEAR':'FAIL','hp',Math.round(result.hp)+'/'+result.maxHP,'time',Math.round(result.time),'income',result.earned,'boss',Math.round(result.bossSeconds??0));
  }
