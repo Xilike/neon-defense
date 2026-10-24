@@ -1,0 +1,141 @@
+from pathlib import Path
+import shutil,json,hashlib,re
+root=Path(__file__).resolve().parent.parent
+source=root/'releases/events-v2.1'
+s=(source/'index.html').read_text()
+def replace(a,b):
+ global s
+ assert a in s,a[:100]
+ s=s.replace(a,b)
+replace('<script src="levels.js"></script>','<script src="campaign.js"></script>\n<script src="levels.js"></script>')
+replace("v2.1 Gold Courier · progress saves locally","v3.0 Campaign · progress saves locally")
+replace("const SAVE_KEY = TEST_BUILD?'neonDefense_lab_v21':ND_BALANCE.config.saveKey;", "const SAVE_KEY=TEST_BUILD?ND_BALANCE.config.labSaveKey:ND_BALANCE.config.saveKey;")
+replace('const SAVE_VER = 5;', 'const SAVE_VER = 6;')
+replace('    ver: SAVE_VER,', '    ver: SAVE_VER,balanceSchema:3,')
+replace("unlocked: ['aurora']", "unlocked: TEST_BUILD?GALAXIES.map(g=>g.id):['aurora']")
+replace("    const raw = localStorage.getItem(SAVE_KEY);\n    if (!raw) return;", """    let raw=localStorage.getItem(SAVE_KEY),migrated=false;
+    if(!raw&&!TEST_BUILD){
+      const legacy=localStorage.getItem('neonDefense_levels_v2');
+      if(legacy){raw=JSON.stringify(ND_CAMPAIGN.migrate(JSON.parse(legacy)));migrated=true;}
+    }
+    if(!raw)return;""")
+replace("      Object.assign(SAVE, fresh);", "      if(TEST_BUILD)fresh.galaxy.unlocked=GALAXIES.map(g=>g.id);\n      Object.assign(SAVE,fresh);if(migrated)persist();")
+replace("safe(fresh.craft.up[k],8)", "safe(fresh.craft.up[k],ND_BALANCE.config.craftMax[k])")
+# All campaign health/speed is already in the fixed stage table. No second multiplier.
+s=re.sub(r'hpMul: ?(?:1\.0|1\.35|1\.8|2\.4|3\.2|6\.5|10|16|26|42)(?=[,}])','hpMul:1',s)
+s=re.sub(r'spdMul: ?(?:1\.0|1\.12|1\.08|1\.05|1\.1|1\.23|1\.32|1\.43|1\.55|1\.7)(?=[,}])','spdMul:1',s)
+replace("const GALAXY_REWARD_MULT = Object.freeze({aurora:1,ember:2,jade:4,indigo:7,eclipse:12,nova:22,cryon:40,bloodmoon:75,nexus:140,singularity:260});","// Rewards are read from the fixed campaign stage, not reset at galaxy entry.")
+replace("function galaxyReward(n){return Math.max(1,Math.round(n*(GALAXY_REWARD_MULT[G.id]||1)*(G.id==='aurora'?1.8:1)));}", "function galaxyReward(n){return Math.max(1,Math.round(n*levelSpec().rewardMultiplier));}")
+replace("const GALAXY_LEVEL_TARGETS=[15,20,25,30,35,40,45,50,55];", "const GALAXY_LEVEL_TARGETS=ND_CAMPAIGN.lengths.slice(0,9);")
+replace("const GALAXY_COIN_TARGETS=[15000,25000,50000,100000,200000,400000,800000,1500000,3000000];", "const GALAXY_COIN_TARGETS=Array(9).fill(0); // Boss clear is the unlock; no post-clear currency softlock.")
+replace("if(!gp.visited||!gp.finalDefeated||galaxyLevel(next.parent.id)<next.level||(Number(gp.coins)||0)<next.coins)return;", "if(TEST_BUILD)return;\n  if(!gp.visited||!gp.finalDefeated||galaxyLevel(next.parent.id)<next.level)return;")
+replace("const cp=Math.min(1,(Number(gp.coins)||0)/next.coins);", "const cp=1;")
+replace("'+'/'+next.coins", "'+'/'+next.coins") if "'+'/'+next.coins" in s else None
+# Remove the currency requirement from the visible galaxy-unlock descriptions.
+replace("+' · '+fmt(pg.coins||0)+'/'+fmt(requirement.coins)+' 🪙 · '+", "+' · '+")
+replace("(pg.coins||0)/requirement.coins", "1")
+replace("+' · '+fmt(gp.coins||0)+'/'+fmt(next.coins)+' 🪙 · '+", "+' · '+")
+# Actual weapon stats and the reference model share one authority.
+a=s.index('const TURRET_DEF = {');b=s.index('/* ================= GALAXY CONFIG',a)
+s=s[:a]+"""const TURRET_DEF={
+ ELECTRIC:{...ND_CAMPAIGN.baseWeapons.ELECTRIC,hue:190,icon:'⚡',name:'ELECTRIC',projSpeed:900,slowPct:.35,slowDur:1.2,blurb:'Fast shots + slow. 1.5× vs cyan. Breaks shields.'},
+ LASER:{...ND_CAMPAIGN.baseWeapons.LASER,hue:0,icon:'🔴',name:'LASER',blurb:'Precision beam. 1.5× vs red. Cuts armor.'},
+ ROCKET:{...ND_CAMPAIGN.baseWeapons.ROCKET,hue:45,icon:'🚀',name:'ROCKET',projSpeed:640,blurb:'Explosive AoE. 1.5× vs gold. Cracks shells.'},
+ VOID:{...ND_CAMPAIGN.baseWeapons.VOID,hue:280,icon:'🌀',name:'VOID',blurb:'Gravity pulse: pulls + disrupts. 1.5× vs purple.'},
+};
+
+"""+s[b:]
+
+# Scripted helper children have a finite reward allowance per level.
+replace("begin(){const spec=levelSpec();", "begin(){const spec=levelSpec();this.childRewards=0;")
+replace("e.reward = galaxyReward(d.reward);", "e.reward = galaxyReward(d.reward);")
+replace("e.breach = d.breach;", "e.breach=Math.round(d.breach*spec.breachScale);")
+replace("e.reward=galaxyReward(Math.round((e.finalGalaxyBoss?400:100)*(1+.06*(lv-1))));", "e.reward=levelSpec().guardianReward;")
+replace("    const sd2Reward=Math.round(e.reward * (S.time < ultimateMagnetUntil ? ULTIMATE_MAGNET_MULT : 1));\n    addCoins(sd2Reward);", """    let paidReward=e.reward;
+    if(e.levelKind==='child'&&e.type!=='AEGIS'&&e.type!=='BLAST'){
+      if(Director.childRewards>=levelSpec().childRewardLimit)paidReward=0;else Director.childRewards++;
+    }
+    const sd2Reward=Math.round(paidReward*(S.time<ultimateMagnetUntil?ULTIMATE_MAGNET_MULT:1));
+    addCoins(sd2Reward);""")
+replace("'+' + Math.round(e.reward * (S.time < ultimateMagnetUntil ? ULTIMATE_MAGNET_MULT : 1))", "'+'+sd2Reward")
+replace("e.reward=Math.max(1,Math.round(GOLD_EVENT.reward*(GALAXY_REWARD_MULT[G.id]||1)));", "e.reward=galaxyReward(GOLD_EVENT.reward);")
+replace("e.speed=.012;","e.speed=.012*levelSpec().speed;")
+replace("Math.round(ENEMY_DEF.MINI.hp * Director.hpMult() * G.enemy.hpMul * playerEnemyHpScale())","levelSpec().hp.MINI")
+replace('const UPGRADE_MAX_LEVEL=60;', 'const UPGRADE_MAX_LEVEL=200;')
+replace("craftUpgCost:(lvl,key='dmg')=>Math.ceil((ND_BALANCE.config.craftPrices[key]||100)*1.16**lvl),", "craftUpgCost:(lvl,key='dmg')=>ND_CAMPAIGN.craftPrice(key,lvl),")
+a=s.index('function craftStats(u = SAVE.craft.up) {');b=s.index('function buyCraft() {',a)
+s=s[:a]+"function craftStats(u=SAVE.craft.up){return ND_CAMPAIGN.craftStats(u);}\n"+s[b:]
+replace("if (lvl === undefined || lvl >= 8) return false;", "if(lvl===undefined||lvl>=ND_BALANCE.config.craftMax[key])return false;")
+replace("maxed = lvl >= 8", "maxed=lvl>=ND_BALANCE.config.craftMax[d.key]")
+# A weapon's main level tracks damage mastery; utility tracks display their own levels.
+replace("1+UPGS.filter(u=>u.turret===kind).reduce((sum,u)=>sum+(SAVE.up[u.key]||0),0)", "1+(SAVE.up[{ELECTRIC:'eDmg',LASER:'lDmg',ROCKET:'rDmg',VOID:'vDmg'}[kind]]||0)")
+replace("Math.round(dealt).toString()", "fmt(dealt)")
+# Keep support/chain mechanics relevant after the early galaxy, without fixed 35/90 damage caps.
+replace("Math.max(3,Math.min(35,dmg*.18))", "Math.max(3,Math.min(n.maxhp*.12,dmg*.18))")
+replace("Math.max(12,Math.min(n.maxhp*.28,90))", "Math.max(12,n.maxhp*.12)")
+# Gravity cannot hide a fully revealed target; guardians resist permanent CC.
+replace("if (S.time < e.slowUntil) sp *= (1 - TURRET_DEF.ELECTRIC.slowPct);", "if(S.time<e.slowUntil)sp*=1-TURRET_DEF.ELECTRIC.slowPct*(e.boss?.25:1);")
+replace("if (dist < st.pulseR) {\n      e.t = Math.max(0, e.t - st.pull * (1 - dist / st.pulseR));", "if(dist<st.pulseR&&enemyCanBeHit(e,S.priority?.id===target.id)){\n      e.t=Math.max(minimumVisibleDepth(e),e.t-st.pull*(1-dist/st.pulseR)*(e.boss?.18:1));")
+replace("/* ================= turrets ================= */", """function minimumVisibleDepth(e){
+  let lo=0,hi=Math.max(.3,e.t);
+  for(let i=0;i<14;i++){const t=(lo+hi)/2;if(projY(t)-Math.max(9,e.r*projScale(t))>=HOR+2)hi=t;else lo=t;}
+  return hi;
+}
+/* ================= turrets ================= */""")
+
+# Compact large campaign values in existing upgrade and reward cards.
+replace("return a[f].toFixed(digits)+' → '+b[f].toFixed(digits)", "return (a[f]>=1000?fmt(a[f]):a[f].toFixed(digits))+' → '+(b[f]>=1000?fmt(b[f]):b[f].toFixed(digits))")
+replace("return cs[field].toFixed(digits)+' → '+next[field].toFixed(digits)", "return (cs[field]>=1000?fmt(cs[field]):cs[field].toFixed(digits))+' → '+(next[field]>=1000?fmt(next[field]):next[field].toFixed(digits))")
+replace("'+'+sd2Reward", "'+'+fmt(sd2Reward)")
+replace("'+'+e.reward+' GOLD'", "'+'+fmt(e.reward)+' GOLD'")
+
+# Consumables must remain useful and priced relative to the campaign budget.
+replace("5,000 direct damage to every orb + 3s stun.","60% orb HP / 8% guardian HP + slow.")
+replace("Pulls orbs inward and deals 5,000 damage per pulse for 8s.","8s control: 3% orb HP / 0.25% guardian HP per pulse.")
+replace("5× real kill rewards for 30 seconds.","5× rewards for 30s; bonus capped at 15% of a level. Once per level.")
+replace("cost: 50000", "get cost(){return ND_CAMPAIGN.powerPrice('storm',levelSpec());}")
+replace("cost: 75000", "get cost(){return ND_CAMPAIGN.powerPrice('magnet',levelSpec());}")
+replace("cost: 150000", "get cost(){return ND_CAMPAIGN.powerPrice('blackhole',levelSpec());}")
+replace("const ULTIMATE_HOLE_DAMAGE = 5000; // flat damage per 0.25s pulse","// Skill damage is centralized in ND_CAMPAIGN.powerDamage.")
+replace("const ULTIMATE_STORM_DAMAGE = 5000;", "let ultimateMagnetBonusLeft=0;")
+replace("const hit=ULTIMATE_STORM_DAMAGE;", "const hit=ND_CAMPAIGN.powerDamage('storm',e.maxhp,!!e.boss);")
+replace("damageEnemy(e,ULTIMATE_HOLE_DAMAGE,undefined,'ULTIMATE');", "damageEnemy(e,ND_CAMPAIGN.powerDamage('blackhole',e.maxhp,!!e.boss),undefined,'ULTIMATE');")
+replace("'-'+fmt(ULTIMATE_HOLE_DAMAGE)", "'GRAVITY PULSE'")
+replace("    ultimateMagnetUntil=S.time+30;", "    ultimateMagnetUntil=S.time+30;ultimateMagnetBonusLeft=Math.floor(levelSpec().maximumIncome*.15);Director.magnetUsed=true;")
+replace("  if (!SAVE.powers[key]) return false;", "  if(!SAVE.powers[key])return false;\n  if(key==='magnet'&&(Director.magnetUsed||S.time<ultimateMagnetUntil)){toast('MAGNET · Once per level');return false;}")
+replace("this.childRewards=0;", "this.childRewards=0;this.magnetUsed=false;")
+replace("const sd2Reward=Math.round(paidReward*(S.time<ultimateMagnetUntil?ULTIMATE_MAGNET_MULT:1));", "const wantedBonus=S.time<ultimateMagnetUntil?paidReward*(ULTIMATE_MAGNET_MULT-1):0;\n    const bonus=Math.min(wantedBonus,Math.max(0,ultimateMagnetBonusLeft));ultimateMagnetBonusLeft-=bonus;\n    const sd2Reward=Math.round(paidReward+bonus);")
+
+# Lab: genuinely unlocked galaxy cards and an explicit affordable stage loadout.
+replace("if (SAVE.galaxy.unlocked.indexOf(gid) < 0) return false;", "if(!TEST_BUILD&&SAVE.galaxy.unlocked.indexOf(gid)<0)return false;")
+replace("const unlocked=active||SAVE.galaxy.unlocked.includes(gal.id);", "const unlocked=TEST_BUILD||active||SAVE.galaxy.unlocked.includes(gal.id);")
+replace("Lab.init();", "Lab.init();if(TEST_BUILD)installCampaignLab();")
+replace("<small>×2 و×4 يسرّعان", "<button id=\"labLoadout\">تجهيز مناسب لليفل</button><p id=\"labBalance\" style=\"font-size:11px;line-height:1.6\"></p><small>×2 و×4 يسرّعان")
+lab='''
+function installCampaignLab(){
+ const update=()=>{const spec=levelSpec();document.getElementById('labBalance').textContent='مرحلة '+spec.campaignLevel+'/375 · دخل متوقع '+fmt(spec.expectedIncome)+' · كرة عادية '+fmt(spec.hp.NORMAL)+' HP · السرعة '+spec.speed.toFixed(2)+'×';};
+ const jump=Lab.jump.bind(Lab);Lab.jump=(gid,lv)=>{jump(gid,Math.min(ND_CAMPAIGN.lengths[galaxyIndex(gid)],Math.max(1,Number(lv)||1)));update();};
+ document.getElementById('labLoadout').onclick=()=>{
+  if(!TEST_BUILD)return;
+  if(transitTimer){clearTimeout(transitTimer);transitTimer=null;}
+  for(const id of ['ovMenu','ovPause','ovEnd','ovTransit','ovUnlock','ovStats'])hideOverlay(id);
+  const ref=ND_CAMPAIGN.recommended(galaxyLevel(G.id),galaxyIndex(G.id));
+  SAVE.up={...ref.up};SAVE.weapons={...ref.weapons};SAVE.craft=JSON.parse(JSON.stringify(ref.craft));
+  if(!Lab.unlimited)SAVE.econ={avail:ref.wallet,total:ref.total};
+  layoutTurrets();newRun();S.phase='combat';persist();renderPanel();update();SFX.click();toast('STAGE LOADOUT · Expected earned budget');
+ };update();
+}
+'''
+replace('/* ================= render ================= */',lab+'\n/* ================= render ================= */')
+normal=root/'releases/campaign-v3';test=root/'releases/campaign-v3-lab'
+for folder,flag in [(normal,False),(test,True)]:
+ folder.mkdir(exist_ok=True)
+ for name in ['manifest.webmanifest','vercel.json']:shutil.copyfile(source/name,folder/name)
+ (folder/'index.html').write_text(s)
+ (folder/'campaign.js').write_text((root/'gameplay/campaign-v3/campaign.js').read_text())
+ (folder/'runtime-config.js').write_text('/* Deployment profile only; URL parameters cannot enable lab tools. */\nglobalThis.ND_TEST_BUILD='+str(flag).lower()+';\n')
+ (folder/'balance.js').write_text('(function(g){const c=g.ND_CAMPAIGN;g.ND_BALANCE=Object.freeze({config:c.config,weaponStats:c.weaponStats,weaponDps:c.weaponDps,price:c.price});})(globalThis);\n')
+ (folder/'levels.js').write_text('(function(g){const c=g.ND_CAMPAIGN;g.ND_LEVELS=Object.freeze({version:3,stages:c.tables,stage:c.stage,deck:c.deck});})(globalThis);\n')
+ files={p.name:{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(folder.iterdir()) if p.name!='integrity.json'}
+ (folder/'integrity.json').write_text(json.dumps({'version':'3.0.0-campaign','profile':'lab' if flag else 'normal','files':files},indent=2)+'\n')
+print('Built campaign v3 normal and all-galaxies-open lab.')

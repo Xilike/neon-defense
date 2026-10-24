@@ -1,0 +1,40 @@
+{
+  "migration": {
+    "preservedOldKey": true,
+    "investmentConverted": true,
+    "noRepeatedRefund": true,
+    "currentLevelRetained": true
+  },
+  "normal": {
+    "unlockAfterFinalBossWithoutCurrency": true,
+    "labCannotEnableByQuery": true
+  },
+  "gameplay": {
+    "allTenUnlocked": true,
+    "realStatsMatchModel": true,
+    "buyingDoesNotBuffEnemies": true,
+    "level200Purchase": true,
+    "capRejectsExtra": true,
+    "noFreeUpgrade": true,
+    "revealBeforeBlocked": true,
+    "revealAtPointSeven": true,
+    "focusExpiresAtEight": true,
+    "bossPullResisted": true,
+    "voidDealsDamage": true,
+    "voidNeverHidesRevealedBoss": true,
+    "helperRewardBounded": true,
+    "oncePerLevelMagnet": true,
+    "magnetBonusCapped": true,
+    "skillsScaleToLateHP": true,
+    "pricesScaleWithEconomy": true
+  },
+  "lab": {
+    "galaxy": "singularity",
+    "level": 60,
+    "key": "neonDefense_lab_v3",
+    "allUnlocked": true,
+    "matchesReference": true,
+    "moneyIsExpectedWallet": true
+  },
+  "passed": true
+}

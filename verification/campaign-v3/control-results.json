@@ -1,0 +1,166 @@
+{
+  "mode": "no-upgrade-control",
+  "cases": [
+    {
+      "id": "aurora",
+      "g": 0,
+      "lv": 1,
+      "won": true,
+      "milestones": [
+        {
+          "level": 1,
+          "time": 177.7500000000336,
+          "hp": 94,
+          "maxHP": 120,
+          "earned": 882
+        }
+      ],
+      "phase": "combat",
+      "hp": 94,
+      "maxHP": 120,
+      "kills": 70,
+      "breached": 3,
+      "earned": 882,
+      "expected": 809,
+      "time": 177.7500000000336,
+      "bossSeconds": 39.316666666697955,
+      "purchases": 0,
+      "normalHP": 100,
+      "bossState": [],
+      "up": {
+        "eDmg": 0,
+        "eRate": 0,
+        "eRange": 0,
+        "lDmg": 0,
+        "lEff": 0,
+        "lRange": 0,
+        "rDmg": 0,
+        "rRate": 0,
+        "rAoe": 0,
+        "vDmg": 0,
+        "vRate": 0,
+        "vPull": 0,
+        "base": 0
+      },
+      "craft": {
+        "owned": false,
+        "up": {
+          "dmg": 0,
+          "spd": 0,
+          "rate": 0,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "id": "aurora",
+      "g": 0,
+      "lv": 4,
+      "won": false,
+      "milestones": [
+        {
+          "level": 3,
+          "time": 0.016666666666666666,
+          "hp": 120,
+          "maxHP": 120,
+          "earned": 0
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 120,
+      "kills": 9,
+      "breached": 10,
+      "earned": 85,
+      "expected": 1601,
+      "time": 46.066666666665334,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 164,
+      "bossState": [],
+      "up": {
+        "eDmg": 0,
+        "eRate": 0,
+        "eRange": 0,
+        "lDmg": 0,
+        "lEff": 0,
+        "lRange": 0,
+        "rDmg": 0,
+        "rRate": 0,
+        "rAoe": 0,
+        "vDmg": 0,
+        "vRate": 0,
+        "vPull": 0,
+        "base": 0
+      },
+      "craft": {
+        "owned": false,
+        "up": {
+          "dmg": 0,
+          "spd": 0,
+          "rate": 0,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "id": "aurora",
+      "g": 0,
+      "lv": 8,
+      "won": false,
+      "milestones": [
+        {
+          "level": 7,
+          "time": 0.016666666666666666,
+          "hp": 120,
+          "maxHP": 120,
+          "earned": 0
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 120,
+      "kills": 2,
+      "breached": 9,
+      "earned": 32,
+      "expected": 2814,
+      "time": 32.84999999999942,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 244,
+      "bossState": [],
+      "up": {
+        "eDmg": 0,
+        "eRate": 0,
+        "eRange": 0,
+        "lDmg": 0,
+        "lEff": 0,
+        "lRange": 0,
+        "rDmg": 0,
+        "rRate": 0,
+        "rAoe": 0,
+        "vDmg": 0,
+        "vRate": 0,
+        "vPull": 0,
+        "base": 0
+      },
+      "craft": {
+        "owned": false,
+        "up": {
+          "dmg": 0,
+          "spd": 0,
+          "rate": 0,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "passed": 1
+}

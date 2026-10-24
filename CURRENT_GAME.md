@@ -1,83 +1,99 @@
-# Current game: Gold Courier v2.1
+# Current game: campaign balance v3.0
 
-Current source and Vercel deploy root: `releases/events-v2.1/`.
-Isolated test profile: `releases/events-v2.1-lab/`.
-Lab URL: https://neon-defense-lab-xilike.vercel.app
-URL: https://neon-defense-play-xilike.vercel.app
+Play: https://neon-defense-play-xilike.vercel.app
+All-galaxies-open lab: https://neon-defense-lab-xilike.vercel.app
 
-The user selected the recovered Vercel 5di2a47zj game. They then rejected the
-v1 balance because enemies died under the header and the XP rank looked like a
-combat level. This v2 corrects the system, not just numerical multipliers.
+Current deploy roots: releases/campaign-v3/ and releases/campaign-v3-lab/.
+Build both: python scripts/build-campaign.py
+Canonical balance and campaign source: gameplay/campaign-v3/campaign.js
+Evidence: verification/campaign-v3/RELEASE.md and its JSON reports.
+The generator reads the preserved releases/events-v2.1/ HTML; do not delete it.
+The recovered original and earlier releases remain immutable historical inputs.
 
-- Immutable original: recovered/vercel-5di2a47zj/.
-- Historical first attempt: releases/balanced-v1/; do not resume from it.
-- Build both current profiles: python scripts/build-events.py.
-- Editable feature modules: gameplay/v2.1/{audio,events,lab}.js.
-- The generator reads the preserved focus-v2.0.1 HTML.
-- Fixed level composition, HP and intervals: releases/levels-v2/levels.js.
-- Actual weapon/upgrade/price formulas: releases/levels-v2/balance.js.
-- Current evidence: verification/events-v2.1/RELEASE.md and JSON results.
-- Previous combat-level evidence: verification/levels-v2/RELEASE.md.
+## Approved combat rules retained
 
-The large HUD label is COMBAT LEVEL. XP is explicitly separate and cosmetic.
-A level has a finite authored enemy deck, health and speed. The next level starts
-automatically only after resolving its deck, clearing surviving children and
-killing its guardian. No XP/time shortcuts or random per-frame refills exist.
-Guardian escapes do not award a clear. There are no forced inter-level menus.
-Normal play has no debug profiles, test grants or automatic upgrade schedule.
+Portrait; continuous authored levels, no forced inter-level menu. A finite enemy
+deck followed by its guardian completes each level. XP is cosmetic and separate.
+Fully visible enemies have a 0.70-second reveal grace. Manual focus lasts eight
+game seconds, reaches revealed distant targets, and overrides automatic targeting.
+Automatic targeting retains its existing depth/range zone. Visibility protection
+also applies to damage. Physical turret touches open the existing upgrade panel.
+Gold courier encounters, touch compatibility-click protection and audio recovery
+from v2.1 are retained. No unapproved UI redesign is merged into these roots.
 
-The combat projection starts below the actual HUD bounds. Enemies must be fully
-on screen for 0.70 seconds before damage. Automatic fire keeps its prior engagement
-zone and normalized range. Manual focus reaches fully revealed distant targets
-at the normal cooldown, and remains selected during reveal grace. Selection is
-always 8 game seconds; repeated taps refresh it, without an implicit infinite lock. Fired packets
-retain manual authorization after focus changes. Difficulty and economy are unchanged.
-The normal save namespace remains neonDefense_levels_v2; existing progress is
-preserved on the stable play alias. The lab uses neonDefense_lab_v21 and a separate
-origin. Gameplay HTML, balance and level files are byte-identical across profiles;
-only runtime-config.js selects the lab. Query parameters never enable test tools.
+## One continuous 375-level campaign
 
-The gold courier is a non-targetable freighter, separate from the player's craft.
-It visits once at levels 2, 5, 8, ... after 30% of the authored enemy deck spawns.
-It drops 3 moderate-HP gold orbs, each lasting 3 game seconds from full visibility.
-Ignored orbs expire harmlessly. Maximum reward is 6 coins in Aurora, scaled only
-by the fixed galaxy reward multiplier elsewhere. No XP, kill/quota or galaxy
-activity credit. Persistent goldVisited prevents retry farming. Bonus orbs never
-block guardians or consume hostile population capacity. No enemy table, weapon
-formula, price or danger-zone change is included.
+The ten galaxies contain 15/20/25/30/35/40/45/50/55/60 levels. Tables use a global
+campaign index, so normal HP, guardian HP, movement speed and spawn quotas never
+reset downward when crossing a galaxy boundary. The fixed per-galaxy compositions
+and existing galaxy behavior hooks remain distinct. No enemy stat reads the
+player's actual purchases, XP, wallet or performance.
 
-Tapping any physical turret opens its existing upgrade accordion below the field.
-Focus and cooldown survive the layout change. Only the compatibility click from
-the same touch is consumed, preventing the newly opened cards closing immediately.
-Audio now unlocks on input, resumes after foreground/gesture, supports optional
-iOS playback audio sessions, and limits mixed voices. Physical iPhone playback
-still needs player confirmation; Chromium graph output and recovery are verified.
+A deterministic reference spending path, using expected kill income, generates
+fixed stage tables once. This is an offline-style design model, not runtime
+adaptive difficulty. Actual weapon base stats and the model share one authority.
+Damage mastery reaches weapon level 200 (199 upgrades at +5% damage each), with
+6% damage-price growth. Cadence caps at 40 upgrades and geometry at 20; their
+separate formulas prevent runaway projectiles, beams or pulse radius. The weapon
+card level now reflects damage mastery; utility cards retain separate levels.
+Spacecraft damage also supports 199 upgrades; its rate cap is 24.
 
-Only dev/neon-defense is authorized. Deploy non-production snapshots to the
-existing neon-defense-sd2-preview project; preserve main, Production and all old
-deployment URLs. Preview hosting does not mean in-game debug is active.
+Income forecasts assume 85% of primary enemies killed, 85% of splitter children
+conditional on their parent, and a defeated guardian. Optional supplies, gold and
+consumable boosts are excluded. All income/minute estimates assume spawn tier x1.
+Scripted helper rewards are bounded per level. Gold remains below 2% of baseline
+level rewards. Magnet may activate once per level; its activation bonus budget is
+capped at 15% of baseline full-kill level income. Skill damage and coin prices scale
+with the stage, avoiding useless late-game damage or nearly-free late-game boosts.
 
-The root application/Android scripts and older RECOVERY.md describe another game
-snapshot. Do not rebuild APK from the repository root without updating its asset
-source to this release. Next work is player feedback on this exact version,
-later-galaxy balance verification, then Android packaging/device runtime checks.
+The guardian now resists gravity pull and slow; a revealed enemy cannot be pulled
+behind its full-visibility boundary by Void. This fixes the former invisible,
+permanently suspended guardian loop. The regular automatic danger zone is intact.
+Completing the previous galaxy's final guardian unlocks the next in normal play;
+there is no post-clear currency gate that could leave a completed galaxy stuck.
 
-## UI work in review: defense wall
+## Saves and lab
 
-Visual-only lab candidate: releases/ui-defense-preview/.
-Review URL: https://neon-defense-ui-xilike.vercel.app
-Build: python scripts/build-ui-defense.py
-Editable painter: gameplay/ui-defense/defense.js
-Evidence: verification/ui-defense/.
+Normal key: neonDefense_campaign_v3. On first use, an existing
+neonDefense_levels_v2 save is copied and migrated; the original key is untouched.
+Weapon upgrade investment is converted using old vs new cumulative coin costs,
+with unspent conversion remainder returned to available coins. Current galaxy,
+combat progress, ownership, name, settings and lifetime total are retained.
+Craft damage/rate investments are converted; other craft utility levels remain.
+Migration is one-time and never repeats its remainder refund after reload.
 
-The user supplied two tentative UI references and prioritized replacing the line
-under the turrets. This first review candidate uses the first image's curved
-energy wall ahead of the turret deck, retaining the current turret art and HUD
-layout. A transparent hex panel rises from projY(1), with no lower neon frame or
-field label under the weapons. Hull health changes the wall color; temporary
-line-shield state has a green sweep and existing timer in the HUD. Ground breach,
-turret/muzzle position, targeting/range, saves, enemy stats and economy are unchanged.
-Only a visual impact timestamp and HUD refresh are added outside the painter.
-The normal play and gameplay lab aliases remain on the approved v2.1 release.
-Do not treat the candidate as the final complete UI redesign or deploy it over
-normal play before the user reviews this visual direction.
+Lab key: neonDefense_lab_v3. All ten galaxies are unlocked in the actual GALAXY
+cards as well as the lab selector. Use TEST LAB to choose galaxy/level, replay/next,
+x1/x2/x4, optional funds, a natural reset and courier preview. The explicit
+"تجهيز مناسب لليفل" button applies the expected earned-budget starting loadout
+for that level. It does not affect normal saves. Normal query parameters cannot
+enable lab tools. HTML/gameplay data are identical across profiles; only the
+runtime profile flag and integrity profile differ.
+
+## Verification and scope
+
+375 mathematical stage checks; nine monotonic galaxy boundaries; exact reference
+spending ledger; caps; value-conserving migration. Sixty full real-engine sample
+stages cover start/middle/end of all ten galaxies in automatic and active-focus
+modes, using affordable starting gear and actual earned-money purchases. A fresh
+continuous Aurora run clears all 15 stages with no starting coins or grants;
+separate no-upgrade controls fail levels 4 and 8. Forty-eight real-touch targeting
+cases and save/lab/utility contracts pass. These are automated simulations, not
+human enjoyment ratings or exhaustive 375-level playthroughs.
+
+All browser execution is local and external requests are blocked. Deployed bytes
+are authenticated-fetch compared to the tested source. Do not retry the formerly
+blocked external Vercel-login browser probe: automatic approval review rejected
+its external Sentry telemetry. Physical iPhone checks remain with the player.
+
+Only dev/neon-defense and non-production snapshots in the existing
+neon-defense-sd2-preview Vercel project are authorized. Preserve main, Production
+and immutable old deployment URLs. The old root index.html/Android packaging
+scripts are not the current game source; do not build APK from them as-is.
+
+## UI candidate kept separate
+
+https://neon-defense-ui-xilike.vercel.app remains the unapproved v2.1 defense-wall
+candidate, built from releases/ui-defense-preview/ by scripts/build-ui-defense.py.
+The user rated it neither good nor bad. Do not promote it or use its older balance
+as the campaign source. Broader UI/UX work remains after balance feedback.

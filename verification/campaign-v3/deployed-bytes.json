@@ -1,0 +1,50 @@
+[
+  {
+    "profile": "normal",
+    "file": "index.html",
+    "status": 200,
+    "match": true
+  },
+  {
+    "profile": "normal",
+    "file": "campaign.js",
+    "status": 200,
+    "match": true
+  },
+  {
+    "profile": "normal",
+    "file": "balance.js",
+    "status": 200,
+    "match": true
+  },
+  {
+    "profile": "normal",
+    "file": "levels.js",
+    "status": 200,
+    "match": true
+  },
+  {
+    "profile": "normal",
+    "file": "runtime-config.js",
+    "status": 200,
+    "match": true
+  },
+  {
+    "profile": "lab",
+    "file": "index.html",
+    "status": 200,
+    "match": true
+  },
+  {
+    "profile": "lab",
+    "file": "campaign.js",
+    "status": 200,
+    "match": true
+  },
+  {
+    "profile": "lab",
+    "file": "runtime-config.js",
+    "status": 200,
+    "match": true
+  }
+]

@@ -1,0 +1,401 @@
+{
+  "version": "3.0.0-campaign",
+  "totalLevels": 375,
+  "summary": [
+    {
+      "id": "aurora",
+      "levels": 15,
+      "firstHP": 100,
+      "lastHP": 496,
+      "firstSpeed": 1,
+      "lastSpeed": 1.168,
+      "meanIncome": 2937,
+      "meanCoinsPerMinute": 983,
+      "startWeaponLevels": {
+        "eDmg": 1,
+        "lDmg": 1,
+        "rDmg": 1,
+        "vDmg": 1
+      },
+      "endWeaponLevels": {
+        "eDmg": 56,
+        "lDmg": 2,
+        "rDmg": 23,
+        "vDmg": 3
+      }
+    },
+    {
+      "id": "ember",
+      "levels": 20,
+      "firstHP": 565,
+      "lastHP": 2003,
+      "firstSpeed": 1.18045,
+      "lastSpeed": 1.1889999999999998,
+      "meanIncome": 6627,
+      "meanCoinsPerMinute": 1810,
+      "startWeaponLevels": {
+        "eDmg": 56,
+        "lDmg": 2,
+        "rDmg": 23,
+        "vDmg": 3
+      },
+      "endWeaponLevels": {
+        "eDmg": 71,
+        "lDmg": 19,
+        "rDmg": 61,
+        "vDmg": 34
+      }
+    },
+    {
+      "id": "jade",
+      "levels": 25,
+      "firstHP": 2123,
+      "lastHP": 4604,
+      "firstSpeed": 1.20145,
+      "lastSpeed": 1.21225,
+      "meanIncome": 11722,
+      "meanCoinsPerMinute": 3145,
+      "startWeaponLevels": {
+        "eDmg": 71,
+        "lDmg": 19,
+        "rDmg": 61,
+        "vDmg": 34
+      },
+      "endWeaponLevels": {
+        "eDmg": 81,
+        "lDmg": 52,
+        "rDmg": 75,
+        "vDmg": 63
+      }
+    },
+    {
+      "id": "indigo",
+      "levels": 30,
+      "firstHP": 4880,
+      "lastHP": 10014,
+      "firstSpeed": 1.2247,
+      "lastSpeed": 1.23775,
+      "meanIncome": 22819,
+      "meanCoinsPerMinute": 6094,
+      "startWeaponLevels": {
+        "eDmg": 81,
+        "lDmg": 52,
+        "rDmg": 75,
+        "vDmg": 63
+      },
+      "endWeaponLevels": {
+        "eDmg": 95,
+        "lDmg": 74,
+        "rDmg": 88,
+        "vDmg": 81
+      }
+    },
+    {
+      "id": "eclipse",
+      "levels": 35,
+      "firstHP": 11106,
+      "lastHP": 25168,
+      "firstSpeed": 1.2502,
+      "lastSpeed": 1.2655,
+      "meanIncome": 45651,
+      "meanCoinsPerMinute": 12251,
+      "startWeaponLevels": {
+        "eDmg": 95,
+        "lDmg": 74,
+        "rDmg": 88,
+        "vDmg": 81
+      },
+      "endWeaponLevels": {
+        "eDmg": 110,
+        "lDmg": 87,
+        "rDmg": 104,
+        "vDmg": 97
+      }
+    },
+    {
+      "id": "nova",
+      "levels": 40,
+      "firstHP": 26678,
+      "lastHP": 54398,
+      "firstSpeed": 1.27795,
+      "lastSpeed": 1.2955,
+      "meanIncome": 113877,
+      "meanCoinsPerMinute": 30923,
+      "startWeaponLevels": {
+        "eDmg": 110,
+        "lDmg": 87,
+        "rDmg": 104,
+        "vDmg": 97
+      },
+      "endWeaponLevels": {
+        "eDmg": 125,
+        "lDmg": 107,
+        "rDmg": 122,
+        "vDmg": 113
+      }
+    },
+    {
+      "id": "cryon",
+      "levels": 45,
+      "firstHP": 57662,
+      "lastHP": 125265,
+      "firstSpeed": 1.30795,
+      "lastSpeed": 1.32775,
+      "meanIncome": 314412,
+      "meanCoinsPerMinute": 86861,
+      "startWeaponLevels": {
+        "eDmg": 125,
+        "lDmg": 107,
+        "rDmg": 122,
+        "vDmg": 113
+      },
+      "endWeaponLevels": {
+        "eDmg": 144,
+        "lDmg": 127,
+        "rDmg": 141,
+        "vDmg": 134
+      }
+    },
+    {
+      "id": "bloodmoon",
+      "levels": 50,
+      "firstHP": 141294,
+      "lastHP": 348124,
+      "firstSpeed": 1.3402,
+      "lastSpeed": 1.36225,
+      "meanIncome": 870250,
+      "meanCoinsPerMinute": 245698,
+      "startWeaponLevels": {
+        "eDmg": 144,
+        "lDmg": 127,
+        "rDmg": 141,
+        "vDmg": 134
+      },
+      "endWeaponLevels": {
+        "eDmg": 164,
+        "lDmg": 145,
+        "rDmg": 160,
+        "vDmg": 153
+      }
+    },
+    {
+      "id": "nexus",
+      "levels": 55,
+      "firstHP": 369011,
+      "lastHP": 1073401,
+      "firstSpeed": 1.3747,
+      "lastSpeed": 1.399,
+      "meanIncome": 2819053,
+      "meanCoinsPerMinute": 808265,
+      "startWeaponLevels": {
+        "eDmg": 164,
+        "lDmg": 145,
+        "rDmg": 160,
+        "vDmg": 153
+      },
+      "endWeaponLevels": {
+        "eDmg": 187,
+        "lDmg": 169,
+        "rDmg": 183,
+        "vDmg": 176
+      }
+    },
+    {
+      "id": "singularity",
+      "levels": 60,
+      "firstHP": 1137805,
+      "lastHP": 2924302,
+      "firstSpeed": 1.41145,
+      "lastSpeed": 1.438,
+      "meanIncome": 10684485,
+      "meanCoinsPerMinute": 3016673,
+      "startWeaponLevels": {
+        "eDmg": 187,
+        "lDmg": 169,
+        "rDmg": 183,
+        "vDmg": 176
+      },
+      "endWeaponLevels": {
+        "eDmg": 200,
+        "lDmg": 200,
+        "rDmg": 200,
+        "vDmg": 200
+      }
+    }
+  ],
+  "boundaries": [
+    {
+      "from": "aurora",
+      "to": "ember",
+      "normalBefore": 496,
+      "normalAfter": 565,
+      "bossBefore": 22967,
+      "bossAfter": 24345,
+      "speedBefore": 1.168,
+      "speedAfter": 1.18045
+    },
+    {
+      "from": "ember",
+      "to": "jade",
+      "normalBefore": 2003,
+      "normalAfter": 2123,
+      "bossBefore": 77647,
+      "bossAfter": 82306,
+      "speedBefore": 1.1889999999999998,
+      "speedAfter": 1.20145
+    },
+    {
+      "from": "jade",
+      "to": "indigo",
+      "normalBefore": 4604,
+      "normalAfter": 4880,
+      "bossBefore": 172252,
+      "bossAfter": 182587,
+      "speedBefore": 1.21225,
+      "speedAfter": 1.2247
+    },
+    {
+      "from": "indigo",
+      "to": "eclipse",
+      "normalBefore": 10014,
+      "normalAfter": 11106,
+      "bossBefore": 405495,
+      "bossAfter": 429825,
+      "speedBefore": 1.23775,
+      "speedAfter": 1.2502
+    },
+    {
+      "from": "eclipse",
+      "to": "nova",
+      "normalBefore": 25168,
+      "normalAfter": 26678,
+      "bossBefore": 958665,
+      "bossAfter": 1016185,
+      "speedBefore": 1.2655,
+      "speedAfter": 1.27795
+    },
+    {
+      "from": "nova",
+      "to": "cryon",
+      "normalBefore": 54398,
+      "normalAfter": 57662,
+      "bossBefore": 2317908,
+      "bossAfter": 2456982,
+      "speedBefore": 1.2955,
+      "speedAfter": 1.30795
+    },
+    {
+      "from": "cryon",
+      "to": "bloodmoon",
+      "normalBefore": 125265,
+      "normalAfter": 141294,
+      "bossBefore": 6120064,
+      "bossAfter": 6487268,
+      "speedBefore": 1.32775,
+      "speedAfter": 1.3402
+    },
+    {
+      "from": "bloodmoon",
+      "to": "nexus",
+      "normalBefore": 348124,
+      "normalAfter": 369011,
+      "bossBefore": 16086745,
+      "bossAfter": 17051950,
+      "speedBefore": 1.36225,
+      "speedAfter": 1.3747
+    },
+    {
+      "from": "nexus",
+      "to": "singularity",
+      "normalBefore": 1073401,
+      "normalAfter": 1137805,
+      "bossBefore": 50574636,
+      "bossAfter": 53609114,
+      "speedBefore": 1.399,
+      "speedAfter": 1.41145
+    }
+  ],
+  "pressureRange": [
+    0.736437099482398,
+    1.208021095742796
+  ],
+  "maxGoldRewardFraction": 0.013143483023001095,
+  "caps": {
+    "ELECTRIC": {
+      "dmg": 296444.24254560226,
+      "rate": 6.720000000000001,
+      "range": 645
+    },
+    "LASER": {
+      "dps": 2470368.687880019,
+      "beamDur": 1.28,
+      "cool": 0.65,
+      "range": 705
+    },
+    "ROCKET": {
+      "dmg": 1152838.7210106757,
+      "rate": 2.04,
+      "range": 430,
+      "aoeR": 0.14450000000000002
+    },
+    "VOID": {
+      "dmg": 1482221.2127280114,
+      "cool": 1.35,
+      "range": 440,
+      "pulseR": 0.255,
+      "pull": 0.0765
+    }
+  },
+  "priceExamples": [
+    {
+      "weaponLevel": 1,
+      "nextDamagePrice": 70,
+      "electricShot": 18
+    },
+    {
+      "weaponLevel": 25,
+      "nextDamagePrice": 284,
+      "electricShot": 58.05179898684665
+    },
+    {
+      "weaponLevel": 50,
+      "nextDamagePrice": 1217,
+      "electricShot": 196.58399632720628
+    },
+    {
+      "weaponLevel": 100,
+      "nextDamagePrice": 22407,
+      "electricShot": 2254.3072773652116
+    },
+    {
+      "weaponLevel": 150,
+      "nextDamagePrice": 412736,
+      "electricShot": 25851.04278948083
+    },
+    {
+      "weaponLevel": 199,
+      "nextDamagePrice": 7172316,
+      "electricShot": 282327.8500434307
+    },
+    {
+      "weaponLevel": 200,
+      "nextDamagePrice": null,
+      "electricShot": 296444.24254560226
+    }
+  ],
+  "migration": {
+    "oldDataUnchanged": true,
+    "spentValuePreserved": true,
+    "oldSpent": 15556,
+    "newSpent": 14382,
+    "refund": 1174
+  },
+  "baselineAssumptions": {
+    "ordinaryKillRate": 0.85,
+    "splitChildKillRate": 0.85,
+    "guardianKillRate": 1,
+    "spawnTier": 1,
+    "optionalPowersExcluded": true
+  },
+  "allChecksPassed": true
+}
