@@ -3,48 +3,48 @@
     "profile": "normal",
     "file": "index.html",
     "match": true,
-    "deployment": "dpl_34TpUZwEURyLRt8g9YZ66yqfj868"
+    "deployment": "dpl_5hR7JdjeMBYtsFumhaJzF3EWxjZh"
   },
   {
     "profile": "normal",
     "file": "campaign.js",
     "match": true,
-    "deployment": "dpl_34TpUZwEURyLRt8g9YZ66yqfj868"
+    "deployment": "dpl_5hR7JdjeMBYtsFumhaJzF3EWxjZh"
   },
   {
     "profile": "normal",
     "file": "runtime-config.js",
     "match": true,
-    "deployment": "dpl_34TpUZwEURyLRt8g9YZ66yqfj868"
+    "deployment": "dpl_5hR7JdjeMBYtsFumhaJzF3EWxjZh"
   },
   {
     "profile": "normal",
     "file": "integrity.json",
     "match": true,
-    "deployment": "dpl_34TpUZwEURyLRt8g9YZ66yqfj868"
+    "deployment": "dpl_5hR7JdjeMBYtsFumhaJzF3EWxjZh"
   },
   {
     "profile": "lab",
     "file": "index.html",
     "match": true,
-    "deployment": "dpl_9nvMA5dtHqxs1fGyybKPMpdiPgWj"
+    "deployment": "dpl_2pgRHrQ55KE1cL9hbbZ7NUhSwqfL"
   },
   {
     "profile": "lab",
     "file": "campaign.js",
     "match": true,
-    "deployment": "dpl_9nvMA5dtHqxs1fGyybKPMpdiPgWj"
+    "deployment": "dpl_2pgRHrQ55KE1cL9hbbZ7NUhSwqfL"
   },
   {
     "profile": "lab",
     "file": "runtime-config.js",
     "match": true,
-    "deployment": "dpl_9nvMA5dtHqxs1fGyybKPMpdiPgWj"
+    "deployment": "dpl_2pgRHrQ55KE1cL9hbbZ7NUhSwqfL"
   },
   {
     "profile": "lab",
     "file": "integrity.json",
     "match": true,
-    "deployment": "dpl_9nvMA5dtHqxs1fGyybKPMpdiPgWj"
+    "deployment": "dpl_2pgRHrQ55KE1cL9hbbZ7NUhSwqfL"
   }
 ]

@@ -1,4 +1,4 @@
-# Current game: campaign balance v3.0.1
+# Current game: campaign balance v3.0.2
 
 Play: https://neon-defense-play-xilike.vercel.app
 All-galaxies-open lab: https://neon-defense-lab-xilike.vercel.app
@@ -9,6 +9,25 @@ Canonical balance and campaign source: gameplay/campaign-v3/campaign.js
 Evidence: verification/campaign-v3/RELEASE.md and its JSON reports.
 The generator reads the preserved releases/events-v2.1/ HTML; do not delete it.
 The recovered original and earlier releases remain immutable historical inputs.
+
+## Lab selection/provenance fix (3.0.2)
+
+The setup button now starts the selected galaxy/local level and installs that
+stage's exact reference weapons AND spacecraft in one synchronous action. Formerly
+it ignored the selectors until Go was pressed and used the active galaxy instead.
+The button names its selected target. The separate Go button explicitly retains
+gear. Lab equipment source is saved, displayed beside actual current stage, and
+marked modified after upgrades; the collapsed summary also shows its source.
+Old lab saves without provenance say unknown/saved rather than inventing a source.
+Normal gameplay coefficients, upgrade costs and saves are unchanged.
+
+Frozen-gear combat checks, with no shops/grants, confirm galaxy-3/4 end gear fails
+in galaxy 8. Three reference spacecraft-only cases also fail. In the G10 Lv12
+fixture using G10-start gear (matching the screenshot's visible weapon levels),
+the craft contributes 1.78% of recorded HP damage, excluding shield absorption.
+This is not evidence that every spacecraft build is balanced: the screenshot did
+not show craft upgrades and cannot reconstruct the player's click history.
+See lab-selection.mjs/results and frozen-gear.mjs/gear-results.json.
 
 ## Lifecycle completion patch (3.0.1)
 

@@ -1,0 +1,19 @@
+{
+  "selectedSetup": {
+    "galaxy": "jade",
+    "level": 25,
+    "matches": true,
+    "source": {
+      "galaxy": "jade",
+      "level": 25
+    },
+    "craft": 10,
+    "info": "اللعب الآن: JADE · Lv.25 | مصدر التجهيز: JADE · Lv.25 · مطابق | الأسلحة E 81 / L 51 / R 75 / V 62 | المكوك Lv.11"
+  },
+  "jumpKeepsGearAndProvenance": true,
+  "provenanceSurvivesReload": true,
+  "modifiedEquipmentMarked": true,
+  "presetWithUnlimitedWalletSafe": true,
+  "selectionClampsToGalaxy": true,
+  "passed": true
+}

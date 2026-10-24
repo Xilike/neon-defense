@@ -176,6 +176,41 @@ window.addEventListener('pagehide',pauseForBackground);
 '''
 replace('/* ================= render ================= */',extra+'\n/* ================= render ================= */')
 
+# v3.0.2: selected lab setup must never silently use the active galaxy.
+replace("v3.0.1 Campaign · progress saves locally","v3.0.2 Campaign · progress saves locally")
+replace("if(TEST_BUILD)fresh.galaxy.unlocked=GALAXIES.map(g=>g.id);", """if(TEST_BUILD){
+        fresh.galaxy.unlocked=GALAXIES.map(g=>g.id);
+        const source=d.labLoadout;
+        if(source&&galaxyById(source.galaxy))fresh.labLoadout={galaxy:source.galaxy,level:Math.max(1,Math.min(ND_CAMPAIGN.lengths[galaxyIndex(source.galaxy)],safe(source.level,60)))};
+      }""")
+replace('انتقل / أعد الليفل','انتقل بنفس التجهيز')
+replace('<p id="labBalance"', '<p id="labEquipment" style="font-size:11px;line-height:1.7;color:#ffe19a"></p><p id="labBalance"')
+replace('<small>×2 و×4 يسرّعان', '<small>الانتقال وحده يحتفظ بالأسلحة والمكوك. زر التجهيز يستبدلهما بتجهيز المرحلة المختارة ويبدأها. ×2 و×4 يسرّعان')
+replace("document.getElementById('labLoadout').onclick=()=>{\n  if(!TEST_BUILD)return;", """document.getElementById('labLoadout').onclick=()=>{
+  if(!TEST_BUILD)return;
+  Lab.jump(document.getElementById('labGalaxy').value,document.getElementById('labLevel').value);""")
+replace("SAVE.up={...ref.up};SAVE.weapons={...ref.weapons};SAVE.craft=JSON.parse(JSON.stringify(ref.craft));", "SAVE.up={...ref.up};SAVE.weapons={...ref.weapons};SAVE.craft=JSON.parse(JSON.stringify(ref.craft));\n  SAVE.labLoadout={galaxy:G.id,level:galaxyLevel(G.id)};")
+replace("const update=()=>{const spec=levelSpec();", "const update=()=>{renderLabEquipmentInfo();const selected=document.getElementById('labGalaxy').value;const selectedLevel=Math.max(1,Math.min(ND_CAMPAIGN.lengths[galaxyIndex(selected)],Number(document.getElementById('labLevel').value)||1));document.getElementById('labLoadout').textContent='تجهيز وبدء '+galaxyById(selected).name+' · Lv.'+selectedLevel;const spec=levelSpec();")
+replace("document.getElementById('labGalaxy').onchange=update;update();", "document.getElementById('labGalaxy').onchange=update;document.getElementById('labLevel').oninput=update;update();")
+replace("if(TEST_BUILD){const info=document.getElementById('labBalance');", "if(TEST_BUILD){renderLabEquipmentInfo();const info=document.getElementById('labBalance');")
+labEquipment=\
+'''
+function labEquipmentCode(b){return JSON.stringify([
+ Object.keys(ND_CAMPAIGN.config.max).map(k=>Number(b.up[k])||0),
+ Object.keys(ND_CAMPAIGN.baseWeapons).map(k=>!!b.weapons[k]),!!b.craft.owned,
+ Object.keys(ND_CAMPAIGN.config.craftMax).map(k=>Number(b.craft.up[k])||0)
+]);}
+function renderLabEquipmentInfo(){
+ if(!TEST_BUILD)return;const el=document.getElementById('labEquipment');if(!el)return;
+ const source=SAVE.labLoadout,g=source&&galaxyById(source.galaxy);
+ const same=g&&labEquipmentCode(SAVE)===labEquipmentCode(ND_CAMPAIGN.recommended(source.level,galaxyIndex(g.id)));
+ const summary=document.querySelector('#labTools summary');if(summary)summary.textContent='🧪 TEST LAB · '+(g?'G'+g.num+' / Lv'+source.level+(same?'':' · معدّل'):'تجهيز محفوظ');
+ const origin=g?'مصدر التجهيز: '+g.name+' · Lv.'+source.level+(same?' · مطابق':' · عُدّل بعد التجهيز'):'تجهيز محفوظ / يدوي · مصدره غير مسجّل';
+ el.textContent='اللعب الآن: '+G.name+' · Lv.'+galaxyLevel(G.id)+' | '+origin+' | الأسلحة E '+(1+SAVE.up.eDmg)+' / L '+(1+SAVE.up.lDmg)+' / R '+(1+SAVE.up.rDmg)+' / V '+(1+SAVE.up.vDmg)+' | المكوك '+(SAVE.craft.owned?'Lv.'+(1+SAVE.craft.up.dmg):'غير مملوك');
+}
+'''
+replace('/* ================= render ================= */',labEquipment+'\n/* ================= render ================= */')
+
 normal=root/'releases/campaign-v3';test=root/'releases/campaign-v3-lab'
 for folder,flag in [(normal,False),(test,True)]:
  folder.mkdir(exist_ok=True)
@@ -186,5 +221,5 @@ for folder,flag in [(normal,False),(test,True)]:
  (folder/'balance.js').write_text('(function(g){const c=g.ND_CAMPAIGN;g.ND_BALANCE=Object.freeze({config:c.config,weaponStats:c.weaponStats,weaponDps:c.weaponDps,price:c.price});})(globalThis);\n')
  (folder/'levels.js').write_text('(function(g){const c=g.ND_CAMPAIGN;g.ND_LEVELS=Object.freeze({version:3,stages:c.tables,stage:c.stage,deck:c.deck});})(globalThis);\n')
  files={p.name:{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(folder.iterdir()) if p.name!='integrity.json'}
- (folder/'integrity.json').write_text(json.dumps({'version':'3.0.1-campaign','profile':'lab' if flag else 'normal','files':files},indent=2)+'\n')
+ (folder/'integrity.json').write_text(json.dumps({'version':'3.0.2-campaign','profile':'lab' if flag else 'normal','files':files},indent=2)+'\n')
 print('Built campaign v3 normal and all-galaxies-open lab.')

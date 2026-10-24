@@ -1,12 +1,58 @@
-# Campaign balance 3.0.1
+# Campaign balance 3.0.2
 
 Play: https://neon-defense-play-xilike.vercel.app
 Lab: https://neon-defense-lab-xilike.vercel.app
-Normal deployment: dpl_34TpUZwEURyLRt8g9YZ66yqfj868
-https://neon-defense-sd2-preview-c7i94u4ey-xilike3-8922s-projects.vercel.app
-Lab deployment: dpl_9nvMA5dtHqxs1fGyybKPMpdiPgWj
-https://neon-defense-sd2-preview-57kcm8fru-xilike3-8922s-projects.vercel.app
+Normal deployment: dpl_5hR7JdjeMBYtsFumhaJzF3EWxjZh
+https://neon-defense-sd2-preview-711kfhcl6-xilike3-8922s-projects.vercel.app
+Lab deployment: dpl_2pgRHrQ55KE1cL9hbbZ7NUhSwqfL
+https://neon-defense-sd2-preview-jwbi89wbr-xilike3-8922s-projects.vercel.app
 Both READY, target null (non-production), existing project/team only.
+
+## Lab selection and frozen-build investigation (3.0.2)
+
+Player report: an early-galaxy loadout appeared viable in galaxy 8, with the craft
+sometimes seeming sufficient without weapons. Visible screenshot levels E187,
+L169, R183 match the reference start of galaxy 10, rather than galaxy 3/4. Craft
+upgrades were not visible. The old setup callback read active G/local level while
+ignoring pending selector changes. That is a confirmed ambiguity/bug; it does not
+prove the player's exact sequence of clicks from the screenshot alone.
+
+The setup button now explicitly starts and equips the selected stage, synchronously
+replacing all weapon and craft upgrades with that stage's reference build. Go is
+renamed to say it keeps equipment. Persistent lab-only provenance records source
+stage, reports changed gear, and is visible in the collapsed summary and expanded
+panel alongside the actual stage. Unknown legacy provenance is labeled as such.
+Normal saves do not acquire this metadata. No power, enemy or economy coefficients
+were nerfed in response to an unconfirmed build history.
+
+`node verification/campaign-v3/frozen-gear.mjs` is a no-purchase/no-grant real-engine
+matrix. Gear remains fixed throughout each fixture, unlike solvability tests that
+allow purchases using actual earned coins. Its outcomes are asserted:
+
+| Starting gear | Combat stage | Result |
+| --- | --- | --- |
+| Jade Lv25 | Bloodmoon Lv1 | Loss after 29s |
+| Indigo Lv30 | Bloodmoon Lv1 | Loss after 35s |
+| Indigo Lv30 | Bloodmoon Lv25 | Loss after 31s |
+| Singularity Lv1 | Singularity Lv12 | Clear after 230s |
+| Jade Lv25 craft only | Jade Lv25 | Loss after 50s |
+| Bloodmoon Lv1 craft only | Bloodmoon Lv1 | Loss after 38s |
+| Singularity Lv12 craft only | Singularity Lv12 | Loss after 30s |
+
+Craft-only fixtures lock all turrets; full-fleet fixtures retain real targeting,
+projectiles, galaxy mechanics and the craft. In the matched visible-weapon-level
+Singularity fixture the craft records 12,968,594 / 728,587,319 HP damage (1.78%).
+Damage attribution wraps actual damageEnemy returns; shield absorption and
+secondary chain damage have separate/omitted attribution. It is a diagnostic,
+not a universal damage share for every player's craft build or all 375 stages.
+
+lab-selection.mjs proves selecting Jade25 while Singularity1 is active and pressing
+setup WITHOUT Go lands in Jade25 with exactly Jade25 gear, then jumping to galaxy8
+keeps that gear/source. Provenance survives reload; edited gear is marked; unlimited
+wallet restoration and per-galaxy clamping remain correct. Existing save/gameplay
+contracts, lifecycle contracts and 375-stage mathematical audit also pass. The
+previous broader focus and combat reports remain valid historical runs, not reruns
+of all those suites for this lab-only patch. Browsers are local/external-blocked.
 
 ## Completion and lifecycle fixes (3.0.1)
 
