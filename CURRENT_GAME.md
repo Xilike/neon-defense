@@ -61,3 +61,23 @@ The root application/Android scripts and older RECOVERY.md describe another game
 snapshot. Do not rebuild APK from the repository root without updating its asset
 source to this release. Next work is player feedback on this exact version,
 later-galaxy balance verification, then Android packaging/device runtime checks.
+
+## UI work in review: defense wall
+
+Visual-only lab candidate: releases/ui-defense-preview/.
+Review URL: https://neon-defense-ui-xilike.vercel.app
+Build: python scripts/build-ui-defense.py
+Editable painter: gameplay/ui-defense/defense.js
+Evidence: verification/ui-defense/.
+
+The user supplied two tentative UI references and prioritized replacing the line
+under the turrets. This first review candidate uses the first image's curved
+energy wall ahead of the turret deck, retaining the current turret art and HUD
+layout. A transparent hex panel rises from projY(1), with no lower neon frame or
+field label under the weapons. Hull health changes the wall color; temporary
+line-shield state has a green sweep and existing timer in the HUD. Ground breach,
+turret/muzzle position, targeting/range, saves, enemy stats and economy are unchanged.
+Only a visual impact timestamp and HUD refresh are added outside the painter.
+The normal play and gameplay lab aliases remain on the approved v2.1 release.
+Do not treat the candidate as the final complete UI redesign or deploy it over
+normal play before the user reviews this visual direction.

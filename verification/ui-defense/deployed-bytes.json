@@ -1,0 +1,17 @@
+[
+  {
+    "file": "index.html",
+    "status": 200,
+    "match": true
+  },
+  {
+    "file": "balance.js",
+    "status": 200,
+    "match": true
+  },
+  {
+    "file": "runtime-config.js",
+    "status": 200,
+    "match": true
+  }
+]
