@@ -1,0 +1,18 @@
+{
+  "status": "blocked",
+  "check": "direct external browser interaction",
+  "reason": "Automatic approval review rejected continuing because the Vercel login page loads external Sentry telemetry which may disclose page/runtime data.",
+  "notRetriedAfterRejection": true,
+  "unaffectedChecks": [
+    "48 local real-touch targeting cases",
+    "21 gameplay contracts plus storage isolation",
+    "12 turret UI cases",
+    "WebAudio graph output/mute/resume",
+    "200 reward budget cases",
+    "normal and lab deployed-byte comparisons"
+  ],
+  "remaining": [
+    "physical iPhone playback",
+    "direct deployed browser interaction"
+  ]
+}

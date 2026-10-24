@@ -1,0 +1,150 @@
+{
+  "version": "2.1.0-courier",
+  "checks": [],
+  "ui": [
+    {
+      "width": 360,
+      "height": 800,
+      "kind": "ELECTRIC",
+      "focusKept": true,
+      "cooldownKept": true
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "kind": "LASER",
+      "focusKept": true,
+      "cooldownKept": true
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "kind": "ROCKET",
+      "focusKept": true,
+      "cooldownKept": true
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "kind": "VOID",
+      "focusKept": true,
+      "cooldownKept": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "kind": "ELECTRIC",
+      "focusKept": true,
+      "cooldownKept": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "kind": "LASER",
+      "focusKept": true,
+      "cooldownKept": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "kind": "ROCKET",
+      "focusKept": true,
+      "cooldownKept": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "kind": "VOID",
+      "focusKept": true,
+      "cooldownKept": true
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "kind": "ELECTRIC",
+      "focusKept": true,
+      "cooldownKept": true
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "kind": "LASER",
+      "focusKept": true,
+      "cooldownKept": true
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "kind": "ROCKET",
+      "focusKept": true,
+      "cooldownKept": true
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "kind": "VOID",
+      "focusKept": true,
+      "cooldownKept": true
+    }
+  ],
+  "contracts": {
+    "normalProfile": true,
+    "graceWaiting": true,
+    "graceReady": true,
+    "manualOverridesDanger": true,
+    "autoReturnsToDanger": true,
+    "alwaysEightSeconds": true,
+    "hiddenRejected": true,
+    "moderateGoldHP": true,
+    "rewardOnce": true,
+    "noProgressInflation": true,
+    "aliveBeforeThree": true,
+    "expiresAtThree": true,
+    "goldNotHostile": true,
+    "goldDoesNotBlockGuardian": true,
+    "startsOnEligibleLevel": true,
+    "threeDrops": true,
+    "noReplayFarming": true,
+    "encounterMarkerPersists": true,
+    "retryNoExtraVisit": true,
+    "poolReuseClean": true,
+    "hiddenGoldStillExpires": true,
+    "pricesUntouched": true
+  },
+  "goldBudget": {
+    "cases": 200,
+    "maxRatio": 0.011111111111111112
+  },
+  "normalSaveUnchangedByLab": true,
+  "audio": {
+    "state": "running",
+    "peak": 0.19352158904075623,
+    "muted": true,
+    "resumeAfterTouch": true
+  },
+  "lab": {
+    "jump": true,
+    "next": true,
+    "unlimited": true,
+    "timingObservation": {
+      "ratio": 1.1998400213304325,
+      "phase": "combat",
+      "fps": 59.19332951643999,
+      "speed": 4,
+      "test": true,
+      "ticks": 100,
+      "sum": 1.8000000000000012
+    },
+    "scaledStepSeconds": 0.06666666666666643,
+    "reset": {
+      "lv": 1,
+      "coins": 0,
+      "up": 0,
+      "speed": 1,
+      "inf": false,
+      "key": "neonDefense_lab_v21"
+    },
+    "carrierPreview": true
+  },
+  "sameGameplayProfiles": true
+}
