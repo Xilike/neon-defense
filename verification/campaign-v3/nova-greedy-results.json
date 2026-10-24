@@ -1,0 +1,69 @@
+{
+  "mode": "fresh-natural-aurora",
+  "cases": [
+    {
+      "id": "nova",
+      "g": 5,
+      "lv": 2,
+      "won": false,
+      "milestones": [
+        {
+          "level": 2,
+          "time": 246.86666666675526,
+          "hp": 1145,
+          "maxHP": 1145,
+          "earned": 86210,
+          "guardianSeconds": 32.250000000025665
+        },
+        {
+          "level": 3,
+          "time": 506.3666666665348,
+          "hp": 1125,
+          "maxHP": 1145,
+          "earned": 174000,
+          "guardianSeconds": 38.74999999996476
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1145,
+      "kills": 1240,
+      "breached": 0,
+      "earned": 258635,
+      "expected": 72709,
+      "time": 763.3666666663011,
+      "bossSeconds": 38.74999999996476,
+      "purchases": 39,
+      "normalHP": 40337,
+      "bossState": [],
+      "up": {
+        "eDmg": 109,
+        "eRate": 39,
+        "eRange": 0,
+        "lDmg": 88,
+        "lEff": 37,
+        "lRange": 0,
+        "rDmg": 103,
+        "rRate": 37,
+        "rAoe": 0,
+        "vDmg": 96,
+        "vRate": 38,
+        "vPull": 0,
+        "base": 41
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 82,
+          "spd": 0,
+          "rate": 24,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "passed": 0
+}

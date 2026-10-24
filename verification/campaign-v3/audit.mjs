@@ -5,6 +5,7 @@ function invested(b){let total=0;for(const[k,n]of Object.entries(b.up))for(let i
 let goldShare=0,pressureMin=Infinity,pressureMax=0;
 for(const s of c.tables){
  assert(Object.values(s.hp).every(x=>Number.isFinite(x)&&x>0));assert(Object.values(s.counts).every(x=>Number.isInteger(x)&&x>=0));assert.equal(Object.values(s.counts).reduce((a,b)=>a+b,0),s.count);
+ assert(Number.isFinite(s.guardianBattleSeconds)&&s.guardianBattleSeconds>=18);
  assert(Number.isFinite(s.guardianHP)&&s.guardianHP>s.hp.NORMAL);assert(s.interval>=.58&&s.interval<=1.5);assert(s.count<=350&&s.maxAlive<=24);assert(s.expectedIncome>0&&s.maximumIncome>=s.expectedIncome);
  assert.equal(invested(s.referenceEnd)+s.referenceEnd.wallet,s.referenceEnd.total);assert(s.referenceStart.wallet>=0&&s.referenceEnd.wallet>=0);
  for(const[k,n]of Object.entries(s.referenceEnd.up))assert(n>=0&&n<=c.config.max[k]);

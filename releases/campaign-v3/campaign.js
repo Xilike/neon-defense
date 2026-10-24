@@ -7,7 +7,7 @@
  const offsets=lengths.map((_,g)=>lengths.slice(0,g).reduce((a,b)=>a+b,0));
  const types=['NORMAL','RUNNER','TANK','SPLITTER','SHIELDED','SUPPORTER'];
  const clamp=(n,a,b)=>Math.max(a,Math.min(b,Number(n)||0));
- const config=Object.freeze({version:'3.0.2-campaign',saveKey:'neonDefense_campaign_v3',labSaveKey:'neonDefense_lab_v3',
+ const config=Object.freeze({version:'3.1.0-campaign',saveKey:'neonDefense_campaign_v3',labSaveKey:'neonDefense_lab_v3',
   damageGrowth:1.05,priceGrowth:1.06,weapons:Object.freeze({LASER:350,ROCKET:900,VOID:1800}),spacecraft:600,
   prices:Object.freeze({eDmg:70,eRate:55,eRange:60,lDmg:75,lEff:70,lRange:80,rDmg:120,rRate:90,rAoe:110,vDmg:80,vRate:65,vPull:120,base:90}),
   craftPrices:Object.freeze({dmg:100,spd:70,rate:100,radius:85,range:70}),
@@ -16,6 +16,11 @@
  });
  const BASE={ELECTRIC:{dmg:18,rate:2.8,range:430},LASER:{dps:150,beamDur:.8,cool:1.8,range:470},ROCKET:{dmg:70,rate:.85,range:430,aoeR:.085},VOID:{dmg:90,pulseCool:3.2,range:440,pulseR:.15,pull:.045}};
  for(const d of Object.values(BASE))Object.freeze(d);Object.freeze(BASE);
+ // Authored pressure is fixed per galaxy. Combat never reads actual player purchases.
+ const rules=Object.freeze({wavePressure:Object.freeze([1,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.35]),
+  guardianHealthFactor:2.2,guardianWindowFactor:1.05,cryonWindowFactor:1.8,
+  novaWindowStart:1.08,novaWindowFloor:.98,novaWindowStep:.02,
+  guardianApproachSpeed:.08,guardianHoldDepth:.65,guardianRushSpeed:.22,novaDeathShock:.07});
  const damageKeys=['eDmg','lDmg','rDmg','vDmg'];
  function price(key,level){const n=clamp(Math.floor(level),0,200),growth=damageKeys.includes(key)?1.06:key==='base'?1.18:/(Rate|Eff)$/.test(key)?1.15:1.18;return Math.ceil((config.prices[key]||100)*growth**n);}
  function powerPrice(key,spec){return Math.max({storm:180,magnet:120,blackhole:350}[key]||0,Math.round(spec.expectedIncome*{storm:.25,magnet:.12,blackhole:.45}[key]));}
@@ -75,15 +80,15 @@
   const startBuild=clone(build);build.wallet+=expectedIncome;build.total+=expectedIncome;purchase(build,n);const endBuild=clone(build);
   const refPower=Math.sqrt(fleet(startBuild)*fleet(endBuild));
   const weighted=types.reduce((s,t)=>s+counts[t]*(hpRatio[t]+(t==='SHIELDED'?1:0)+(t==='SPLITTER'?.6:0)),0)/count;
-  const desired=refPower*.70*(.88+.22*g/9+.025*(lv-1)/(lengths[g]-1))*interval/weighted;
+  const desired=refPower*.70*rules.wavePressure[g]*(.88+.22*g/9+.025*(lv-1)/(lengths[g]-1))*interval/weighted;
   const floor=n===1?100:previousHP*(g===0?1.10:lv===1?1.06:1.008);
   const ceiling=n===1?100:previousHP*(g===0?1.18:1.14);
   const normalHP=Math.round(clamp(desired,floor,ceiling));
-  const bossDesired=fleet(endBuild,false)*(13+3*g/9)*(lv===lengths[g]?1.08:1);
+  const bossDesired=fleet(endBuild,false)*(g===0?1:rules.guardianHealthFactor)*(13+3*g/9)*(lv===lengths[g]?1.08:1);
   const guardianHP=Math.round(Math.max(n===1?1100:previousBoss*(lv===1?1.06:1.006),bossDesired));
   const hp=Object.fromEntries(Object.entries(hpRatio).map(([t,r])=>[t,Math.round(normalHP*r)]));
   const speed=g===0?1+.012*(lv-1):1.168+.00045*(n-15)+.012*g;
-  tables.push(Object.freeze({level:lv,galaxyIndex:g,campaignLevel:n,counts:Object.freeze(counts),count,interval,hp:Object.freeze(hp),speed,maxAlive:g===0?Math.min(20,10+Math.floor(lv*.7)):22,guardianHP,guardianReward,rewardMultiplier,breachScale:1+.009*(n-1)+.16*g,expectedIncome,maximumIncome,expectedSeconds:count*interval+26,childRewardLimit:counts.SPLITTER*2+Math.ceil(count*.05),referenceStart:startBuild,referenceEnd:endBuild,pressure:normalHP*weighted/interval/Math.max(1,refPower*.7)}));
+  tables.push(Object.freeze({level:lv,galaxyIndex:g,campaignLevel:n,counts:Object.freeze(counts),count,interval,hp:Object.freeze(hp),speed,maxAlive:g===0?Math.min(20,10+Math.floor(lv*.7)):22,guardianHP,guardianBattleSeconds:Math.max(18,guardianHP/Math.max(1,fleet(startBuild,false))*(g===6?rules.cryonWindowFactor:g===5?Math.max(rules.novaWindowFloor,rules.novaWindowStart-rules.novaWindowStep*(lv-1)):rules.guardianWindowFactor)),guardianReward,rewardMultiplier,breachScale:1+.009*(n-1)+.16*g,expectedIncome,maximumIncome,expectedSeconds:count*interval+(g===0?26:45),childRewardLimit:counts.SPLITTER*2+Math.ceil(count*.05),referenceStart:startBuild,referenceEnd:endBuild,pressure:normalHP*weighted/interval/Math.max(1,refPower*.7)}));
   previousHP=normalHP;previousBoss=guardianHP;
  }
  function stage(level,g=0){const gi=clamp(Math.floor(g),0,9),lv=clamp(Math.floor(level)||1,1,lengths[gi]);return tables[offsets[gi]+lv-1];}
@@ -104,5 +109,5 @@
   d.econ??={avail:0,total:0};d.econ.avail=Math.min(d.econ.total,Math.max(0,d.econ.avail)+refund);d.balanceSchema=3;return d;
  }
  function summary(){return ids.map((id,g)=>{const a=stage(1,g),b=stage(lengths[g],g),slice=tables.slice(offsets[g],offsets[g]+lengths[g]);return{id,levels:lengths[g],firstHP:a.hp.NORMAL,lastHP:b.hp.NORMAL,firstSpeed:a.speed,lastSpeed:b.speed,meanIncome:Math.round(slice.reduce((s,x)=>s+x.expectedIncome,0)/slice.length),meanCoinsPerMinute:Math.round(slice.reduce((s,x)=>s+x.expectedIncome,0)/slice.reduce((s,x)=>s+x.expectedSeconds,0)*60),startWeaponLevels:Object.fromEntries(damageKeys.map(k=>[k,a.referenceStart.up[k]+1])),endWeaponLevels:Object.fromEntries(damageKeys.map(k=>[k,b.referenceEnd.up[k]+1]))};});}
- global.ND_CAMPAIGN=Object.freeze({config,baseWeapons:BASE,ids:Object.freeze(ids),lengths:Object.freeze(lengths),offsets:Object.freeze(offsets),tables:Object.freeze(tables),stage,deck,weaponStats,weaponDps,craftStats,craftPrice,price,fleet,allocate,recommended,migrate,summary,powerPrice,powerDamage});
+ global.ND_CAMPAIGN=Object.freeze({config,rules,baseWeapons:BASE,ids:Object.freeze(ids),lengths:Object.freeze(lengths),offsets:Object.freeze(offsets),tables:Object.freeze(tables),stage,deck,weaponStats,weaponDps,craftStats,craftPrice,price,fleet,allocate,recommended,migrate,summary,powerPrice,powerDamage});
 })(globalThis);

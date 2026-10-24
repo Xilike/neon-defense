@@ -1,5 +1,5 @@
 {
-  "version": "3.0.2-campaign",
+  "version": "3.1.0-campaign",
   "profile": "lab",
   "files": {
     "balance.js": {
@@ -7,12 +7,12 @@
       "sha256": "25a7c77fbfcc69813461e3afb884de6711bae2e05159bac114165e8b945ee0ba"
     },
     "campaign.js": {
-      "bytes": 11225,
-      "sha256": "abf83e386ad5ff39607528b3b1fb3f71758bec739ddf84ad6cbeb29cad57789c"
+      "bytes": 11948,
+      "sha256": "6937d3d7bc9cfa8bd6a8d1a7f77660ffbcd2f04e5f59b5a437973b0891bdbcbd"
     },
     "index.html": {
-      "bytes": 216840,
-      "sha256": "c24140c53b115ffddc801d80efc63f3705ed1b6803620400757eaea529cac4f0"
+      "bytes": 218659,
+      "sha256": "212a6f1daba53292ee8a9b83736dd7c54173cfabc717e1ceb399ceee6baa5bf4"
     },
     "levels.js": {
       "bytes": 132,

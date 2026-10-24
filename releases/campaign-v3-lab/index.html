@@ -489,7 +489,7 @@ body{background:#030b21}
     <h1>NEON DEFENSE</h1>
     <p><b id="menuGalaxy">🌌 AURORA</b> — continuous defense, no waves<br>Hold the line across 5 lanes. Defense fires automatically. Tap enemies to prioritize, long-press to lock.</p>
     <div class="row"><button class="bigBtn go" id="btnStart">▶ START DEFENSE</button></div>
-    <p style="margin-top:12px;font-size:11px">v3.0.2 Campaign · progress saves locally</p>
+    <p style="margin-top:12px;font-size:11px">v3.1 Campaign · progress saves locally</p>
   </div>
 </div>
 
@@ -906,7 +906,7 @@ function stageGate(){
   const gp=galaxyProgress(G.id),lv=galaxyLevel(G.id),goal=GALAXY_LEVEL_TARGETS[galaxyIndex(G.id)]||60;
   const e=spawnEnemy('BOSS',pick(G.enemy.colors));if(!e)return;
   e.stageBoss=true;e.finalGalaxyBoss=lv>=goal;e.stageGoal=lv+1;e.levelKind='guardian';
-  e.hp=e.maxhp=Math.round(levelSpec().guardianHP*G.enemy.hpMul);e.speed=.012*levelSpec().speed;
+  e.hp=e.maxhp=Math.round(levelSpec().guardianHP*G.enemy.hpMul);e.speed=ND_CAMPAIGN.rules.guardianApproachSpeed*levelSpec().speed;
   e.reward=levelSpec().guardianReward;
   e.boss=G.name+' LEVEL '+lv+' GUARDIAN';
   gp.stageBossId=e.id;Director.phase='guardian';renderPlayerProgress();
@@ -940,7 +940,7 @@ function renderPlayerProgress(){
   renderCampaignCompletion();
   const spec=levelSpec(),done=Director.killed+Director.breached;
   document.getElementById('playerXpFill').style.width=(100*Math.min(1,done/spec.count))+'%';
-  document.getElementById('combatLevelStatus').textContent=Director.phase==='guardian'?'GUARDIAN · '+G.name:Director.phase==='complete'?'GALAXY COMPLETE':G.name+' · '+Director.killed+'/'+spec.count+' defeated'+(Director.breached?' · '+Director.breached+' breached':'');
+  document.getElementById('combatLevelStatus').textContent=Director.phase==='guardian'?'GUARDIAN · '+G.name+guardianSiegeLabel():Director.phase==='complete'?'GALAXY COMPLETE':G.name+' · '+Director.killed+'/'+spec.count+' defeated'+(Director.breached?' · '+Director.breached+' breached':'');
   const next=nextGalaxyRequirement();
   const name=document.getElementById('nextGalaxyName'),pct=document.getElementById('nextGalaxyPct');
   const fill=document.getElementById('nextGalaxyFill');
@@ -1579,7 +1579,7 @@ function spawnComposite(kind, color, lane) {
   const baseHp = 260 * Director.hpMult() * G.enemy.hpMul * playerEnemyHpScale();
   return pSpawn(enemies, e => {
     e.id = uid();e.bonusGold=false;e.goldLife=0;e.visibleFor=0;e.levelNo=galaxyLevel(G.id);e.levelKind='child';
-    e.stageBoss=false;e.finalGalaxyBoss=false;e.stageGoal=0;
+    e.stageBoss=false;e.finalGalaxyBoss=false;e.stageGoal=0;e.guardianEngagedAt=null;e.guardianEnraged=false;
     e.type = 'COMPOSITE'; e.compKind = kind; e.color = color; e.hue = HUES[color] ?? HUES.gold;
     e.lane = (lane === undefined) ? randi(0, LANES - 1) : lane;
     e.laneFrom = e.lane; e.laneTo = e.lane; e.laneT = 1;
@@ -1748,7 +1748,7 @@ function spawnEnemy(type, color, lane, t0) {
     e.switchT = rand(2.5, 6); // countdown to consider lane switch
     e.cueT = 0; e.cueDir = 0; // anticipation cue
     // phase-2 mechanics state
-    e.stageBoss=false;e.finalGalaxyBoss=false;e.stageGoal=0;
+    e.stageBoss=false;e.finalGalaxyBoss=false;e.stageGoal=0;e.guardianEngagedAt=null;e.guardianEnraged=false;
     e.boss = (type === 'BOSS') ? G.boss.name : null;
     e.comp = null; e.compKind = null; // pool reuse: never leak composite state
     e.enterDir = 0; // side-entry glide state (0 = normal)
@@ -1851,7 +1851,7 @@ function galaxyKillEffect(e,p){
   if(G.id==='nova'&&!e.galaxyChain&&(e.novaVolatile>0||e.boss)){
     for(const n of galaxyNearby(e,4,.105)){
       n.galaxyChain=true;
-      damageEnemy(n,Math.max(8,Math.round(n.maxhp*.19)),undefined,'NOVA_SHOCK');
+      damageEnemy(n,Math.max(8,Math.round(n.maxhp*ND_CAMPAIGN.rules.novaDeathShock)),undefined,'NOVA_SHOCK');
       n.galaxyChain=false;
     }
     burst(p.x,p.y,45,14,260);
@@ -2242,6 +2242,7 @@ function drawV34BossTelegraph(){
 }
 function damageEnemy(e, dmg, matchHue, wkind, manualAim=false) {
   if (S.phase!=='combat'||!e.on || e.dead || !enemyCanBeHit(e,manualAim)) return 0;
+  if(e.stageBoss&&e.guardianEngagedAt===null&&dmg>0)e.guardianEngagedAt=S.time;
   if(e.bonusGold)return damageGoldOrb(e,matchHue===e.hue?dmg*BAL.matchMult:dmg);
   if (e.comp) return damageComposite(e, dmg, matchHue, wkind); // component routing (composites)
   if (matchHue !== undefined && e.hue === matchHue) dmg *= BAL.matchMult; // color affinity
@@ -2475,7 +2476,7 @@ function breachBase(e) {
   if (!e.on || e.dead) return;
   if(e.bonusGold){expireGoldOrb(e);return;}
   e.dead = true;Director.resolved(e,'breach');
-  if(e.stageBoss){galaxyProgress(G.id).stageBossId=null;Director.t=8;} // guardian escape never completes a level
+  if(e.stageBoss){galaxyProgress(G.id).stageBossId=null;pKill(enemies,e);S.baseHP=0;updateBaseHUD();gameOver();return;} // A guardian reaching the line defeats this attempt; no infinite respawn.
   // removed exactly once, no reward
   if (e.type === 'AEGIS' || e.type === 'BLAST') { // bonus orbs slip through harmlessly
     const p0 = w2s(e.lane, 1);
@@ -2514,6 +2515,7 @@ function updateEnemies(dt) {
     if (!e.on || e.dead) continue;
     e.visibleFor=enemyIsVisible(e)?(e.visibleFor||0)+dt:0;
     if(e.bonusGold){updateGoldOrb(e,dt);continue;}
+    updateGuardianSiege(e,dt);
     e.wob += dt * 3;
     e.hitFlash = Math.max(0, e.hitFlash - dt);
     updateGalaxyEnemy(e,dt);
@@ -2586,6 +2588,7 @@ function updateEnemies(dt) {
     if(S.time<e.slowUntil)sp*=1-TURRET_DEF.ELECTRIC.slowPct*(e.boss?.25:1);
     if(G.id==='aurora'&&e.auroraDash>0&&e.auroraCue<=0)sp*=1.22;
     e.t += sp * dt;
+    if(e.stageBoss&&!e.guardianEnraged)e.t=Math.min(ND_CAMPAIGN.rules.guardianHoldDepth,e.t);
     e.lane += Math.sin(e.wob) * 0.02 * dt; // subtle drift, stays in lane
     if(e.enterDir){
       const target=e.sideEntryTarget===undefined?(e.enterDir>0?0:LANES-1):e.sideEntryTarget;
@@ -2907,7 +2910,7 @@ function fireVoid(t, target) {
     const dt = Math.abs(e.t - target.t), dl = Math.abs(e.lane - target.lane);
     const dist = Math.hypot(dt, dl * 0.6);
     if(dist<st.pulseR&&enemyCanBeHit(e,S.priority?.id===target.id)){
-      e.t=Math.max(minimumVisibleDepth(e),e.t-st.pull*(1-dist/st.pulseR)*(e.boss?.18:1)); // pulled back, never past start
+      if(!e.guardianEnraged)e.t=Math.max(minimumVisibleDepth(e),e.t-st.pull*(1-dist/st.pulseR)*(e.boss?.18:1)); // pulled back, never past start
       e.slowUntil = Math.max(e.slowUntil, S.time + 1.5); // formation disruption
       damageEnemy(e, st.dmg, TURRET_DEF.VOID.hue, 'VOID',S.priority?.id===target.id);
     }
@@ -3334,7 +3337,7 @@ function renderPanel() {
     const bu = UPGS.find(x => x.key === 'base');
     if (bu) h += upgCardHTML(bu, '❤️', 'green', true);
     h += '</div>';
-    h = '<div class="upgradeBalance">🪙 AVAILABLE: <b>'+fmt(SAVE.econ.avail)+'</b> · TOTAL EARNED: '+fmt(SAVE.econ.total)+'<span> · Tap a weapon card to see upgrades</span></div>' + h;
+    h = '<div style="font-size:11px;line-height:1.6;color:#92d9e9;padding:4px">'+campaignUpgradePlan()+'</div>'+ '<div class="upgradeBalance">🪙 AVAILABLE: <b>'+fmt(SAVE.econ.avail)+'</b> · TOTAL EARNED: '+fmt(SAVE.econ.total)+'<span> · Tap a weapon card to see upgrades</span></div>' + h;
     p.innerHTML = h;
     p.querySelectorAll('[data-buy]').forEach(b => b.onclick = (ev) => {
       ev.stopPropagation();
@@ -4022,6 +4025,28 @@ function renderLabEquipmentInfo(){
  const summary=document.querySelector('#labTools summary');if(summary)summary.textContent='🧪 TEST LAB · '+(g?'G'+g.num+' / Lv'+source.level+(same?'':' · معدّل'):'تجهيز محفوظ');
  const origin=g?'مصدر التجهيز: '+g.name+' · Lv.'+source.level+(same?' · مطابق':' · عُدّل بعد التجهيز'):'تجهيز محفوظ / يدوي · مصدره غير مسجّل';
  el.textContent='اللعب الآن: '+G.name+' · Lv.'+galaxyLevel(G.id)+' | '+origin+' | الأسلحة E '+(1+SAVE.up.eDmg)+' / L '+(1+SAVE.up.lDmg)+' / R '+(1+SAVE.up.rDmg)+' / V '+(1+SAVE.up.vDmg)+' | المكوك '+(SAVE.craft.owned?'Lv.'+(1+SAVE.craft.up.dmg):'غير مملوك');
+}
+
+
+function guardianSiegeLabel(){
+ const boss=enemyById(galaxyProgress(G.id).stageBossId);
+ if(!boss||boss.guardianEngagedAt===null)return ' · SIEGE';
+ return boss.guardianEnraged?' · SIEGE RUSH!':' · '+Math.ceil(Math.max(0,levelSpec().guardianBattleSeconds-(S.time-boss.guardianEngagedAt)))+'s TO RUSH';
+}
+function updateGuardianSiege(e,dt){
+ if(!e.stageBoss)return;
+ if(e.guardianEngagedAt===null){if(e.t>=ND_CAMPAIGN.rules.guardianHoldDepth)e.guardianEngagedAt=S.time;else return;}
+ if(S.time-e.guardianEngagedAt>=levelSpec().guardianBattleSeconds){
+  if(!e.guardianEnraged){e.guardianEnraged=true;const p=w2s(e.lane,e.t);floatText(p.x,p.y-30,'⚠ SIEGE RUSH!','#ff866a',true);SFX.breach();}
+  e.slowUntil=0;e.t+=dt*ND_CAMPAIGN.rules.guardianRushSpeed;
+ }
+}
+
+
+function campaignUpgradePlan(){
+ const target=levelSpec().referenceEnd,keys={ELECTRIC:'eDmg',LASER:'lDmg',ROCKET:'rDmg',VOID:'vDmg'};
+ const plan=Object.entries(keys).filter(([kind])=>target.weapons[kind]).map(([kind,key])=>SAVE.weapons[kind]?kind[0]+': '+(1+SAVE.up[key])+'/'+(1+target.up[key]):'BUY '+kind+' Lv.'+(1+target.up[key])).join(' / ');
+ return 'هدف تطوير هذه المرحلة · '+plan+' · بدائل توزيع القوة متاحة';
 }
 
 /* ================= render ================= */

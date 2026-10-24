@@ -9,10 +9,11 @@
       "milestones": [
         {
           "level": 1,
-          "time": 144.05000000000678,
+          "time": 139.66666666666995,
           "hp": 120,
           "maxHP": 120,
-          "earned": 913
+          "earned": 913,
+          "guardianSeconds": 16.650000000008987
         }
       ],
       "phase": "combat",
@@ -22,8 +23,8 @@
       "breached": 0,
       "earned": 913,
       "expected": 809,
-      "time": 144.05000000000678,
-      "bossSeconds": 21.03333333334581,
+      "time": 139.66666666666995,
+      "bossSeconds": 16.650000000008987,
       "purchases": 9,
       "normalHP": 100,
       "bossState": [],
@@ -61,18 +62,12 @@
       "won": true,
       "milestones": [
         {
-          "level": 7,
-          "time": 0.016666666666666666,
-          "hp": 195,
-          "maxHP": 195,
-          "earned": 0
-        },
-        {
           "level": 8,
-          "time": 184.4666666667056,
+          "time": 181.46666666670322,
           "hp": 220,
           "maxHP": 220,
-          "earned": 3330
+          "earned": 3330,
+          "guardianSeconds": 17.05000000001357
         }
       ],
       "phase": "combat",
@@ -82,8 +77,8 @@
       "breached": 0,
       "earned": 3330,
       "expected": 2814,
-      "time": 184.4666666667056,
-      "bossSeconds": 20.050000000015956,
+      "time": 181.46666666670322,
+      "bossSeconds": 17.05000000001357,
       "purchases": 30,
       "normalHP": 244,
       "bossState": [],
@@ -121,18 +116,12 @@
       "won": true,
       "milestones": [
         {
-          "level": 14,
-          "time": 0.016666666666666666,
-          "hp": 295,
-          "maxHP": 295,
-          "earned": 0
-        },
-        {
           "level": 15,
-          "time": 223.80000000007024,
+          "time": 220.5166666667343,
           "hp": 295,
           "maxHP": 295,
-          "earned": 6506
+          "earned": 6506,
+          "guardianSeconds": 18.9333333333484
         }
       ],
       "phase": "combat",
@@ -142,8 +131,8 @@
       "breached": 0,
       "earned": 6506,
       "expected": 5510,
-      "time": 223.80000000007024,
-      "bossSeconds": 22.216666666684347,
+      "time": 220.5166666667343,
+      "bossSeconds": 18.9333333333484,
       "purchases": 50,
       "normalHP": 496,
       "bossState": [],
@@ -182,21 +171,22 @@
       "milestones": [
         {
           "level": 1,
-          "time": 220.71666666673445,
-          "hp": 295,
+          "time": 232.86666666674412,
+          "hp": 219,
           "maxHP": 295,
-          "earned": 6074
+          "earned": 6074,
+          "guardianSeconds": 31.38333333335831
         }
       ],
       "phase": "combat",
-      "hp": 295,
+      "hp": 219,
       "maxHP": 295,
       "kills": 377,
       "breached": 0,
       "earned": 6074,
       "expected": 5097,
-      "time": 220.71666666673445,
-      "bossSeconds": 19.23333333334864,
+      "time": 232.86666666674412,
+      "bossSeconds": 31.38333333335831,
       "purchases": 47,
       "normalHP": 565,
       "bossState": [],
@@ -234,43 +224,37 @@
       "won": true,
       "milestones": [
         {
-          "level": 9,
-          "time": 0.016666666666666666,
-          "hp": 420,
-          "maxHP": 420,
-          "earned": 0
-        },
-        {
           "level": 10,
-          "time": 225.6666666667384,
-          "hp": 420,
+          "time": 234.98333333341247,
+          "hp": 351,
           "maxHP": 420,
-          "earned": 7685
+          "earned": 7685,
+          "guardianSeconds": 29.200000000023238
         }
       ],
       "phase": "combat",
-      "hp": 420,
+      "hp": 351,
       "maxHP": 420,
-      "kills": 385,
+      "kills": 393,
       "breached": 0,
       "earned": 7685,
       "expected": 6424,
-      "time": 225.6666666667384,
-      "bossSeconds": 19.816666666682437,
-      "purchases": 45,
-      "normalHP": 1192,
+      "time": 234.98333333341247,
+      "bossSeconds": 29.200000000023238,
+      "purchases": 46,
+      "normalHP": 1789,
       "bossState": [],
       "up": {
         "eDmg": 61,
         "eRate": 22,
         "eRange": 0,
         "lDmg": 20,
-        "lEff": 8,
+        "lEff": 9,
         "lRange": 0,
         "rDmg": 49,
         "rRate": 17,
         "rAoe": 0,
-        "vDmg": 21,
+        "vDmg": 20,
         "vRate": 9,
         "vPull": 0,
         "base": 12
@@ -278,7 +262,7 @@
       "craft": {
         "owned": true,
         "up": {
-          "dmg": 11,
+          "dmg": 12,
           "spd": 0,
           "rate": 4,
           "radius": 0,
@@ -294,31 +278,25 @@
       "won": true,
       "milestones": [
         {
-          "level": 19,
-          "time": 0.016666666666666666,
-          "hp": 545,
-          "maxHP": 545,
-          "earned": 0
-        },
-        {
           "level": 20,
-          "time": 228.10000000007366,
-          "hp": 545,
+          "time": 242.66666666675192,
+          "hp": 473,
           "maxHP": 545,
-          "earned": 10140
+          "earned": 10140,
+          "guardianSeconds": 35.25000000002805
         }
       ],
       "phase": "combat",
-      "hp": 545,
+      "hp": 473,
       "maxHP": 545,
-      "kills": 396,
+      "kills": 404,
       "breached": 0,
       "earned": 10140,
       "expected": 8474,
-      "time": 228.10000000007366,
-      "bossSeconds": 19.783333333349077,
+      "time": 242.66666666675192,
+      "bossSeconds": 35.25000000002805,
       "purchases": 44,
-      "normalHP": 2003,
+      "normalHP": 3005,
       "bossState": [],
       "up": {
         "eDmg": 69,
@@ -355,10 +333,11 @@
       "milestones": [
         {
           "level": 1,
-          "time": 226.80000000007263,
+          "time": 234.16666666674516,
           "hp": 545,
           "maxHP": 545,
-          "earned": 10187
+          "earned": 10187,
+          "guardianSeconds": 27.416666666688485
         }
       ],
       "phase": "combat",
@@ -368,16 +347,16 @@
       "breached": 0,
       "earned": 10187,
       "expected": 8663,
-      "time": 226.80000000007263,
-      "bossSeconds": 20.300000000016155,
+      "time": 234.16666666674516,
+      "bossSeconds": 27.416666666688485,
       "purchases": 44,
-      "normalHP": 2123,
+      "normalHP": 3185,
       "bossState": [],
       "up": {
         "eDmg": 70,
         "eRate": 24,
         "eRange": 0,
-        "lDmg": 27,
+        "lDmg": 28,
         "lEff": 12,
         "lRange": 0,
         "rDmg": 60,
@@ -391,7 +370,7 @@
       "craft": {
         "owned": true,
         "up": {
-          "dmg": 21,
+          "dmg": 20,
           "spd": 0,
           "rate": 7,
           "radius": 0,
@@ -407,18 +386,12 @@
       "won": true,
       "milestones": [
         {
-          "level": 12,
-          "time": 0.016666666666666666,
-          "hp": 695,
-          "maxHP": 695,
-          "earned": 0
-        },
-        {
           "level": 13,
-          "time": 228.38333333340722,
+          "time": 243.2666666667524,
           "hp": 695,
           "maxHP": 695,
-          "earned": 13633
+          "earned": 13633,
+          "guardianSeconds": 32.93333333335954
         }
       ],
       "phase": "combat",
@@ -428,10 +401,10 @@
       "breached": 0,
       "earned": 13633,
       "expected": 11555,
-      "time": 228.38333333340722,
-      "bossSeconds": 19.30000000001536,
+      "time": 243.2666666667524,
+      "bossSeconds": 32.93333333335954,
       "purchases": 43,
-      "normalHP": 3297,
+      "normalHP": 4945,
       "bossState": [],
       "up": {
         "eDmg": 78,
@@ -467,18 +440,12 @@
       "won": true,
       "milestones": [
         {
-          "level": 24,
-          "time": 0.016666666666666666,
-          "hp": 845,
-          "maxHP": 845,
-          "earned": 0
-        },
-        {
           "level": 25,
-          "time": 230.8166666667425,
+          "time": 240.4500000000835,
           "hp": 845,
           "maxHP": 845,
-          "earned": 18304
+          "earned": 18304,
+          "guardianSeconds": 27.583333333355284
         }
       ],
       "phase": "combat",
@@ -488,10 +455,10 @@
       "breached": 0,
       "earned": 18304,
       "expected": 15562,
-      "time": 230.8166666667425,
-      "bossSeconds": 19.31666666668204,
+      "time": 240.4500000000835,
+      "bossSeconds": 27.583333333355284,
       "purchases": 39,
-      "normalHP": 4604,
+      "normalHP": 6906,
       "bossState": [],
       "up": {
         "eDmg": 80,
@@ -528,10 +495,11 @@
       "milestones": [
         {
           "level": 1,
-          "time": 228.00000000007358,
+          "time": 247.46666666675574,
           "hp": 870,
           "maxHP": 870,
-          "earned": 18695
+          "earned": 18695,
+          "guardianSeconds": 33.76666666669354
         }
       ],
       "phase": "combat",
@@ -541,10 +509,10 @@
       "breached": 0,
       "earned": 18695,
       "expected": 15916,
-      "time": 228.00000000007358,
-      "bossSeconds": 19.833333333349117,
+      "time": 247.46666666675574,
+      "bossSeconds": 33.76666666669354,
       "purchases": 37,
-      "normalHP": 4880,
+      "normalHP": 7320,
       "bossState": [],
       "up": {
         "eDmg": 80,
@@ -564,9 +532,9 @@
       "craft": {
         "owned": true,
         "up": {
-          "dmg": 38,
+          "dmg": 37,
           "spd": 0,
-          "rate": 12,
+          "rate": 13,
           "radius": 0,
           "range": 0,
           "size": 0
@@ -580,18 +548,12 @@
       "won": true,
       "milestones": [
         {
-          "level": 14,
-          "time": 0.016666666666666666,
-          "hp": 970,
-          "maxHP": 970,
-          "earned": 0
-        },
-        {
           "level": 15,
-          "time": 228.38333333340722,
+          "time": 245.6000000000876,
           "hp": 970,
           "maxHP": 970,
-          "earned": 25971
+          "earned": 25971,
+          "guardianSeconds": 32.91666666669286
         }
       ],
       "phase": "combat",
@@ -601,10 +563,10 @@
       "breached": 0,
       "earned": 25971,
       "expected": 22031,
-      "time": 228.38333333340722,
-      "bossSeconds": 18.416666666681323,
+      "time": 245.6000000000876,
+      "bossSeconds": 32.91666666669286,
       "purchases": 32,
-      "normalHP": 6544,
+      "normalHP": 9816,
       "bossState": [],
       "up": {
         "eDmg": 88,
@@ -640,18 +602,12 @@
       "won": true,
       "milestones": [
         {
-          "level": 29,
-          "time": 0.016666666666666666,
-          "hp": 1020,
-          "maxHP": 1020,
-          "earned": 0
-        },
-        {
           "level": 30,
-          "time": 227.5666666667399,
+          "time": 242.9333333334188,
           "hp": 1020,
           "maxHP": 1020,
-          "earned": 37403
+          "earned": 37403,
+          "guardianSeconds": 32.73333333335938
         }
       ],
       "phase": "combat",
@@ -661,10 +617,10 @@
       "breached": 0,
       "earned": 37403,
       "expected": 31829,
-      "time": 227.5666666667399,
-      "bossSeconds": 19.3500000000154,
+      "time": 242.9333333334188,
+      "bossSeconds": 32.73333333335938,
       "purchases": 34,
-      "normalHP": 10014,
+      "normalHP": 15021,
       "bossState": [],
       "up": {
         "eDmg": 93,
@@ -701,23 +657,24 @@
       "milestones": [
         {
           "level": 1,
-          "time": 229.51666666674146,
-          "hp": 1020,
+          "time": 255.45000000009543,
+          "hp": 357,
           "maxHP": 1020,
-          "earned": 35502
+          "earned": 33592,
+          "guardianSeconds": 27.416666666688485
         }
       ],
       "phase": "combat",
-      "hp": 1020,
+      "hp": 357,
       "maxHP": 1020,
-      "kills": 365,
-      "breached": 0,
-      "earned": 35502,
+      "kills": 314,
+      "breached": 6,
+      "earned": 33592,
       "expected": 30180,
-      "time": 229.51666666674146,
-      "bossSeconds": 17.200000000013688,
-      "purchases": 33,
-      "normalHP": 11106,
+      "time": 255.45000000009543,
+      "bossSeconds": 27.416666666688485,
+      "purchases": 32,
+      "normalHP": 16660,
       "bossState": [],
       "up": {
         "eDmg": 94,
@@ -739,7 +696,7 @@
         "up": {
           "dmg": 51,
           "spd": 0,
-          "rate": 18,
+          "rate": 17,
           "radius": 0,
           "range": 0,
           "size": 0
@@ -753,31 +710,25 @@
       "won": true,
       "milestones": [
         {
-          "level": 17,
-          "time": 0.016666666666666666,
-          "hp": 1070,
-          "maxHP": 1070,
-          "earned": 0
-        },
-        {
           "level": 18,
-          "time": 226.01666666673867,
-          "hp": 1070,
+          "time": 257.0833333334282,
+          "hp": 692,
           "maxHP": 1070,
-          "earned": 52410
+          "earned": 50840,
+          "guardianSeconds": 26.133333333352255
         }
       ],
       "phase": "combat",
-      "hp": 1070,
+      "hp": 692,
       "maxHP": 1070,
-      "kills": 371,
-      "breached": 0,
-      "earned": 52410,
+      "kills": 344,
+      "breached": 6,
+      "earned": 50840,
       "expected": 44417,
-      "time": 226.01666666673867,
-      "bossSeconds": 16.31666666667965,
+      "time": 257.0833333334282,
+      "bossSeconds": 26.133333333352255,
       "purchases": 21,
-      "normalHP": 16859,
+      "normalHP": 25289,
       "bossState": [],
       "up": {
         "eDmg": 101,
@@ -813,38 +764,32 @@
       "won": true,
       "milestones": [
         {
-          "level": 34,
-          "time": 0.016666666666666666,
-          "hp": 1120,
-          "maxHP": 1120,
-          "earned": 0
-        },
-        {
           "level": 35,
-          "time": 230.01666666674186,
-          "hp": 1120,
+          "time": 257.71666666676094,
+          "hp": 670,
           "maxHP": 1120,
-          "earned": 78671
+          "earned": 76173,
+          "guardianSeconds": 28.716666666686564
         }
       ],
       "phase": "combat",
-      "hp": 1120,
+      "hp": 670,
       "maxHP": 1120,
-      "kills": 377,
-      "breached": 0,
-      "earned": 78671,
+      "kills": 344,
+      "breached": 3,
+      "earned": 76173,
       "expected": 66780,
-      "time": 230.01666666674186,
-      "bossSeconds": 17.416666666680527,
-      "purchases": 19,
-      "normalHP": 25168,
+      "time": 257.71666666676094,
+      "bossSeconds": 28.716666666686564,
+      "purchases": 18,
+      "normalHP": 37752,
       "bossState": [],
       "up": {
         "eDmg": 109,
         "eRate": 39,
         "eRange": 0,
         "lDmg": 85,
-        "lEff": 33,
+        "lEff": 32,
         "lRange": 0,
         "rDmg": 102,
         "rRate": 37,
@@ -874,10 +819,11 @@
       "milestones": [
         {
           "level": 1,
-          "time": 228.4833333334073,
+          "time": 249.96666666675773,
           "hp": 1120,
           "maxHP": 1120,
-          "earned": 83360
+          "earned": 83360,
+          "guardianSeconds": 39.73333333336495
         }
       ],
       "phase": "combat",
@@ -887,17 +833,17 @@
       "breached": 0,
       "earned": 83360,
       "expected": 70619,
-      "time": 228.4833333334073,
-      "bossSeconds": 22.050000000017548,
+      "time": 249.96666666675773,
+      "bossSeconds": 39.73333333336495,
       "purchases": 20,
-      "normalHP": 26678,
+      "normalHP": 40017,
       "bossState": [],
       "up": {
         "eDmg": 109,
         "eRate": 39,
         "eRange": 0,
         "lDmg": 86,
-        "lEff": 33,
+        "lEff": 32,
         "lRange": 0,
         "rDmg": 103,
         "rRate": 37,
@@ -910,7 +856,7 @@
       "craft": {
         "owned": true,
         "up": {
-          "dmg": 69,
+          "dmg": 70,
           "spd": 0,
           "rate": 24,
           "radius": 0,
@@ -926,18 +872,12 @@
       "won": true,
       "milestones": [
         {
-          "level": 19,
-          "time": 0.016666666666666666,
-          "hp": 1195,
-          "maxHP": 1195,
-          "earned": 0
-        },
-        {
           "level": 20,
-          "time": 225.166666666738,
+          "time": 237.35000000008102,
           "hp": 1195,
           "maxHP": 1195,
-          "earned": 129021
+          "earned": 129021,
+          "guardianSeconds": 29.450000000023437
         }
       ],
       "phase": "combat",
@@ -947,17 +887,17 @@
       "breached": 0,
       "earned": 129021,
       "expected": 108764,
-      "time": 225.166666666738,
-      "bossSeconds": 20.200000000016075,
+      "time": 237.35000000008102,
+      "bossSeconds": 29.450000000023437,
       "purchases": 18,
-      "normalHP": 36083,
+      "normalHP": 54125,
       "bossState": [],
       "up": {
         "eDmg": 116,
         "eRate": 40,
         "eRange": 0,
         "lDmg": 96,
-        "lEff": 37,
+        "lEff": 36,
         "lRange": 0,
         "rDmg": 112,
         "rRate": 40,
@@ -970,7 +910,7 @@
       "craft": {
         "owned": true,
         "up": {
-          "dmg": 80,
+          "dmg": 81,
           "spd": 0,
           "rate": 24,
           "radius": 0,
@@ -986,18 +926,12 @@
       "won": true,
       "milestones": [
         {
-          "level": 39,
-          "time": 0.016666666666666666,
-          "hp": 1270,
-          "maxHP": 1270,
-          "earned": 0
-        },
-        {
           "level": 40,
-          "time": 229.08333333340778,
+          "time": 247.26666666675558,
           "hp": 1270,
           "maxHP": 1270,
-          "earned": 205510
+          "earned": 205510,
+          "guardianSeconds": 36.16666666669545
         }
       ],
       "phase": "combat",
@@ -1007,10 +941,10 @@
       "breached": 0,
       "earned": 205510,
       "expected": 174211,
-      "time": 229.08333333340778,
-      "bossSeconds": 21.56666666668383,
+      "time": 247.26666666675558,
+      "bossSeconds": 36.16666666669545,
       "purchases": 12,
-      "normalHP": 54398,
+      "normalHP": 81596,
       "bossState": [],
       "up": {
         "eDmg": 124,
@@ -1047,23 +981,24 @@
       "milestones": [
         {
           "level": 1,
-          "time": 231.16666666674277,
-          "hp": 1295,
+          "time": 296.83333333339203,
+          "hp": 239,
           "maxHP": 1295,
-          "earned": 215323
+          "earned": 203427,
+          "guardianSeconds": 55.03333333330747
         }
       ],
       "phase": "combat",
-      "hp": 1295,
+      "hp": 239,
       "maxHP": 1295,
-      "kills": 369,
-      "breached": 0,
-      "earned": 215323,
+      "kills": 322,
+      "breached": 10,
+      "earned": 203427,
       "expected": 183518,
-      "time": 231.16666666674277,
-      "bossSeconds": 25.116666666686655,
+      "time": 296.83333333339203,
+      "bossSeconds": 55.03333333330747,
       "purchases": 12,
-      "normalHP": 57662,
+      "normalHP": 86492,
       "bossState": [],
       "up": {
         "eDmg": 124,
@@ -1099,31 +1034,25 @@
       "won": true,
       "milestones": [
         {
-          "level": 22,
-          "time": 0.016666666666666666,
-          "hp": 1370,
-          "maxHP": 1370,
-          "earned": 0
-        },
-        {
           "level": 23,
-          "time": 228.1500000000737,
-          "hp": 1370,
+          "time": 259.36666666675944,
+          "hp": 1305,
           "maxHP": 1370,
-          "earned": 355714
+          "earned": 354132,
+          "guardianSeconds": 38.81666666669179
         }
       ],
       "phase": "combat",
-      "hp": 1370,
+      "hp": 1305,
       "maxHP": 1370,
-      "kills": 376,
-      "breached": 0,
-      "earned": 355714,
+      "kills": 373,
+      "breached": 1,
+      "earned": 354132,
       "expected": 301774,
-      "time": 228.1500000000737,
-      "bossSeconds": 24.283333333352658,
+      "time": 259.36666666675944,
+      "bossSeconds": 38.81666666669179,
       "purchases": 9,
-      "normalHP": 80039,
+      "normalHP": 120059,
       "bossState": [],
       "up": {
         "eDmg": 134,
@@ -1159,31 +1088,25 @@
       "won": true,
       "milestones": [
         {
-          "level": 44,
-          "time": 0.016666666666666666,
-          "hp": 1445,
-          "maxHP": 1445,
-          "earned": 0
-        },
-        {
           "level": 45,
-          "time": 229.6500000000749,
-          "hp": 1445,
+          "time": 273.5333333334132,
+          "hp": 1436,
           "maxHP": 1445,
-          "earned": 590764
+          "earned": 589744,
+          "guardianSeconds": 54.083333333346445
         }
       ],
       "phase": "combat",
-      "hp": 1445,
+      "hp": 1436,
       "maxHP": 1445,
-      "kills": 379,
+      "kills": 376,
       "breached": 0,
-      "earned": 590764,
+      "earned": 589744,
       "expected": 503884,
-      "time": 229.6500000000749,
-      "bossSeconds": 24.933333333353175,
+      "time": 273.5333333334132,
+      "bossSeconds": 54.083333333346445,
       "purchases": 9,
-      "normalHP": 125265,
+      "normalHP": 187897,
       "bossState": [],
       "up": {
         "eDmg": 143,
@@ -1220,23 +1143,24 @@
       "milestones": [
         {
           "level": 1,
-          "time": 222.15000000006893,
-          "hp": 1445,
+          "time": 262.66666666675644,
+          "hp": 677,
           "maxHP": 1445,
-          "earned": 570736
+          "earned": 565518,
+          "guardianSeconds": 41.01666666668791
         }
       ],
       "phase": "combat",
-      "hp": 1445,
+      "hp": 677,
       "maxHP": 1445,
-      "kills": 510,
-      "breached": 0,
-      "earned": 570736,
+      "kills": 463,
+      "breached": 1,
+      "earned": 565518,
       "expected": 478426,
-      "time": 222.15000000006893,
-      "bossSeconds": 23.316666666685222,
+      "time": 262.66666666675644,
+      "bossSeconds": 41.01666666668791,
       "purchases": 8,
-      "normalHP": 141294,
+      "normalHP": 211941,
       "bossState": [],
       "up": {
         "eDmg": 143,
@@ -1272,31 +1196,25 @@
       "won": true,
       "milestones": [
         {
-          "level": 24,
-          "time": 0.016666666666666666,
-          "hp": 1520,
-          "maxHP": 1520,
-          "earned": 0
-        },
-        {
           "level": 25,
-          "time": 223.21666666673644,
-          "hp": 1520,
+          "time": 262.066666666757,
+          "hp": 803,
           "maxHP": 1520,
-          "earned": 977193
+          "earned": 958734,
+          "guardianSeconds": 38.083333333353266
         }
       ],
       "phase": "combat",
-      "hp": 1520,
+      "hp": 803,
       "maxHP": 1520,
-      "kills": 513,
-      "breached": 0,
-      "earned": 977193,
+      "kills": 451,
+      "breached": 1,
+      "earned": 958734,
       "expected": 817020,
-      "time": 223.21666666673644,
-      "bossSeconds": 22.333333333351106,
+      "time": 262.066666666757,
+      "bossSeconds": 38.083333333353266,
       "purchases": 6,
-      "normalHP": 218360,
+      "normalHP": 327540,
       "bossState": [],
       "up": {
         "eDmg": 153,
@@ -1332,31 +1250,25 @@
       "won": true,
       "milestones": [
         {
-          "level": 49,
-          "time": 0.016666666666666666,
-          "hp": 1595,
-          "maxHP": 1595,
-          "earned": 0
-        },
-        {
           "level": 50,
-          "time": 221.65000000006853,
-          "hp": 1595,
+          "time": 261.46666666675753,
+          "hp": 1076,
           "maxHP": 1595,
-          "earned": 1740911
+          "earned": 1731322,
+          "guardianSeconds": 38.75000000002149
         }
       ],
       "phase": "combat",
-      "hp": 1595,
+      "hp": 1076,
       "maxHP": 1595,
-      "kills": 519,
-      "breached": 0,
-      "earned": 1740911,
+      "kills": 487,
+      "breached": 2,
+      "earned": 1731322,
       "expected": 1459357,
-      "time": 221.65000000006853,
-      "bossSeconds": 23.266666666685182,
+      "time": 261.46666666675753,
+      "bossSeconds": 38.75000000002149,
       "purchases": 5,
-      "normalHP": 348124,
+      "normalHP": 522186,
       "bossState": [],
       "up": {
         "eDmg": 162,
@@ -1393,23 +1305,24 @@
       "milestones": [
         {
           "level": 1,
-          "time": 221.13333333340145,
-          "hp": 1595,
+          "time": 256.3500000000955,
+          "hp": 597,
           "maxHP": 1595,
-          "earned": 1703481
+          "earned": 1650336,
+          "guardianSeconds": 41.80000000003264
         }
       ],
       "phase": "combat",
-      "hp": 1595,
+      "hp": 597,
       "maxHP": 1595,
-      "kills": 405,
-      "breached": 0,
-      "earned": 1703481,
+      "kills": 361,
+      "breached": 3,
+      "earned": 1650336,
       "expected": 1451197,
-      "time": 221.13333333340145,
-      "bossSeconds": 24.15000000001922,
+      "time": 256.3500000000955,
+      "bossSeconds": 41.80000000003264,
       "purchases": 5,
-      "normalHP": 369011,
+      "normalHP": 553517,
       "bossState": [],
       "up": {
         "eDmg": 163,
@@ -1445,31 +1358,25 @@
       "won": true,
       "milestones": [
         {
-          "level": 27,
-          "time": 0.016666666666666666,
-          "hp": 1620,
-          "maxHP": 1620,
-          "earned": 0
-        },
-        {
           "level": 28,
-          "time": 216.46666666673107,
-          "hp": 1620,
+          "time": 251.11666666675865,
+          "hp": 1039,
           "maxHP": 1620,
-          "earned": 3124957
+          "earned": 3062751,
+          "guardianSeconds": 39.233333333364556
         }
       ],
       "phase": "combat",
-      "hp": 1620,
+      "hp": 1039,
       "maxHP": 1620,
-      "kills": 412,
-      "breached": 0,
-      "earned": 3124957,
+      "kills": 383,
+      "breached": 2,
+      "earned": 3062751,
       "expected": 2654806,
-      "time": 216.46666666673107,
-      "bossSeconds": 22.283333333351067,
+      "time": 251.11666666675865,
+      "bossSeconds": 39.233333333364556,
       "purchases": 7,
-      "normalHP": 616470,
+      "normalHP": 924705,
       "bossState": [],
       "up": {
         "eDmg": 174,
@@ -1505,31 +1412,25 @@
       "won": true,
       "milestones": [
         {
-          "level": 54,
-          "time": 0.016666666666666666,
-          "hp": 1620,
-          "maxHP": 1620,
-          "earned": 0
-        },
-        {
           "level": 55,
-          "time": 218.28333333339918,
-          "hp": 1620,
+          "time": 257.1833333334281,
+          "hp": 891,
           "maxHP": 1620,
-          "earned": 5806054
+          "earned": 5655709,
+          "guardianSeconds": 42.18333333336486
         }
       ],
       "phase": "combat",
-      "hp": 1620,
+      "hp": 891,
       "maxHP": 1620,
-      "kills": 415,
-      "breached": 0,
-      "earned": 5806054,
+      "kills": 381,
+      "breached": 3,
+      "earned": 5655709,
       "expected": 4953466,
-      "time": 218.28333333339918,
-      "bossSeconds": 22.250000000017707,
+      "time": 257.1833333334281,
+      "bossSeconds": 42.18333333336486,
       "purchases": 7,
-      "normalHP": 1073401,
+      "normalHP": 1610101,
       "bossState": [],
       "up": {
         "eDmg": 185,
@@ -1566,23 +1467,24 @@
       "milestones": [
         {
           "level": 1,
-          "time": 218.56666666673274,
-          "hp": 1620,
+          "time": 265.51666666675385,
+          "hp": 591,
           "maxHP": 1620,
-          "earned": 6070745
+          "earned": 5888054,
+          "guardianSeconds": 42.166666666683966
         }
       ],
       "phase": "combat",
-      "hp": 1620,
+      "hp": 591,
       "maxHP": 1620,
-      "kills": 434,
-      "breached": 0,
-      "earned": 6070745,
+      "kills": 401,
+      "breached": 4,
+      "earned": 5888054,
       "expected": 5165505,
-      "time": 218.56666666673274,
-      "bossSeconds": 22.716666666684745,
-      "purchases": 7,
-      "normalHP": 1137805,
+      "time": 265.51666666675385,
+      "bossSeconds": 42.166666666683966,
+      "purchases": 6,
+      "normalHP": 1706707,
       "bossState": [],
       "up": {
         "eDmg": 186,
@@ -1602,7 +1504,7 @@
       "craft": {
         "owned": true,
         "up": {
-          "dmg": 158,
+          "dmg": 157,
           "spd": 0,
           "rate": 24,
           "radius": 0,
@@ -1618,18 +1520,12 @@
       "won": true,
       "milestones": [
         {
-          "level": 29,
-          "time": 0.016666666666666666,
-          "hp": 1620,
-          "maxHP": 1620,
-          "earned": 0
-        },
-        {
           "level": 30,
-          "time": 217.15000000006495,
+          "time": 239.16666666674914,
           "hp": 1620,
           "maxHP": 1620,
-          "earned": 11579957
+          "earned": 11579957,
+          "guardianSeconds": 39.483333333364754
         }
       ],
       "phase": "combat",
@@ -1639,10 +1535,10 @@
       "breached": 0,
       "earned": 11579957,
       "expected": 9829985,
-      "time": 217.15000000006495,
-      "bossSeconds": 20.766666666683193,
+      "time": 239.16666666674914,
+      "bossSeconds": 39.483333333364754,
       "purchases": 7,
-      "normalHP": 1869537,
+      "normalHP": 2523875,
       "bossState": [],
       "up": {
         "eDmg": 198,
@@ -1678,31 +1574,25 @@
       "won": true,
       "milestones": [
         {
-          "level": 59,
-          "time": 0.016666666666666666,
-          "hp": 1620,
-          "maxHP": 1620,
-          "earned": 0
-        },
-        {
           "level": 60,
-          "time": 221.73333333340193,
-          "hp": 1620,
+          "time": 254.26666666676115,
+          "hp": 1021,
           "maxHP": 1620,
-          "earned": 22919309
+          "earned": 22031609,
+          "guardianSeconds": 36.15000000002877
         }
       ],
       "phase": "combat",
-      "hp": 1620,
+      "hp": 1021,
       "maxHP": 1620,
-      "kills": 442,
-      "breached": 0,
-      "earned": 22919309,
+      "kills": 404,
+      "breached": 8,
+      "earned": 22031609,
       "expected": 19536907,
-      "time": 221.73333333340193,
-      "bossSeconds": 22.983333333351624,
+      "time": 254.26666666676115,
+      "bossSeconds": 36.15000000002877,
       "purchases": 0,
-      "normalHP": 2924302,
+      "normalHP": 3947806,
       "bossState": [],
       "up": {
         "eDmg": 199,

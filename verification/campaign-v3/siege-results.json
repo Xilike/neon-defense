@@ -1,0 +1,15 @@
+{
+  "siege": {
+    "hiddenDoesNotStart": true,
+    "firstValidHitStarts": true,
+    "hitsDoNotReset": true,
+    "noEarlyRush": true,
+    "rushMovesForward": true,
+    "rushResistsPull": true,
+    "guardianBreachDefeatsAttempt": true,
+    "earnedCoinsRetained": true,
+    "retryHasFreshSiege": true,
+    "planFromFixedTable": true
+  },
+  "passed": true
+}

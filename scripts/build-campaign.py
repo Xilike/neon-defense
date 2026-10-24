@@ -211,6 +211,46 @@ function renderLabEquipmentInfo(){
 '''
 replace('/* ================= render ================= */',labEquipment+'\n/* ================= render ================= */')
 
+# v3.1: fixed-stage guardian siege checks actual damage, never purchased levels.
+replace("v3.0.2 Campaign · progress saves locally","v3.1 Campaign · progress saves locally")
+replace("e.stageBoss=false;e.finalGalaxyBoss=false;e.stageGoal=0;", "e.stageBoss=false;e.finalGalaxyBoss=false;e.stageGoal=0;e.guardianEngagedAt=null;e.guardianEnraged=false;")
+replace("  if(e.bonusGold)return damageGoldOrb", "  if(e.stageBoss&&e.guardianEngagedAt===null&&dmg>0)e.guardianEngagedAt=S.time;\n  if(e.bonusGold)return damageGoldOrb")
+replace("    e.wob += dt * 3;", "    updateGuardianSiege(e,dt);\n    e.wob += dt * 3;")
+replace("e.t=Math.max(minimumVisibleDepth(e),e.t-st.pull*(1-dist/st.pulseR)*(e.boss?.18:1));", "if(!e.guardianEnraged)e.t=Math.max(minimumVisibleDepth(e),e.t-st.pull*(1-dist/st.pulseR)*(e.boss?.18:1));")
+replace("  if(e.stageBoss){galaxyProgress(G.id).stageBossId=null;Director.t=8;} // guardian escape never completes a level", "  if(e.stageBoss){galaxyProgress(G.id).stageBossId=null;pKill(enemies,e);S.baseHP=0;updateBaseHUD();gameOver();return;} // A guardian reaching the line defeats this attempt; no infinite respawn.")
+replace("'GUARDIAN · '+G.name", "'GUARDIAN · '+G.name+guardianSiegeLabel()")
+extra=\
+'''
+function guardianSiegeLabel(){
+ const boss=enemyById(galaxyProgress(G.id).stageBossId);
+ if(!boss||boss.guardianEngagedAt===null)return ' · SIEGE';
+ return boss.guardianEnraged?' · SIEGE RUSH!':' · '+Math.ceil(Math.max(0,levelSpec().guardianBattleSeconds-(S.time-boss.guardianEngagedAt)))+'s TO RUSH';
+}
+function updateGuardianSiege(e,dt){
+ if(!e.stageBoss)return;
+ if(e.guardianEngagedAt===null){if(e.t>=ND_CAMPAIGN.rules.guardianHoldDepth)e.guardianEngagedAt=S.time;else return;}
+ if(S.time-e.guardianEngagedAt>=levelSpec().guardianBattleSeconds){
+  if(!e.guardianEnraged){e.guardianEnraged=true;const p=w2s(e.lane,e.t);floatText(p.x,p.y-30,'⚠ SIEGE RUSH!','#ff866a',true);SFX.breach();}
+  e.slowUntil=0;e.t+=dt*ND_CAMPAIGN.rules.guardianRushSpeed;
+ }
+}
+'''
+replace('/* ================= render ================= */',extra+'\n/* ================= render ================= */')
+
+replace("e.speed=.012*levelSpec().speed;", "e.speed=ND_CAMPAIGN.rules.guardianApproachSpeed*levelSpec().speed;")
+replace("    e.t += sp * dt;", "    e.t += sp * dt;\n    if(e.stageBoss&&!e.guardianEnraged)e.t=Math.min(ND_CAMPAIGN.rules.guardianHoldDepth,e.t);")
+replace("n.maxhp*.19", "n.maxhp*ND_CAMPAIGN.rules.novaDeathShock")
+# Show the authored stage plan without enforcing one weapon combination.
+replace("h = '<div class=\"upgradeBalance\">", "h = '<div style=\"font-size:11px;line-height:1.6;color:#92d9e9;padding:4px\">'+campaignUpgradePlan()+'</div>'+ '<div class=\"upgradeBalance\">")
+replace('/* ================= render ================= */',\
+'''
+function campaignUpgradePlan(){
+ const target=levelSpec().referenceEnd,keys={ELECTRIC:'eDmg',LASER:'lDmg',ROCKET:'rDmg',VOID:'vDmg'};
+ const plan=Object.entries(keys).filter(([kind])=>target.weapons[kind]).map(([kind,key])=>SAVE.weapons[kind]?kind[0]+': '+(1+SAVE.up[key])+'/'+(1+target.up[key]):'BUY '+kind+' Lv.'+(1+target.up[key])).join(' / ');
+ return 'هدف تطوير هذه المرحلة · '+plan+' · بدائل توزيع القوة متاحة';
+}
+'''+'\n/* ================= render ================= */')
+
 normal=root/'releases/campaign-v3';test=root/'releases/campaign-v3-lab'
 for folder,flag in [(normal,False),(test,True)]:
  folder.mkdir(exist_ok=True)
@@ -221,5 +261,5 @@ for folder,flag in [(normal,False),(test,True)]:
  (folder/'balance.js').write_text('(function(g){const c=g.ND_CAMPAIGN;g.ND_BALANCE=Object.freeze({config:c.config,weaponStats:c.weaponStats,weaponDps:c.weaponDps,price:c.price});})(globalThis);\n')
  (folder/'levels.js').write_text('(function(g){const c=g.ND_CAMPAIGN;g.ND_LEVELS=Object.freeze({version:3,stages:c.tables,stage:c.stage,deck:c.deck});})(globalThis);\n')
  files={p.name:{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(folder.iterdir()) if p.name!='integrity.json'}
- (folder/'integrity.json').write_text(json.dumps({'version':'3.0.2-campaign','profile':'lab' if flag else 'normal','files':files},indent=2)+'\n')
+ (folder/'integrity.json').write_text(json.dumps({'version':'3.1.0-campaign','profile':'lab' if flag else 'normal','files':files},indent=2)+'\n')
 print('Built campaign v3 normal and all-galaxies-open lab.')

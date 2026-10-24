@@ -1,0 +1,206 @@
+{
+  "mode": "fresh-natural-aurora",
+  "cases": [
+    {
+      "followPlan": true,
+      "id": "nova",
+      "g": 5,
+      "lv": 2,
+      "won": true,
+      "milestones": [
+        {
+          "level": 2,
+          "time": 252.33333333342628,
+          "hp": 975,
+          "maxHP": 1145,
+          "earned": 85426,
+          "guardianSeconds": 32.68333333335934
+        },
+        {
+          "level": 3,
+          "time": 506.5999999998679,
+          "hp": 985,
+          "maxHP": 1145,
+          "earned": 173387,
+          "guardianSeconds": 37.36666666663268
+        },
+        {
+          "level": 4,
+          "time": 753.7333333329765,
+          "hp": 995,
+          "maxHP": 1145,
+          "earned": 263232,
+          "guardianSeconds": 36.34999999996694
+        },
+        {
+          "level": 5,
+          "time": 995.2499999994235,
+          "hp": 1005,
+          "maxHP": 1145,
+          "earned": 355246,
+          "guardianSeconds": 30.533333333305563
+        },
+        {
+          "level": 6,
+          "time": 1245.166666665863,
+          "hp": 1040,
+          "maxHP": 1170,
+          "earned": 449524,
+          "guardianSeconds": 34.633333333301835
+        },
+        {
+          "level": 7,
+          "time": 1493.566666665637,
+          "hp": 1050,
+          "maxHP": 1170,
+          "earned": 545869,
+          "guardianSeconds": 34.76666666663505
+        },
+        {
+          "level": 8,
+          "time": 1740.6666666654123,
+          "hp": 1060,
+          "maxHP": 1170,
+          "earned": 644621,
+          "guardianSeconds": 34.68333333330179
+        },
+        {
+          "level": 9,
+          "time": 1980.233333331861,
+          "hp": 1070,
+          "maxHP": 1170,
+          "earned": 745313,
+          "guardianSeconds": 28.699999999973898
+        },
+        {
+          "level": 10,
+          "time": 2225.100000000721,
+          "hp": 1080,
+          "maxHP": 1170,
+          "earned": 848332,
+          "guardianSeconds": 33.466666667092795
+        },
+        {
+          "level": 11,
+          "time": 2472.3333333372025,
+          "hp": 1090,
+          "maxHP": 1170,
+          "earned": 953959,
+          "guardianSeconds": 34.45000000043865
+        },
+        {
+          "level": 12,
+          "time": 2720.0166666736895,
+          "hp": 1125,
+          "maxHP": 1195,
+          "earned": 1061631,
+          "guardianSeconds": 34.13333333376795
+        },
+        {
+          "level": 13,
+          "time": 2967.3333333435053,
+          "hp": 1135,
+          "maxHP": 1195,
+          "earned": 1171634,
+          "guardianSeconds": 33.96666666709916
+        },
+        {
+          "level": 14,
+          "time": 3209.816666679926,
+          "hp": 1145,
+          "maxHP": 1195,
+          "earned": 1284379,
+          "guardianSeconds": 28.76666666703295
+        },
+        {
+          "level": 15,
+          "time": 3446.666666682942,
+          "hp": 1155,
+          "maxHP": 1195,
+          "earned": 1399511,
+          "guardianSeconds": 29.08333333370365
+        },
+        {
+          "level": 16,
+          "time": 3690.50000001938,
+          "hp": 1165,
+          "maxHP": 1195,
+          "earned": 1517188,
+          "guardianSeconds": 34.350000000437376
+        },
+        {
+          "level": 17,
+          "time": 3928.266666689074,
+          "hp": 1175,
+          "maxHP": 1195,
+          "earned": 1637746,
+          "guardianSeconds": 29.06666666703677
+        },
+        {
+          "level": 18,
+          "time": 4169.05000002348,
+          "hp": 1185,
+          "maxHP": 1195,
+          "earned": 1760718,
+          "guardianSeconds": 34.51666666616438
+        },
+        {
+          "level": 19,
+          "time": 4412.050000019944,
+          "hp": 1195,
+          "maxHP": 1195,
+          "earned": 1886592,
+          "guardianSeconds": 34.6666666661622
+        },
+        {
+          "level": 20,
+          "time": 4656.533333349719,
+          "hp": 1195,
+          "maxHP": 1195,
+          "earned": 2015613,
+          "guardianSeconds": 34.599999999496504
+        }
+      ],
+      "phase": "combat",
+      "hp": 1195,
+      "maxHP": 1195,
+      "kills": 7994,
+      "breached": 0,
+      "earned": 2015613,
+      "expected": 72709,
+      "time": 4656.533333349719,
+      "bossSeconds": 34.599999999496504,
+      "purchases": 61,
+      "normalHP": 40337,
+      "bossState": [],
+      "up": {
+        "eDmg": 116,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 97,
+        "lEff": 36,
+        "lRange": 0,
+        "rDmg": 113,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 104,
+        "vRate": 39,
+        "vPull": 0,
+        "base": 43
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 67,
+          "spd": 0,
+          "rate": 21,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "passed": 1
+}
