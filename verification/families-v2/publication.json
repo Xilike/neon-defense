@@ -1,0 +1,78 @@
+{
+  "release": "3.1.0-campaign",
+  "presentation": "families-v2",
+  "baseRepositoryCommit": "ce8efc25ae05e5ce8c3fe75ec011902dbb41ed8d",
+  "unchangedGameplayCommit": "e785c74add35a31be33a9abb791303583b8c87f5",
+  "authorization": "Publish supplied families.js and health-ring.js without affecting prices, strength, weapons or gameplay.",
+  "normal": {
+    "id": "dpl_D4wLoSGRwhyaGvSokLA5vG6Y11ER",
+    "url": "neon-defense-independent-hqgtgjvsl-xilike3-8922s-projects.vercel.app",
+    "state": "READY",
+    "target": "production"
+  },
+  "lab": {
+    "id": "dpl_13wFvsE2FqzCErP2o3zSuaCRsroE",
+    "url": "neon-defense-sd2-preview-2mtnmhptm-xilike3-8922s-projects.vercel.app",
+    "state": "READY",
+    "target": null
+  },
+  "previousPlay": "dpl_6qsNSzVb4YGeNRkQTYiiVWbz6AaR",
+  "previousLab": "dpl_HEnubqA5WkJfBMo9Kr5ic6u73RTi",
+  "playURL": "https://neon-defense-play-xilike.vercel.app",
+  "labURL": "https://neon-defense-lab-xilike.vercel.app",
+  "deployedBytes": [
+    {
+      "profile": "normal",
+      "file": "index.html",
+      "match": true,
+      "deployment": "dpl_D4wLoSGRwhyaGvSokLA5vG6Y11ER"
+    },
+    {
+      "profile": "normal",
+      "file": "campaign.js",
+      "match": true,
+      "deployment": "dpl_D4wLoSGRwhyaGvSokLA5vG6Y11ER"
+    },
+    {
+      "profile": "normal",
+      "file": "runtime-config.js",
+      "match": true,
+      "deployment": "dpl_D4wLoSGRwhyaGvSokLA5vG6Y11ER"
+    },
+    {
+      "profile": "normal",
+      "file": "integrity.json",
+      "match": true,
+      "deployment": "dpl_D4wLoSGRwhyaGvSokLA5vG6Y11ER"
+    },
+    {
+      "profile": "lab",
+      "file": "index.html",
+      "match": true,
+      "deployment": "dpl_13wFvsE2FqzCErP2o3zSuaCRsroE"
+    },
+    {
+      "profile": "lab",
+      "file": "campaign.js",
+      "match": true,
+      "deployment": "dpl_13wFvsE2FqzCErP2o3zSuaCRsroE"
+    },
+    {
+      "profile": "lab",
+      "file": "runtime-config.js",
+      "match": true,
+      "deployment": "dpl_13wFvsE2FqzCErP2o3zSuaCRsroE"
+    },
+    {
+      "profile": "lab",
+      "file": "integrity.json",
+      "match": true,
+      "deployment": "dpl_13wFvsE2FqzCErP2o3zSuaCRsroE"
+    }
+  ],
+  "anonymousPlay": {
+    "status": 200,
+    "presentationHTMLMatches": true,
+    "expectedHTMLSHA256": "844e715ac36655f7536699ff4b470635ad97ebb753c7f8a584f975299dc1771f"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "nonVisualFilesIdentical": true,
+  "painters": {
+    "cases": 810,
+    "noStateWrites": true,
+    "noGameplayRandomCalls": true
+  },
+  "combat": [
+    {
+      "galaxy": 1,
+      "identical": true,
+      "phase": "combat",
+      "coins": 865
+    },
+    {
+      "galaxy": 2,
+      "identical": true,
+      "phase": "combat",
+      "coins": 50133
+    },
+    {
+      "galaxy": 3,
+      "identical": true,
+      "phase": "combat",
+      "coins": 186790
+    },
+    {
+      "galaxy": 4,
+      "identical": true,
+      "phase": "combat",
+      "coins": 488230
+    },
+    {
+      "galaxy": 5,
+      "identical": true,
+      "phase": "combat",
+      "coins": 1187438
+    },
+    {
+      "galaxy": 6,
+      "identical": true,
+      "phase": "over",
+      "coins": 2873532
+    },
+    {
+      "galaxy": 7,
+      "identical": true,
+      "phase": "combat",
+      "coins": 7511180
+    },
+    {
+      "galaxy": 8,
+      "identical": true,
+      "phase": "combat",
+      "coins": 22016983
+    },
+    {
+      "galaxy": 9,
+      "identical": true,
+      "phase": "combat",
+      "coins": 66620533
+    },
+    {
+      "galaxy": 10,
+      "identical": true,
+      "phase": "combat",
+      "coins": 225871680
+    }
+  ],
+  "passed": true
+}

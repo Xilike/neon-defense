@@ -1,15 +1,31 @@
-# Current game: campaign balance v3.1.0
+# Current game: balance 3.1.0 + supplied Families v2 visuals
 
 Play: https://neon-defense-play-xilike.vercel.app
 All-galaxies-open lab: https://neon-defense-lab-xilike.vercel.app
-Production: neon-defense-independent, dpl_6qsNSzVb4YGeNRkQTYiiVWbz6AaR.
-The user explicitly approved publishing 3.1; play alias points to this production
-deployment. Code snapshot e785c74; publication.json records verification/rollback.
-Roots: releases/campaign-v3/ and releases/campaign-v3-lab/.
-Build: python scripts/build-campaign.py
+Production: neon-defense-independent, dpl_D4wLoSGRwhyaGvSokLA5vG6Y11ER.
+The user approved publishing 3.1 and then explicitly approved the two supplied
+visual painters only. Balance/gameplay snapshot remains e785c74. Current
+publication/rollback evidence: verification/families-v2/publication.json.
+Roots: releases/families-v2/ and releases/families-v2-lab/.
+Build: python scripts/build-campaign.py then python scripts/build-families.py
 Single authority: gameplay/campaign-v3/campaign.js (including frozen rules).
 Evidence: verification/campaign-v3/RELEASE.md and its JSON reports.
 Generator input releases/events-v2.1/index.html is preserved historical source.
+
+## Supplied enemy artwork (presentation only)
+
+The original families.js and health-ring.js attachments are preserved in
+gameplay/presentation/families-v2/.
+The new build replaces only drawEnemyBody and the old damaged-only HP bar,
+introducing the supplied family helpers and segmented drawOrbHealthRing. A canvas
+save/restore wrapper isolates painting state. Original type/shield/boss/target and
+special gold/composite markers/painters remain. No hitbox/radius changes.
+
+All six non-HTML config/model files match 3.1 exactly. Reversing only the two
+render substitutions reconstructs the original HTML byte-for-byte. 810 read-only
+paint fixtures, ten pairs of full rendered real-engine combat states (including
+RNG/save/active shots/enemies), and 48 touch cases pass. No gameplay mutation or
+RNG consumption is introduced. Evidence: verification/families-v2/.
 
 ## Current progression correction
 
@@ -92,7 +108,8 @@ deployed bytes via authenticated Vercel fetch. Never retry the blocked external
 Vercel-login browser probe: automatic review rejected its Sentry telemetry.
 Development stays on dev/neon-defense and preview snapshots in the existing
 neon-defense-sd2-preview project. The user approved production publication of
-3.1 only; preserve that stable production release during subsequent experiments.
+3.1 plus the supplied presentation layer only; preserve that stable production
+release during subsequent experiments.
 Main and immutable old deployment URLs remain unchanged.
 The unapproved UI alias stays on its old separate defense-wall candidate.
 Old root HTML/APK scripts are historical: never package them as the current game.
