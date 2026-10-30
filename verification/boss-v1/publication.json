@@ -1,0 +1,24 @@
+{
+  "release": "boss-v1-lab",
+  "date": "2026-10-30",
+  "sourceCommit": "b45cd4472a645b1ce8c34d7b78a9b9479a99b9df",
+  "deployment": "dpl_7FJAsEQRRz69Pm6KktgMBEv6w3Gr",
+  "url": "https://neon-defense-sd2-preview-eezcbvg0s-xilike3-8922s-projects.vercel.app",
+  "alias": "https://neon-defense-lab-xilike.vercel.app",
+  "target": "preview",
+  "state": "READY",
+  "previousLabDeployment": "dpl_13wFvsE2FqzCErP2o3zSuaCRsroE",
+  "productionUnchanged": "dpl_D4wLoSGRwhyaGvSokLA5vG6Y11ER",
+  "verifiedServedFiles": [
+    "index.html",
+    "campaign.js",
+    "balance.js",
+    "levels.js",
+    "runtime-config.js",
+    "manifest.webmanifest",
+    "integrity.json"
+  ],
+  "vercelConfig": "submitted as deployment configuration; /vercel.json is intentionally not served (404)",
+  "access": "Existing Vercel Authentication protection remains enabled. Authenticated alias HTML is exact. User receives a temporary share URL; no share credential stored in git.",
+  "anonymousCheck": "Redirects to Vercel login; not public. No protection settings changed."
+}

@@ -1,6 +1,8 @@
 # New lab experiment: guardian monsters (2026-10-30)
 
 Lab now tests releases/boss-v1-lab/, built by scripts/build-boss-preview.py.
+Deployment: dpl_7FJAsEQRRz69Pm6KktgMBEv6w3Gr (preview, READY).
+Publication and rollback: verification/boss-v1/publication.json.
 Stage guardian artwork + fixed reference-END siege timing only. See
 verification/boss-v1/RELEASE.md for math, validation and limitations.
 Normal production remains the approved Families v2 + balance 3.1 snapshot below.
