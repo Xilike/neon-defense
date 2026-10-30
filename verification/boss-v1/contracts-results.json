@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "stages": 375,
+  "unchanged": [
+    "prices",
+    "weapon stats",
+    "craft stats",
+    "normal enemies",
+    "boss HP",
+    "rewards",
+    "reference loadouts",
+    "save keys",
+    "stage order",
+    "targeting and input"
+  ],
+  "changed": [
+    "stage guardian painter",
+    "fixed referenceEnd guardian siege window with 1.2s animation/projectile allowance"
+  ]
+}

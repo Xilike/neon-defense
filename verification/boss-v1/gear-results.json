@@ -1,0 +1,1485 @@
+{
+  "mode": "active-focus",
+  "cases": [
+    {
+      "gearG": 1,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "CRAFT": 1416,
+        "VOID": 4368.949045312904,
+        "LASER": 3289.5254130229437,
+        "ELECTRIC": 68829.15117013798,
+        "ROCKET": 47688.89570126926,
+        "EMBER_BLAST": 25109.95749571305
+      },
+      "id": "ember",
+      "g": 1,
+      "lv": 10,
+      "won": false,
+      "milestones": [
+        {
+          "level": 9,
+          "time": 0.016666666666666666,
+          "hp": 320,
+          "maxHP": 320,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 320,
+      "kills": 73,
+      "breached": 16,
+      "earned": 1311,
+      "expected": 6424,
+      "time": 75.89999999999698,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 1789,
+      "bossState": [],
+      "up": {
+        "eDmg": 56,
+        "eRate": 19,
+        "eRange": 0,
+        "lDmg": 1,
+        "lEff": 1,
+        "lRange": 0,
+        "rDmg": 27,
+        "rRate": 10,
+        "rAoe": 0,
+        "vDmg": 2,
+        "vRate": 1,
+        "vPull": 0,
+        "base": 8
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 0,
+          "spd": 0,
+          "rate": 0,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 1,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 3075.9749999999985,
+        "LASER": 2213.6624999999985,
+        "ELECTRIC": 41525.84444762659,
+        "ROCKET": 36584.426544726426,
+        "CRAFT": 792,
+        "EMBER_BLAST": 12777.983507373228
+      },
+      "id": "ember",
+      "g": 1,
+      "lv": 20,
+      "won": false,
+      "milestones": [
+        {
+          "level": 19,
+          "time": 0.016666666666666666,
+          "hp": 320,
+          "maxHP": 320,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 320,
+      "kills": 33,
+      "breached": 14,
+      "earned": 576,
+      "expected": 8474,
+      "time": 44.9166666666654,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 3005,
+      "bossState": [],
+      "up": {
+        "eDmg": 56,
+        "eRate": 19,
+        "eRange": 0,
+        "lDmg": 1,
+        "lEff": 1,
+        "lRange": 0,
+        "rDmg": 27,
+        "rRate": 10,
+        "rAoe": 0,
+        "vDmg": 2,
+        "vRate": 1,
+        "vPull": 0,
+        "base": 8
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 0,
+          "spd": 0,
+          "rate": 0,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 2,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 64601.69480276006,
+        "LASER": 16622.603212973587,
+        "ELECTRIC": 451665.66971821844,
+        "ROCKET": 565239.3531816236,
+        "JADE_LINK": 295705.13680153224,
+        "CRAFT": 3477.599999999996
+      },
+      "id": "jade",
+      "g": 2,
+      "lv": 10,
+      "won": false,
+      "milestones": [
+        {
+          "level": 9,
+          "time": 0.016666666666666666,
+          "hp": 570,
+          "maxHP": 570,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 570,
+      "kills": 185,
+      "breached": 26,
+      "earned": 6647,
+      "expected": 10704,
+      "time": 165.15000000002357,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 4463,
+      "bossState": [],
+      "up": {
+        "eDmg": 70,
+        "eRate": 25,
+        "eRange": 0,
+        "lDmg": 20,
+        "lEff": 6,
+        "lRange": 0,
+        "rDmg": 61,
+        "rRate": 21,
+        "rAoe": 0,
+        "vDmg": 35,
+        "vRate": 11,
+        "vPull": 0,
+        "base": 18
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 1,
+          "spd": 0,
+          "rate": 0,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 2,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 30279.24511874648,
+        "LASER": 7202.9601594988435,
+        "ELECTRIC": 170487.34035494237,
+        "ROCKET": 262706.88695050834,
+        "CRAFT": 1146.6000000000001,
+        "JADE_LINK": 95399.482234937
+      },
+      "id": "jade",
+      "g": 2,
+      "lv": 20,
+      "won": false,
+      "milestones": [
+        {
+          "level": 19,
+          "time": 0.016666666666666666,
+          "hp": 570,
+          "maxHP": 570,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 570,
+      "kills": 38,
+      "breached": 21,
+      "earned": 1835,
+      "expected": 13609,
+      "time": 65.09999999999759,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 6112,
+      "bossState": [],
+      "up": {
+        "eDmg": 70,
+        "eRate": 25,
+        "eRange": 0,
+        "lDmg": 20,
+        "lEff": 6,
+        "lRange": 0,
+        "rDmg": 61,
+        "rRate": 21,
+        "rAoe": 0,
+        "vDmg": 35,
+        "vRate": 11,
+        "vPull": 0,
+        "base": 18
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 1,
+          "spd": 0,
+          "rate": 0,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 3,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 510386.87698821607,
+        "LASER": 126676.00214679954,
+        "ELECTRIC": 1395864.153094506,
+        "ROCKET": 1739402.0612189728,
+        "INDIGO_LINK": 101800.47433813232,
+        "CRAFT": 9775.205153803694
+      },
+      "id": "indigo",
+      "g": 3,
+      "lv": 10,
+      "won": false,
+      "milestones": [
+        {
+          "level": 9,
+          "time": 0.016666666666666666,
+          "hp": 870,
+          "maxHP": 870,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 870,
+      "kills": 311,
+      "breached": 4,
+      "earned": 21305,
+      "expected": 19719,
+      "time": 261.86666666675717,
+      "bossSeconds": 36.450000000018974,
+      "purchases": 0,
+      "normalHP": 8522,
+      "bossState": [],
+      "up": {
+        "eDmg": 81,
+        "eRate": 29,
+        "eRange": 0,
+        "lDmg": 52,
+        "lEff": 17,
+        "lRange": 0,
+        "rDmg": 74,
+        "rRate": 27,
+        "rAoe": 0,
+        "vDmg": 62,
+        "vRate": 21,
+        "vPull": 0,
+        "base": 30
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 13,
+          "spd": 0,
+          "rate": 4,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 3,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 240775.5499842086,
+        "LASER": 53572.44561993165,
+        "INDIGO_LINK": 56905.207596922104,
+        "ELECTRIC": 587234.8697485927,
+        "ROCKET": 922805.4860098073,
+        "CRAFT": 5204.391632812148
+      },
+      "id": "indigo",
+      "g": 3,
+      "lv": 20,
+      "won": false,
+      "milestones": [
+        {
+          "level": 19,
+          "time": 0.016666666666666666,
+          "hp": 870,
+          "maxHP": 870,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 870,
+      "kills": 106,
+      "breached": 25,
+      "earned": 9288,
+      "expected": 24763,
+      "time": 111.61666666666162,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 11437,
+      "bossState": [],
+      "up": {
+        "eDmg": 81,
+        "eRate": 29,
+        "eRange": 0,
+        "lDmg": 52,
+        "lEff": 17,
+        "lRange": 0,
+        "rDmg": 74,
+        "rRate": 27,
+        "rAoe": 0,
+        "vDmg": 62,
+        "vRate": 21,
+        "vPull": 0,
+        "base": 30
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 13,
+          "spd": 0,
+          "rate": 4,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 4,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "CRAFT": 18929.091690661502,
+        "VOID": 859024.0900172505,
+        "LASER": 282283.84290639946,
+        "ELECTRIC": 1757596.6444766063,
+        "ROCKET": 2825638.867720912
+      },
+      "id": "eclipse",
+      "g": 4,
+      "lv": 10,
+      "won": false,
+      "milestones": [
+        {
+          "level": 9,
+          "time": 0.016666666666666666,
+          "hp": 1020,
+          "maxHP": 1020,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1020,
+      "kills": 206,
+      "breached": 35,
+      "earned": 25100,
+      "expected": 36965,
+      "time": 188.66666666670895,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 20888,
+      "bossState": [],
+      "up": {
+        "eDmg": 95,
+        "eRate": 34,
+        "eRange": 0,
+        "lDmg": 75,
+        "lEff": 27,
+        "lRange": 0,
+        "rDmg": 87,
+        "rRate": 31,
+        "rAoe": 0,
+        "vDmg": 80,
+        "vRate": 28,
+        "vPull": 0,
+        "base": 36
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 32,
+          "spd": 0,
+          "rate": 9,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 4,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 455047.68882655125,
+        "LASER": 163201.0125741166,
+        "ELECTRIC": 796111.3660313834,
+        "ROCKET": 1538841.8867256101,
+        "CRAFT": 9085.790392333365
+      },
+      "id": "eclipse",
+      "g": 4,
+      "lv": 20,
+      "won": false,
+      "milestones": [
+        {
+          "level": 19,
+          "time": 0.016666666666666666,
+          "hp": 1020,
+          "maxHP": 1020,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1020,
+      "kills": 77,
+      "breached": 28,
+      "earned": 11469,
+      "expected": 46391,
+      "time": 91.3499999999961,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 26690,
+      "bossState": [],
+      "up": {
+        "eDmg": 95,
+        "eRate": 34,
+        "eRange": 0,
+        "lDmg": 75,
+        "lEff": 27,
+        "lRange": 0,
+        "rDmg": 87,
+        "rRate": 31,
+        "rAoe": 0,
+        "vDmg": 80,
+        "vRate": 28,
+        "vPull": 0,
+        "base": 36
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 32,
+          "spd": 0,
+          "rate": 9,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 5,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 2965427.537618439,
+        "LASER": 698558.0665796368,
+        "ELECTRIC": 4639485.2436098475,
+        "ROCKET": 11897098.270010725,
+        "CRAFT": 131280.73118201963,
+        "NOVA_SHOCK": 1452980.0264735739
+      },
+      "id": "nova",
+      "g": 5,
+      "lv": 10,
+      "won": false,
+      "milestones": [
+        {
+          "level": 9,
+          "time": 0.016666666666666666,
+          "hp": 1145,
+          "maxHP": 1145,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1145,
+      "kills": 411,
+      "breached": 0,
+      "earned": 97024,
+      "expected": 87007,
+      "time": 261.08333333342455,
+      "bossSeconds": 35.70000000001971,
+      "purchases": 0,
+      "normalHP": 42993,
+      "bossState": [],
+      "up": {
+        "eDmg": 109,
+        "eRate": 39,
+        "eRange": 0,
+        "lDmg": 86,
+        "lEff": 31,
+        "lRange": 0,
+        "rDmg": 103,
+        "rRate": 37,
+        "rAoe": 0,
+        "vDmg": 96,
+        "vRate": 37,
+        "vPull": 0,
+        "base": 41
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 57,
+          "spd": 0,
+          "rate": 19,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 5,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "CRAFT": 116744.89700822384,
+        "VOID": 2569883.7521558194,
+        "LASER": 540223.7437635273,
+        "ELECTRIC": 3806187.4012210364,
+        "ROCKET": 11079511.928810723,
+        "NOVA_SHOCK": 1374360.1973970344
+      },
+      "id": "nova",
+      "g": 5,
+      "lv": 20,
+      "won": false,
+      "milestones": [
+        {
+          "level": 19,
+          "time": 0.016666666666666666,
+          "hp": 1145,
+          "maxHP": 1145,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1145,
+      "kills": 273,
+      "breached": 18,
+      "earned": 89734,
+      "expected": 108764,
+      "time": 206.4666666667231,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 54125,
+      "bossState": [],
+      "up": {
+        "eDmg": 109,
+        "eRate": 39,
+        "eRange": 0,
+        "lDmg": 86,
+        "lEff": 31,
+        "lRange": 0,
+        "rDmg": 103,
+        "rRate": 37,
+        "rAoe": 0,
+        "vDmg": 96,
+        "vRate": 37,
+        "vPull": 0,
+        "base": 41
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 57,
+          "spd": 0,
+          "rate": 19,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 6,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 6353924.353033345,
+        "LASER": 3492760.3060090696,
+        "ELECTRIC": 15185829.780719815,
+        "ROCKET": 23003131.92878565,
+        "CRAFT": 516196.30973750853
+      },
+      "id": "cryon",
+      "g": 6,
+      "lv": 10,
+      "won": false,
+      "milestones": [
+        {
+          "level": 9,
+          "time": 0.016666666666666666,
+          "hp": 1295,
+          "maxHP": 1295,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1295,
+      "kills": 312,
+      "breached": 19,
+      "earned": 231429,
+      "expected": 226434,
+      "time": 308.45000000004814,
+      "bossSeconds": 63.083333333294064,
+      "purchases": 0,
+      "normalHP": 92922,
+      "bossState": [],
+      "up": {
+        "eDmg": 125,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 106,
+        "lEff": 37,
+        "lRange": 0,
+        "rDmg": 121,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 113,
+        "vRate": 39,
+        "vPull": 0,
+        "base": 47
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 86,
+          "spd": 0,
+          "rate": 24,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 6,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 2769793.7126881275,
+        "LASER": 1555364.632360307,
+        "ELECTRIC": 5631197.4211058505,
+        "CRAFT": 231928.41233975592,
+        "ROCKET": 9656469.187863251
+      },
+      "id": "cryon",
+      "g": 6,
+      "lv": 20,
+      "won": false,
+      "milestones": [
+        {
+          "level": 19,
+          "time": 0.016666666666666666,
+          "hp": 1295,
+          "maxHP": 1295,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1295,
+      "kills": 110,
+      "breached": 24,
+      "earned": 99857,
+      "expected": 282119,
+      "time": 116.86666666666132,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 112802,
+      "bossState": [],
+      "up": {
+        "eDmg": 125,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 106,
+        "lEff": 37,
+        "lRange": 0,
+        "rDmg": 121,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 113,
+        "vRate": 39,
+        "vPull": 0,
+        "base": 47
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 86,
+          "spd": 0,
+          "rate": 24,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 7,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "CRAFT": 1000794.7276785296,
+        "VOID": 15713349.863146795,
+        "LASER": 4909304.295465164,
+        "ELECTRIC": 17073290.834738128,
+        "ROCKET": 36758708.26275294
+      },
+      "id": "bloodmoon",
+      "g": 7,
+      "lv": 10,
+      "won": false,
+      "milestones": [
+        {
+          "level": 9,
+          "time": 0.016666666666666666,
+          "hp": 1445,
+          "maxHP": 1445,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1445,
+      "kills": 258,
+      "breached": 15,
+      "earned": 387887,
+      "expected": 585235,
+      "time": 162.98333333335518,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 249849,
+      "bossState": [],
+      "up": {
+        "eDmg": 144,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 126,
+        "lEff": 40,
+        "lRange": 0,
+        "rDmg": 140,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 134,
+        "vRate": 40,
+        "vPull": 0,
+        "base": 53
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 107,
+          "spd": 0,
+          "rate": 24,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 7,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 7630944.622583604,
+        "LASER": 2623053.709291415,
+        "ELECTRIC": 8883853.77785694,
+        "ROCKET": 20726767.88295297,
+        "CRAFT": 549106.0865433186
+      },
+      "id": "bloodmoon",
+      "g": 7,
+      "lv": 20,
+      "won": false,
+      "milestones": [
+        {
+          "level": 19,
+          "time": 0.016666666666666666,
+          "hp": 1445,
+          "maxHP": 1445,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1445,
+      "kills": 103,
+      "breached": 19,
+      "earned": 186007,
+      "expected": 730713,
+      "time": 82.79999999999659,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 300882,
+      "bossState": [],
+      "up": {
+        "eDmg": 144,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 126,
+        "lEff": 40,
+        "lRange": 0,
+        "rDmg": 140,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 134,
+        "vRate": 40,
+        "vPull": 0,
+        "base": 53
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 107,
+          "spd": 0,
+          "rate": 24,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 8,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "CRAFT": 6714450.294582145,
+        "VOID": 47545516.46645293,
+        "LASER": 10655917.035723682,
+        "ELECTRIC": 61863426.12239691,
+        "ROCKET": 139266116.06878188
+      },
+      "id": "nexus",
+      "g": 8,
+      "lv": 10,
+      "won": false,
+      "milestones": [
+        {
+          "level": 9,
+          "time": 0.016666666666666666,
+          "hp": 1595,
+          "maxHP": 1595,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1595,
+      "kills": 323,
+      "breached": 19,
+      "earned": 1701547,
+      "expected": 1775514,
+      "time": 218.80000000006626,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 624895,
+      "bossState": [],
+      "up": {
+        "eDmg": 163,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 144,
+        "lEff": 40,
+        "lRange": 0,
+        "rDmg": 160,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 152,
+        "vRate": 40,
+        "vPull": 0,
+        "base": 59
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 135,
+          "spd": 0,
+          "rate": 24,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 8,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 22121706.896312166,
+        "LASER": 4837018.532272974,
+        "ELECTRIC": 23288423.28085794,
+        "ROCKET": 66615573.22968289,
+        "CRAFT": 2419810.831684114
+      },
+      "id": "nexus",
+      "g": 8,
+      "lv": 20,
+      "won": false,
+      "milestones": [
+        {
+          "level": 19,
+          "time": 0.016666666666666666,
+          "hp": 1595,
+          "maxHP": 1595,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1595,
+      "kills": 101,
+      "breached": 21,
+      "earned": 659856,
+      "expected": 2225468,
+      "time": 89.84999999999619,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 778490,
+      "bossState": [],
+      "up": {
+        "eDmg": 163,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 144,
+        "lEff": 40,
+        "lRange": 0,
+        "rDmg": 160,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 152,
+        "vRate": 40,
+        "vPull": 0,
+        "base": 59
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 135,
+          "spd": 0,
+          "rate": 24,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 9,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 175442935.73642555,
+        "LASER": 44076333.83063356,
+        "ELECTRIC": 238687368.28682896,
+        "ROCKET": 555431489.9763567,
+        "CRAFT": 14060562.173198529
+      },
+      "id": "singularity",
+      "g": 9,
+      "lv": 10,
+      "won": false,
+      "milestones": [
+        {
+          "level": 9,
+          "time": 0.016666666666666666,
+          "hp": 1620,
+          "maxHP": 1620,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1620,
+      "kills": 380,
+      "breached": 6,
+      "earned": 6663970,
+      "expected": 6331034,
+      "time": 266.2833333334198,
+      "bossSeconds": 40.583333333348065,
+      "purchases": 0,
+      "normalHP": 1833597,
+      "bossState": [],
+      "up": {
+        "eDmg": 186,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 168,
+        "lEff": 40,
+        "lRange": 0,
+        "rDmg": 183,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 175,
+        "vRate": 40,
+        "vPull": 0,
+        "base": 60
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 151,
+          "spd": 0,
+          "rate": 24,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 9,
+      "gearLv": 2,
+      "solo": false,
+      "damage": {
+        "VOID": 123373418.48454554,
+        "LASER": 23439701.438462503,
+        "CRAFT": 10131484.981393874,
+        "ELECTRIC": 153921384.34468272,
+        "ROCKET": 389610925.198967
+      },
+      "id": "singularity",
+      "g": 9,
+      "lv": 20,
+      "won": false,
+      "milestones": [
+        {
+          "level": 19,
+          "time": 0.016666666666666666,
+          "hp": 1620,
+          "maxHP": 1620,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1620,
+      "kills": 247,
+      "breached": 21,
+      "earned": 5444315,
+      "expected": 7888800,
+      "time": 175.2500000000316,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 2056198,
+      "bossState": [],
+      "up": {
+        "eDmg": 186,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 168,
+        "lEff": 40,
+        "lRange": 0,
+        "rDmg": 183,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 175,
+        "vRate": 40,
+        "vPull": 0,
+        "base": 60
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 151,
+          "spd": 0,
+          "rate": 24,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 5,
+      "gearLv": 20,
+      "solo": false,
+      "damage": {
+        "CRAFT": 212654.6974748292,
+        "VOID": 4102056.0988150025,
+        "LASER": 1008174.142887469,
+        "ELECTRIC": 5626050.417001686,
+        "ROCKET": 15924253.922049427,
+        "NOVA_SHOCK": 1748727.8340277956
+      },
+      "id": "nova",
+      "g": 5,
+      "lv": 20,
+      "won": true,
+      "milestones": [
+        {
+          "level": 19,
+          "time": 0.016666666666666666,
+          "hp": 1195,
+          "maxHP": 1195,
+          "earned": 0,
+          "guardianSeconds": null
+        },
+        {
+          "level": 20,
+          "time": 242.81666666675204,
+          "hp": 1195,
+          "maxHP": 1195,
+          "earned": 129021,
+          "guardianSeconds": 34.833333333361054
+        }
+      ],
+      "phase": "combat",
+      "hp": 1195,
+      "maxHP": 1195,
+      "kills": 424,
+      "breached": 0,
+      "earned": 129021,
+      "expected": 108764,
+      "time": 242.81666666675204,
+      "bossSeconds": 34.833333333361054,
+      "purchases": 0,
+      "normalHP": 54125,
+      "bossState": [],
+      "up": {
+        "eDmg": 116,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 96,
+        "lEff": 36,
+        "lRange": 0,
+        "rDmg": 112,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 104,
+        "vRate": 39,
+        "vPull": 0,
+        "base": 43
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 66,
+          "spd": 0,
+          "rate": 21,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 9,
+      "gearLv": 12,
+      "solo": false,
+      "damage": {
+        "VOID": 203734002.87920296,
+        "LASER": 45478721.64468244,
+        "ELECTRIC": 255795983.22613552,
+        "ROCKET": 570279297.4191954,
+        "CRAFT": 15441001.944730936
+      },
+      "id": "singularity",
+      "g": 9,
+      "lv": 12,
+      "won": true,
+      "milestones": [
+        {
+          "level": 11,
+          "time": 0.016666666666666666,
+          "hp": 1620,
+          "maxHP": 1620,
+          "earned": 0,
+          "guardianSeconds": null
+        },
+        {
+          "level": 12,
+          "time": 247.46666666675574,
+          "hp": 1512,
+          "maxHP": 1620,
+          "earned": 7776087,
+          "guardianSeconds": 33.9666666666937
+        }
+      ],
+      "phase": "combat",
+      "hp": 1512,
+      "maxHP": 1620,
+      "kills": 432,
+      "breached": 0,
+      "earned": 7776087,
+      "expected": 6613893,
+      "time": 247.46666666675574,
+      "bossSeconds": 33.9666666666937,
+      "purchases": 0,
+      "normalHP": 1863052,
+      "bossState": [],
+      "up": {
+        "eDmg": 190,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 172,
+        "lEff": 40,
+        "lRange": 0,
+        "rDmg": 187,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 180,
+        "vRate": 40,
+        "vPull": 0,
+        "base": 60
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 154,
+          "spd": 0,
+          "rate": 24,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 2,
+      "gearLv": 25,
+      "solo": true,
+      "damage": {
+        "CRAFT": 1759.2061969196377
+      },
+      "id": "jade",
+      "g": 2,
+      "lv": 25,
+      "won": false,
+      "milestones": [
+        {
+          "level": 24,
+          "time": 0.016666666666666666,
+          "hp": 845,
+          "maxHP": 845,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 845,
+      "kills": 0,
+      "breached": 40,
+      "earned": 0,
+      "expected": 15562,
+      "time": 50.18333333333177,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 6906,
+      "bossState": [],
+      "up": {
+        "eDmg": 80,
+        "eRate": 28,
+        "eRange": 0,
+        "lDmg": 50,
+        "lEff": 16,
+        "lRange": 0,
+        "rDmg": 74,
+        "rRate": 26,
+        "rAoe": 0,
+        "vDmg": 61,
+        "vRate": 21,
+        "vPull": 0,
+        "base": 29
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 10,
+          "spd": 0,
+          "rate": 3,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 7,
+      "gearLv": 1,
+      "solo": true,
+      "damage": {
+        "CRAFT": 244246.82765387942
+      },
+      "id": "bloodmoon",
+      "g": 7,
+      "lv": 1,
+      "won": false,
+      "milestones": [],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1445,
+      "kills": 0,
+      "breached": 29,
+      "earned": 0,
+      "expected": 478426,
+      "time": 37.79999999999914,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 211941,
+      "bossState": [],
+      "up": {
+        "eDmg": 143,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 126,
+        "lEff": 40,
+        "lRange": 0,
+        "rDmg": 140,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 133,
+        "vRate": 40,
+        "vPull": 0,
+        "base": 53
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 107,
+          "spd": 0,
+          "rate": 24,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    },
+    {
+      "gearG": 9,
+      "gearLv": 12,
+      "solo": true,
+      "damage": {
+        "CRAFT": 1583674.0456134223
+      },
+      "id": "singularity",
+      "g": 9,
+      "lv": 12,
+      "won": false,
+      "milestones": [
+        {
+          "level": 11,
+          "time": 0.016666666666666666,
+          "hp": 1620,
+          "maxHP": 1620,
+          "earned": 0,
+          "guardianSeconds": null
+        }
+      ],
+      "phase": "over",
+      "hp": 0,
+      "maxHP": 1620,
+      "kills": 0,
+      "breached": 27,
+      "earned": 0,
+      "expected": 6613893,
+      "time": 29.98333333333291,
+      "bossSeconds": null,
+      "purchases": 0,
+      "normalHP": 1863052,
+      "bossState": [],
+      "up": {
+        "eDmg": 190,
+        "eRate": 40,
+        "eRange": 0,
+        "lDmg": 172,
+        "lEff": 40,
+        "lRange": 0,
+        "rDmg": 187,
+        "rRate": 40,
+        "rAoe": 0,
+        "vDmg": 180,
+        "vRate": 40,
+        "vPull": 0,
+        "base": 60
+      },
+      "craft": {
+        "owned": true,
+        "up": {
+          "dmg": 154,
+          "spd": 0,
+          "rate": 24,
+          "radius": 0,
+          "range": 0,
+          "size": 0
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "clears": 2,
+  "expectedOutcomesVerified": 23,
+  "passed": true
+}

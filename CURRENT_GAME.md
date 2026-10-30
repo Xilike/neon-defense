@@ -1,3 +1,11 @@
+# New lab experiment: guardian monsters (2026-10-30)
+
+Lab now tests releases/boss-v1-lab/, built by scripts/build-boss-preview.py.
+Stage guardian artwork + fixed reference-END siege timing only. See
+verification/boss-v1/RELEASE.md for math, validation and limitations.
+Normal production remains the approved Families v2 + balance 3.1 snapshot below.
+Do not rebuild/promote the experiment into production without user direction.
+
 # Current game: balance 3.1.0 + supplied Families v2 visuals
 
 Play: https://neon-defense-play-xilike.vercel.app
