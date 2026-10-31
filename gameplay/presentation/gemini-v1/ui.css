@@ -1,0 +1,17 @@
+/* Gemini comparison candidate; compact HUD and collapsible tools. */
+#hud{grid-template-rows:42px 50px 20px!important;gap:4px!important;padding:calc(5px + env(safe-area-inset-top)) 6px 0!important}
+#playerProgress,#goldBig.hudChip,.gemChip,#topSettings{height:42px!important}
+#baseWrap,#galaxyQuick{min-height:50px!important;height:50px!important}
+#combatLevelStatus{font-size:10px!important;line-height:18px!important}
+#pauseBtn{top:calc(131px + env(safe-area-inset-top))!important;right:8px!important;width:36px!important;height:34px!important;border-radius:10px!important;font-size:15px!important;z-index:25}
+#sideTools{top:calc(131px + env(safe-area-inset-top))!important;left:8px!important;z-index:26}
+#sideMenuToggle{display:flex!important;width:36px!important;height:34px!important;border-radius:10px!important;align-items:center;justify-content:center;font-size:18px!important;background:linear-gradient(145deg,#11224c,#08132e)!important;border:1px solid #3b67bb!important;box-shadow:0 2px 8px #0007}
+#sideMenuItems[hidden]{display:none!important}
+#sideMenuItems{margin-top:5px;padding:5px;border-radius:12px;background:rgba(6,13,34,.94);border:1px solid #315fae;box-shadow:0 6px 20px #000a;backdrop-filter:blur(8px)}
+#sideTools #sideMenuItems button{width:46px!important;height:48px!important}
+#powersCol{top:calc(173px + env(safe-area-inset-top))!important;right:8px!important}
+#ultimateToggle{width:44px!important;height:48px!important;border-radius:12px!important;font-size:22px!important}
+#ultimateToggle::after{font-size:7px!important}
+#panel .wcard .wchev{display:block!important;color:#7de8ff;font-size:12px;font-weight:900}
+#panel .wcard .whint{display:block!important;font-size:8px;color:#84b6e8;margin-top:4px;font-weight:700;letter-spacing:.4px}
+#panel .wcard.open{border-width:2px!important;box-shadow:0 0 14px #43ddff59,inset 0 0 15px #1c70b240!important}

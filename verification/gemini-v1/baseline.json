@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "b45cd4472a645b1ce8c34d7b78a9b9479a99b9df",
+  "deployment": "dpl_7FJAsEQRRz69Pm6KktgMBEv6w3Gr",
+  "alias": "https://neon-defense-lab-xilike.vercel.app",
+  "files": {
+    "balance.js": "25a7c77fbfcc69813461e3afb884de6711bae2e05159bac114165e8b945ee0ba",
+    "campaign.js": "dd3429e44d9e60ecfad240587c26651bed20d109cd88aee07e884f91ff1b981e",
+    "index.html": "df3b48a8f2deb99920cefee26704942c35b5a5b7b6d833ff1a2601e781357c45",
+    "integrity.json": "4ee565bc1ab50ec0e58191d2db5e67299b4df64a9e375afe0abcaa54ef55df56",
+    "levels.js": "e05b68e7509dae271151b81962e0f04a5d784e808e398159e831f35c6443130f",
+    "manifest.webmanifest": "5406d11b9208c0110c4299d4891c6f59ae4a2797414cb48a8178fedf8412db84",
+    "runtime-config.js": "5cd89c7e86e138d3bee51e5040c109d2e3d57956c75cc768c918d69ae3b063b0",
+    "vercel.json": "44e1e1dd7b7646bae93556e978ed79157b5dea282b39a26616817c5c6b6b3f53"
+  }
+}

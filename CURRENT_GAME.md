@@ -1,3 +1,12 @@
+# Comparison experiment: Gemini v1 (2026-11-01)
+
+User requested TWO independent versions. Keep boss-v1-lab / existing lab alias
+as the frozen current version. New candidate: releases/gemini-v1-lab, built by
+scripts/build-gemini-preview.py; separate deployment/alias only.
+UI + deck order / lane formations change pressure; price/stat files unchanged.
+See verification/gemini-v1/RELEASE.md, including the 28/30 diagnostic limitation.
+Normal play and baseline lab must remain on their existing deployments below.
+
 # New lab experiment: guardian monsters (2026-10-30)
 
 Lab now tests releases/boss-v1-lab/, built by scripts/build-boss-preview.py.

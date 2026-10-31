@@ -1,0 +1,230 @@
+{
+  "deck": {
+    "cases": 375,
+    "countsPreserved": true
+  },
+  "formation": {
+    "count": 156,
+    "staleEntityUntouched": true,
+    "spawnInterval": 1,
+    "expectedInterval": 1
+  },
+  "phones": [
+    {
+      "width": 360,
+      "open": false,
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 125,
+        "bottom": 125
+      },
+      "pause": {
+        "x": 316,
+        "y": 131,
+        "width": 36,
+        "height": 34,
+        "bottom": 165
+      },
+      "tools": {
+        "x": 8,
+        "y": 131,
+        "width": 36,
+        "height": 34,
+        "bottom": 165
+      },
+      "powers": {
+        "x": 308,
+        "y": 173,
+        "width": 44,
+        "height": 48,
+        "bottom": 221
+      },
+      "menuHidden": true,
+      "overflow": false,
+      "projectionBelowHUD": true
+    },
+    {
+      "width": 360,
+      "open": true,
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 125,
+        "bottom": 125
+      },
+      "pause": {
+        "x": 316,
+        "y": 131,
+        "width": 36,
+        "height": 34,
+        "bottom": 165
+      },
+      "tools": {
+        "x": 8,
+        "y": 131,
+        "width": 36,
+        "height": 34,
+        "bottom": 165
+      },
+      "powers": {
+        "x": 308,
+        "y": 173,
+        "width": 44,
+        "height": 48,
+        "bottom": 221
+      },
+      "menuHidden": true,
+      "overflow": false,
+      "projectionBelowHUD": true
+    },
+    {
+      "width": 390,
+      "open": false,
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 125,
+        "bottom": 125
+      },
+      "pause": {
+        "x": 346,
+        "y": 131,
+        "width": 36,
+        "height": 34,
+        "bottom": 165
+      },
+      "tools": {
+        "x": 8,
+        "y": 131,
+        "width": 36,
+        "height": 34,
+        "bottom": 165
+      },
+      "powers": {
+        "x": 338,
+        "y": 173,
+        "width": 44,
+        "height": 48,
+        "bottom": 221
+      },
+      "menuHidden": true,
+      "overflow": false,
+      "projectionBelowHUD": true
+    },
+    {
+      "width": 390,
+      "open": true,
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 125,
+        "bottom": 125
+      },
+      "pause": {
+        "x": 346,
+        "y": 131,
+        "width": 36,
+        "height": 34,
+        "bottom": 165
+      },
+      "tools": {
+        "x": 8,
+        "y": 131,
+        "width": 36,
+        "height": 34,
+        "bottom": 165
+      },
+      "powers": {
+        "x": 338,
+        "y": 173,
+        "width": 44,
+        "height": 48,
+        "bottom": 221
+      },
+      "menuHidden": true,
+      "overflow": false,
+      "projectionBelowHUD": true
+    },
+    {
+      "width": 412,
+      "open": false,
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 412,
+        "height": 125,
+        "bottom": 125
+      },
+      "pause": {
+        "x": 368,
+        "y": 131,
+        "width": 36,
+        "height": 34,
+        "bottom": 165
+      },
+      "tools": {
+        "x": 8,
+        "y": 131,
+        "width": 36,
+        "height": 34,
+        "bottom": 165
+      },
+      "powers": {
+        "x": 360,
+        "y": 173,
+        "width": 44,
+        "height": 48,
+        "bottom": 221
+      },
+      "menuHidden": true,
+      "overflow": false,
+      "projectionBelowHUD": true
+    },
+    {
+      "width": 412,
+      "open": true,
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 412,
+        "height": 125,
+        "bottom": 125
+      },
+      "pause": {
+        "x": 368,
+        "y": 131,
+        "width": 36,
+        "height": 34,
+        "bottom": 165
+      },
+      "tools": {
+        "x": 8,
+        "y": 131,
+        "width": 36,
+        "height": 34,
+        "bottom": 165
+      },
+      "powers": {
+        "x": 360,
+        "y": 173,
+        "width": 44,
+        "height": 48,
+        "bottom": 221
+      },
+      "menuHidden": true,
+      "overflow": false,
+      "projectionBelowHUD": true
+    }
+  ],
+  "menuTouchClose": true,
+  "render": {
+    "noCombatWrites": true,
+    "graceUnchanged": true
+  },
+  "passed": true
+}
