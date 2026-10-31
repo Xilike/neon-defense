@@ -1,3 +1,12 @@
+# Active experiment: first ten Aurora levels (2026-11-01)
+
+User approved two new tactical roles: leader and telegraphed charger, authored
+across Aurora 1-10. Independent base: boss-v1-lab, without Gemini pacing/UI hooks.
+Build scripts/build-variety-preview.py → releases/variety-v1-lab.
+Evidence and remaining proposals: verification/variety-v1/RELEASE.md.
+Preserve BOTH existing comparison aliases plus normal production below.
+New experiment must use a separate deployment/alias and isolated browser origin.
+
 # Comparison experiment: Gemini v1 (2026-11-01)
 
 User requested TWO independent versions. Keep boss-v1-lab / existing lab alias

@@ -1,0 +1,23 @@
+{
+  "combat": [
+    {
+      "galaxy": 1,
+      "identical": true,
+      "phase": "combat",
+      "coins": 25430
+    },
+    {
+      "galaxy": 2,
+      "identical": true,
+      "phase": "over",
+      "coins": 49822
+    },
+    {
+      "galaxy": 6,
+      "identical": true,
+      "phase": "combat",
+      "coins": 4544680
+    }
+  ],
+  "passed": true
+}

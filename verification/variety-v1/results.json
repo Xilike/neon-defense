@@ -1,0 +1,16 @@
+{
+  "contracts": {
+    "passed": true,
+    "stages": 375,
+    "totalLeaders": 10,
+    "totalChargers": 13,
+    "protection": 0.25,
+    "maxProtected": 3,
+    "dashWarning": 1.1,
+    "dashDuration": 0.9,
+    "dashSpeed": 1.75,
+    "rewardsUnchanged": true,
+    "poolReuseClean": true
+  },
+  "passed": true
+}
