@@ -1,7 +1,10 @@
 # Comparison experiment: Gemini v1 (2026-11-01)
 
 User requested TWO independent versions. Keep boss-v1-lab / existing lab alias
-as the frozen current version. New candidate: releases/gemini-v1-lab, built by
+as the frozen current version. New candidate URL:
+https://neon-defense-gemini-xilike.vercel.app
+Deployment: dpl_BMwQZv9R8yEDq8j2rr8zoCZAr142 (preview, READY).
+Publication: verification/gemini-v1/publication.json. Candidate source: releases/gemini-v1-lab, built by
 scripts/build-gemini-preview.py; separate deployment/alias only.
 UI + deck order / lane formations change pressure; price/stat files unchanged.
 See verification/gemini-v1/RELEASE.md, including the 28/30 diagnostic limitation.

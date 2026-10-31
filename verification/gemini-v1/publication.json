@@ -1,0 +1,42 @@
+{
+  "release": "gemini-v1-comparison",
+  "date": "2026-11-01",
+  "sourceCommit": "020f253727efbafbcb5e0c2b54e6d88403b746d0",
+  "candidate": {
+    "id": "dpl_BMwQZv9R8yEDq8j2rr8zoCZAr142",
+    "url": "neon-defense-sd2-preview-lau76bkb6-xilike3-8922s-projects.vercel.app",
+    "alias": "https://neon-defense-gemini-xilike.vercel.app",
+    "target": "preview",
+    "state": "READY"
+  },
+  "baseline": {
+    "deployment": "dpl_7FJAsEQRRz69Pm6KktgMBEv6w3Gr",
+    "alias": "https://neon-defense-lab-xilike.vercel.app",
+    "htmlUnchanged": true
+  },
+  "production": {
+    "deployment": "dpl_D4wLoSGRwhyaGvSokLA5vG6Y11ER",
+    "alias": "https://neon-defense-play-xilike.vercel.app",
+    "unchanged": true
+  },
+  "verifiedFiles": [
+    "index.html",
+    "campaign.js",
+    "balance.js",
+    "levels.js",
+    "runtime-config.js",
+    "manifest.webmanifest",
+    "integrity.json"
+  ],
+  "htmlVerification": "Exact submitted HTML prefix; Vercel appends its own feedback script. All remaining public files byte-exact.",
+  "access": "Project protection retained. Temporary per-version share links supplied to user; no share credentials stored in repository.",
+  "diagnostic": {
+    "baselineClears": 30,
+    "candidateClears": 28,
+    "samples": 30,
+    "candidateFailures": [
+      "Aurora Lv1",
+      "Cryon Lv1"
+    ]
+  }
+}
