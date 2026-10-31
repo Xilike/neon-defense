@@ -3,6 +3,9 @@
 User approved two new tactical roles: leader and telegraphed charger, authored
 across Aurora 1-10. Independent base: boss-v1-lab, without Gemini pacing/UI hooks.
 Build scripts/build-variety-preview.py → releases/variety-v1-lab.
+Preview: https://neon-defense-variety-xilike.vercel.app
+Deployment dpl_7hTBv4wh6bTYeiSgeP9Re4rFXeFC (READY, preview).
+Publication: verification/variety-v1/publication.json.
 Evidence and remaining proposals: verification/variety-v1/RELEASE.md.
 Preserve BOTH existing comparison aliases plus normal production below.
 New experiment must use a separate deployment/alias and isolated browser origin.

@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-01",
+  "release": "variety-v1",
+  "sourceCommit": "3fdffee0cd159e2159f6da1b591e4e0bf77fe836",
+  "deployment": {
+    "id": "dpl_7hTBv4wh6bTYeiSgeP9Re4rFXeFC",
+    "url": "neon-defense-sd2-preview-nnl1ds03a-xilike3-8922s-projects.vercel.app"
+  },
+  "alias": "https://neon-defense-variety-xilike.vercel.app",
+  "target": "preview",
+  "state": "READY",
+  "scope": "Aurora levels 1-10",
+  "aliasesVerified": [
+    {
+      "alias": "neon-defense-lab-xilike.vercel.app",
+      "deployment": "dpl_7FJAsEQRRz69Pm6KktgMBEv6w3Gr"
+    },
+    {
+      "alias": "neon-defense-gemini-xilike.vercel.app",
+      "deployment": "dpl_BMwQZv9R8yEDq8j2rr8zoCZAr142"
+    },
+    {
+      "alias": "neon-defense-play-xilike.vercel.app",
+      "deployment": "dpl_D4wLoSGRwhyaGvSokLA5vG6Y11ER"
+    },
+    {
+      "alias": "neon-defense-variety-xilike.vercel.app",
+      "deployment": "dpl_7hTBv4wh6bTYeiSgeP9Re4rFXeFC"
+    }
+  ],
+  "checks": {
+    "publicFiles": "7 matched submitted source; HTML may contain Vercel feedback suffix",
+    "activeStagesCleared": 10,
+    "naturalJourney": "1-10 clear; earned-only purchases; 24507 coins earned, 76 purchases",
+    "focusCases": 48,
+    "stageScopeAudit": 375,
+    "outsideScopePairs": 3
+  },
+  "access": "Existing project protection retained; a temporary share link supplied to user. Credentials not stored in git."
+}
