@@ -1,3 +1,12 @@
+# Latest: approved Gemini + tactics merge (2026-11-01)
+
+User asked to publish Gemini changes onto the latest variety version.
+Build scripts/build-variety-gemini.py → releases/variety-gemini-v1-lab.
+Update variety alias only; keep original lab, standalone Gemini and play intact.
+Keep the same variety origin/save keys. See verification/variety-gemini-v1/RELEASE.md
+for integration checks and the disclosed first-two-stage diagnostic failures.
+This is not a claim of unchanged difficulty or a new natural-journey pass.
+
 # Active experiment: first ten Aurora levels (2026-11-01)
 
 User approved two new tactical roles: leader and telegraphed charger, authored

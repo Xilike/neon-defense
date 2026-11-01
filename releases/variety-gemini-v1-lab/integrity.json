@@ -1,0 +1,46 @@
+{
+  "version": "3.1.0-campaign",
+  "experiment": "variety-gemini-v1",
+  "profile": "lab",
+  "base": "variety-v1-lab",
+  "baseline": {
+    "balance.js": "25a7c77fbfcc69813461e3afb884de6711bae2e05159bac114165e8b945ee0ba",
+    "campaign.js": "dd3429e44d9e60ecfad240587c26651bed20d109cd88aee07e884f91ff1b981e",
+    "index.html": "b4a61ba9b4001f86a2c02e02a7cf4a2b4f85866d0596d4cabfbef5d9c746ac8f",
+    "integrity.json": "1df730a6cd33e3a4d257786f158d5b44923f3850950f36dccdbd91a19b8a965e",
+    "levels.js": "e05b68e7509dae271151b81962e0f04a5d784e808e398159e831f35c6443130f",
+    "manifest.webmanifest": "5406d11b9208c0110c4299d4891c6f59ae4a2797414cb48a8178fedf8412db84",
+    "runtime-config.js": "5cd89c7e86e138d3bee51e5040c109d2e3d57956c75cc768c918d69ae3b063b0",
+    "vercel.json": "44e1e1dd7b7646bae93556e978ed79157b5dea282b39a26616817c5c6b6b3f53"
+  },
+  "files": {
+    "balance.js": {
+      "bytes": 159,
+      "sha256": "25a7c77fbfcc69813461e3afb884de6711bae2e05159bac114165e8b945ee0ba"
+    },
+    "campaign.js": {
+      "bytes": 11959,
+      "sha256": "dd3429e44d9e60ecfad240587c26651bed20d109cd88aee07e884f91ff1b981e"
+    },
+    "index.html": {
+      "bytes": 253518,
+      "sha256": "b29f62bec4b027b483fb5bd561240c2699e91a88b6b49b575c51775814d8a639"
+    },
+    "levels.js": {
+      "bytes": 132,
+      "sha256": "e05b68e7509dae271151b81962e0f04a5d784e808e398159e831f35c6443130f"
+    },
+    "manifest.webmanifest": {
+      "bytes": 169,
+      "sha256": "5406d11b9208c0110c4299d4891c6f59ae4a2797414cb48a8178fedf8412db84"
+    },
+    "runtime-config.js": {
+      "bytes": 102,
+      "sha256": "5cd89c7e86e138d3bee51e5040c109d2e3d57956c75cc768c918d69ae3b063b0"
+    },
+    "vercel.json": {
+      "bytes": 185,
+      "sha256": "44e1e1dd7b7646bae93556e978ed79157b5dea282b39a26616817c5c6b6b3f53"
+    }
+  }
+}
