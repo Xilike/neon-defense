@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-01",
+  "release": "variety-gemini-v1",
+  "sourceCommit": "3ba222e5db5a8fd6019bef07164bf6b7db1a61a3",
+  "deployment": {
+    "id": "dpl_JCkwM4octb6zEQR5yJs4zxE1A68S",
+    "url": "neon-defense-sd2-preview-p1um6dk8v-xilike3-8922s-projects.vercel.app"
+  },
+  "target": "preview",
+  "state": "READY",
+  "alias": "https://neon-defense-variety-xilike.vercel.app",
+  "previousVariety": "dpl_7hTBv4wh6bTYeiSgeP9Re4rFXeFC",
+  "aliasesVerified": [
+    {
+      "alias": "neon-defense-variety-xilike.vercel.app",
+      "deployment": "dpl_JCkwM4octb6zEQR5yJs4zxE1A68S"
+    },
+    {
+      "alias": "neon-defense-lab-xilike.vercel.app",
+      "deployment": "dpl_7FJAsEQRRz69Pm6KktgMBEv6w3Gr"
+    },
+    {
+      "alias": "neon-defense-gemini-xilike.vercel.app",
+      "deployment": "dpl_BMwQZv9R8yEDq8j2rr8zoCZAr142"
+    },
+    {
+      "alias": "neon-defense-play-xilike.vercel.app",
+      "deployment": "dpl_D4wLoSGRwhyaGvSokLA5vG6Y11ER"
+    }
+  ],
+  "verification": {
+    "servedFiles": 7,
+    "focusCases": 48,
+    "deckScopeStages": 375,
+    "tacticsContracts": true,
+    "phoneWidths": [
+      360,
+      390,
+      412
+    ],
+    "diagnosticClears": 8,
+    "diagnosticCases": 10,
+    "diagnosticFailures": [
+      "Aurora Lv1",
+      "Aurora Lv2"
+    ]
+  },
+  "access": "Protection retained; temporary share URL supplied to user. No share credentials stored.",
+  "saveCompatibility": "Same variety origin, profile and save keys; current progress retained."
+}

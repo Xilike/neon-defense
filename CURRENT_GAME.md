@@ -2,6 +2,9 @@
 
 User asked to publish Gemini changes onto the latest variety version.
 Build scripts/build-variety-gemini.py → releases/variety-gemini-v1-lab.
+Latest variety URL: https://neon-defense-variety-xilike.vercel.app
+Deployment dpl_JCkwM4octb6zEQR5yJs4zxE1A68S (preview, READY).
+Publication and previous variety rollback: verification/variety-gemini-v1/publication.json.
 Update variety alias only; keep original lab, standalone Gemini and play intact.
 Keep the same variety origin/save keys. See verification/variety-gemini-v1/RELEASE.md
 for integration checks and the disclosed first-two-stage diagnostic failures.
